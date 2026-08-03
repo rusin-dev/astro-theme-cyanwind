@@ -1,0 +1,1 @@
+import{t as e}from"./site.config.DqzGXCet.js";new Intl.DateTimeFormat(e.locale.dateLocale,e.locale.dateOptions);

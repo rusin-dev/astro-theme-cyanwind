@@ -1,0 +1,1 @@
+function e(e){document.dispatchEvent(new CustomEvent(`toast`,{detail:e}))}export{e as t};

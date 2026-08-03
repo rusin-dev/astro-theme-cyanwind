@@ -1,0 +1,73 @@
+---
+import PageLayout from '@/layouts/BaseLayout.astro'
+import { getBlogCollectionEn } from '@/server'  // ✅ 改用这个函数
+
+const allPosts = await getBlogCollectionEn()  // ✅ 使用 getBlogCollectionEn
+
+// 提取所有非空的 category 值，并去重
+const categories = [...new Set(
+  allPosts
+    .map(post => post.data.category) // 提取 category
+    .filter((cat): cat is string => !!cat) // 过滤掉 undefined 或空字符串
+)]
+
+const categoryMap: Record<string, string> = {
+  'tech': 'Technical',
+  'life': 'Daily Life',
+  'solution': 'Solution',
+  'ccf': 'C++',
+  'other': 'Other'
+}
+
+// 按分类名称排序（可选）
+categories.sort((a, b) => {
+  const nameA = categoryMap[a] || a
+  const nameB = categoryMap[b] || b
+  return nameA.localeCompare(nameB)
+})
+
+const meta = {
+  title: 'Articles | Rusin\'s Blog',
+  description: 'List of all article categories'
+}
+---
+
+<PageLayout {meta}>
+  <main class='mt-6 lg:mt-10'>
+    <div id='content-header' class='animate'>
+      <h1 class='mb-2 text-3xl font-medium'>Article Categories</h1>
+      <p class='text-muted-foreground'>Total {categories.length} categories</p>
+      <br>
+      <p class='text-muted-foreground'>Select a category to start reading quietly.</p>
+      <br>
+    </div>
+
+    {
+      categories.length === 0 ? (
+        <p>No categories available.</p>
+      ) : (
+        <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+          {categories.map((category) => {
+            // 计算该分类下的文章数量
+            const count = allPosts.filter(post => post.data.category === category).length
+            const displayName = categoryMap[category] || category
+            return (
+              <a
+                href={`/en/article/${category}`}
+                class='group rounded-lg border p-6 transition-shadow hover:shadow-md'
+                data-astro-prefetch
+              >
+                <h2 class='text-xl font-semibold group-hover:text-primary'>
+                  {displayName}
+                </h2>
+                <p class='mt-2 text-sm text-muted-foreground'>
+                  {count} articles
+                </p>
+              </a>
+            )
+          })}
+        </div>
+      )
+    }
+  </main>
+</PageLayout>

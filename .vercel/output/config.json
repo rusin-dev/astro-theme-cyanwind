@@ -1,0 +1,159 @@
+{
+	"version": 3,
+	"routes": [
+		{
+			"src": "^/(.*)/$",
+			"headers": {
+				"Location": "/$1"
+			},
+			"status": 308
+		},
+		{
+			"handle": "filesystem"
+		},
+		{
+			"src": "^/_astro/(.*)$",
+			"headers": {
+				"cache-control": "public, max-age=31536000, immutable"
+			},
+			"continue": true
+		},
+		{
+			"src": "^/_server-islands/([^/]+?)$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/_image$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/404$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/about$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/academic$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/article$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/collection$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/about$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/academic$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/article$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/collection$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/links$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/projects$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/search$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/tags$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/terms/copyright$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/terms/disclaimer$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/terms/list$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/terms/privacy-policy$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en/terms/terms-and-conditions$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/en$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/links$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/projects$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/robots\\.txt$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/rss\\.xml$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/search$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/tags$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/copyright$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/disclaimer$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/list$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/privacy-policy$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/terms/terms-and-conditions$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/$",
+			"dest": "_render"
+		},
+		{
+			"src": "^/.*$",
+			"dest": "_render",
+			"status": 404
+		}
+	]
+}
