@@ -2,7 +2,7 @@
 title: 题解：CF2139B Cake Collection
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 CF2139B Cake Collection，思路清晰、排版精美
-pubDatetime: 2026-03-23 21:33:21
+publishDate: 2026-03-23T21:33:21
 category: solution
 ---
 
