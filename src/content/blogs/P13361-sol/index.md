@@ -6,6 +6,9 @@ top_img: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
 cover: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
 description: 本文讲述了如何使用 C++ 完成洛谷的 P13361 [GCJ 2011 Qualification] Bot Trust」水落溪流浅浅，思路清晰、排版精美
 category: solution
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
+  color: "#7da7d4"
 ---
 
 ![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)

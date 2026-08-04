@@ -3,7 +3,7 @@ title: 网络流笔记
 description: 增广路ek模板Dinic模板,网络流的定义
 publishDate: 2026-06-06 18:57:34
 tags: [笔记,C++]
-categories: ccf
+category: ccf
 ---
 
 ## 增广路

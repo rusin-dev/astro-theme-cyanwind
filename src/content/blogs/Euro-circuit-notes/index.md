@@ -1,9 +1,12 @@
 ---
 title: 图论之欧拉回路、差分约束——算法笔记
 publishDate: 2026-04-03 21:17:47
-tags: [题解,C++]
+tags: [C++]
 description: 本文讲述了图论之欧拉回路、差分约束的 C++ 代码，并推荐了比赛和题目以便练习。
-category: solution
+category: ccf
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
+  color: "#7da7d4"
 ---
 
 ![111](https://blog.rusin7.com/img/top_cover/2472048401.webp)

@@ -4,6 +4,9 @@ tags: [题解,C++]
 publishDate: 2026-03-30 21:35:32
 description: 本文讲述了如何使用 C++ 完成洛谷的 P14730 [ICPC 2022 Seoul R] Palindrome Type，思路清晰、排版精美
 category: solution
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
+  color: "#7da7d4"
 ---
 
 ![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)

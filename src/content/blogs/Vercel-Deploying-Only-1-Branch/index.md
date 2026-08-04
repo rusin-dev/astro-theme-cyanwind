@@ -3,7 +3,7 @@ title: Vercel 仅部署指定分支的方法
 description: 如何指定特殊分支？ 从中选择的项目，在侧边栏中打开Settings
 publishDate: 2026-05-12 20:55:55
 tags: [Git]
-categories: tech
+category: tech
 ---
 
 ## 如何指定特殊分支

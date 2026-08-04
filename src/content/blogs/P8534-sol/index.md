@@ -4,6 +4,9 @@ publishDate: 2026-06-06 19:26:35
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 P8534 「Wdoi-2」比赤色更红的梦，思路清晰、排版精美
 category: solution
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
+  color: "#7da7d4"
 ---
 
 ![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
