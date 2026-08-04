@@ -3,6 +3,7 @@ title: 在 Hexo 中复现洛谷插件
 description: 前言OIer都知道，洛谷中有个，非常好用，效果如下：succ
 tags: [Hexo,安知鱼美化]
 publishDate: 2026-06-07 18:31:24
+categories: tech
 ---
 
 ## 前言

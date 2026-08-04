@@ -1,12 +1,8 @@
 ---
 title: 洛谷网校 CSP 初赛笔记
 publishDate: 2026-07-22 21:53:36
-tags:
-  - 题解
-  - CSP
-  - 信息学奥赛
-categories: 洛谷
-katex: true
+tags: [题解,CSP,信息学奥赛]
+categories: ccf
 description: 笔记
 ---
 

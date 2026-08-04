@@ -12,9 +12,9 @@ const { links } = config.integ
 const linksConf = links || { logbook: [], applyTip: [] }
 
 const headings = [
-  { depth: 2, slug: 'common-links', text: 'Common Links' },
-  { depth: 2, slug: 'apply-links', text: 'Apply Links' },
-  ...(config.personal?.domains?.friendCircle ? [{ depth: 2, slug: 'small-circle', text: 'Small Circle' }] : [])
+  { depth: 2, slug: 'common-links', text: '友情链接' },
+  { depth: 2, slug: 'apply-links', text: '友链申请' },
+  ...(config.personal?.domains?.friendCircle ? [{ depth: 2, slug: 'small-circle', text: '朋友圈' }] : [])
 ]
 
 const { friends } = friendsData
@@ -32,7 +32,7 @@ const { friends } = friendsData
           </svg>
         </div>
         <div>
-          <h2 id='common-links' class='text-2xl font-semibold m-0'>Common Links</h2>
+          <h2 id='common-links' class='text-2xl font-semibold m-0'>友情链接</h2>
           <p class='text-sm text-muted-foreground m-0'>精选博客友链<span class='mx-2 align-middle'>·</span>一起探索有趣的世界</p>
         </div>
       </div>
@@ -52,7 +52,7 @@ const { friends } = friendsData
           </svg>
         </div>
         <div>
-          <h2 id='apply-links' class='text-2xl font-semibold m-0'>Apply Links</h2>
+          <h2 id='apply-links' class='text-2xl font-semibold m-0'>友链申请</h2>
           <p class='text-sm text-muted-foreground m-0'>友链申请<span class='mx-2 align-middle'>·</span>在此处提交你的站点</p>
         </div>
       </div>

@@ -3,6 +3,7 @@ title: AC 自动机笔记
 description: AC 自动机笔记
 publishDate: 2026-06-06 19:22:35
 tags: [笔记,C++]
+category: ccf
 ---
 
 ![洛谷炸了](https://cdn.luogu.com.cn/upload/image_hosting/ycm2f9av.png)

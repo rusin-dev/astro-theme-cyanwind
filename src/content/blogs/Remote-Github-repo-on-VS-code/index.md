@@ -3,6 +3,7 @@ title: 在 VS code 上远程管理 Github 仓库并自动化部署项目
 description: 如果GitHub远程是没有提交的空仓库然后再绑定哦。
 publishDate: 2026-04-19 19:47:17
 tags: [VS code,Git,NodeJS]
+categories: tech
 ---
 
 <!-- ![alt text](../themes/hexo-theme-anzhiyu-1.7.1/source/img/2026/在-VS-code-上远程管理-Github-仓库项目/image-1.png) -->

@@ -5,6 +5,7 @@ tags: [Hexo,安知鱼美化,网站开发]
 top_img:
 uppubDatetimed: '2026-06-03T17:27:37.361+08:00'
 publishDate: 2026-04-06 20:58:53
+category: tech
 ---
 
 ![111](https://image.rusin7.com/file/hexo/cover/z7qOAkod.webp)

@@ -1,0 +1,46 @@
+{
+  "friends": [
+    {
+      "id_name": "example-links",
+      "desc": "示例友链",
+      "link_list": [
+        {
+          "name": "哔哔一二",
+          "link": "https://www.bber.cn",
+          "avatar": "https://www.bber.cn/touxiang.png",
+          "intro": "一个安静的个人博客"
+        },
+        {
+          "name": "梦爱吃鱼",
+          "link": "https://blog.bsgun.cn/",
+          "avatar": "https://oss-cdn.bsgun.cn/logo/avatar.256.png",
+          "intro": "不负心灵，不负今生。"
+        },
+        {
+          "name": "清羽飞扬",
+          "link": "https://blog.liushen.fun/",
+          "avatar": "https://blog.liushen.fun/info/avatar.ico",
+          "intro": "柳影曳曳，清酒孤灯，扬笔撒墨，心境如霜"
+        },
+        {
+          "name": "BiuXin-s Blog",
+          "link": "https://blog.biuxin.com/",
+          "avatar": "https://x.xinb.de/i/2024/09/19/040857.webp",
+          "intro": "人生的每一天，都在学习当中"
+        },
+        {
+          "name": "無名小栈",
+          "link": "https://blog.imsyy.top/",
+          "avatar": "https://blog.imsyy.top/images/logo/logo.webp",
+          "intro": "分享技术与科技生活"
+        },
+        {
+          "name": "赵欣泽",
+          "link": "http://blog.bslzzz.cn/",
+          "avatar": "https://cdn.luogu.com.cn/upload/usericon/1217878.png",
+          "intro": "一个热爱 C++ 的信竞生。"
+        }
+      ]
+    }
+  ]
+}

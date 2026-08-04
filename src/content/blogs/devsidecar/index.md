@@ -3,6 +3,7 @@ title: 拯救谷歌和 Github！你的新“自行车”
 description: 快速安装，找到最新版本，安装包选择方式：Windows：De
 tags: [Git]
 publishDate: 2026-05-14 19:02:20
+category: tech
 ---
 
 还在为谷歌无法访问而发愁吗？[这个宝藏项目](https://github.com/docmirror/dev-sidecar)一定要收藏好😍！顺便还能秒开 Github！
