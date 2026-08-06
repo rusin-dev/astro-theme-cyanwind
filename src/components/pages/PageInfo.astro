@@ -1,0 +1,32 @@
+---
+import { cn } from '@/utils'
+
+const { class: className, hideComment, ...props } = Astro.props
+
+const normalizePath = (path: string) => {
+  if (path === '/') return path
+  return path.endsWith('/') ? path.slice(0, -1) : path
+}
+
+const path = normalizePath(Astro.url.pathname)
+
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
+
+// 多语言文本
+const labels = {
+  views: isEnglish ? 'views' : '次阅读',
+  comments: isEnglish ? 'comments' : '次评论'
+}
+---
+
+<div class={cn('text-base text-sm text-muted-foreground', className)} {...props}>
+  <span class='waline-pageview-count' data-path={path}></span> {labels.views}
+  {
+    !hideComment && (
+      <a href='#waline'>
+        | <span class='waline-comment-count' data-path={path} /> {labels.comments}
+      </a>
+    )
+  }
+</div>

@@ -15,7 +15,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     'tech': 'Technical',
     'life': 'Daily Life',
     'solution': 'Solution',
-    'ccf': 'CSP NOIP NOI',
+    'ccf': 'IT',
     'other': 'Other'
   }
   
@@ -62,7 +62,7 @@ const postCollections = await getPostCollections()
 
 const meta = {
   description: `Posts in category: ${categoryDisplayName}`,
-  title: `${categoryDisplayName} | Articles`
+  title: `${categoryDisplayName} Articles`
 }
 ---
 

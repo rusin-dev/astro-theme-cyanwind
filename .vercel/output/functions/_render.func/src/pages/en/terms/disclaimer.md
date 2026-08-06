@@ -2,13 +2,13 @@
 layout: '@/layouts/IndividualPage.astro'
 
 title: 'Disclaimer'
-description: 'Effective date: 2030-12-31'
+description: 'Effective date: 2026-08-06'
 language: 'En'
 back: '/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>DISCLAIMER</b></h2>	 	 
-<p>Effective date: 2030-12-31</p>	 	 
+<p>Effective date: 2026-08-06</p>	 	 
 <p><b>WEBSITE DISCLAIMER</b></p>	 	 
 <p>The information provided by <b>[Your Name]</b> (“us”, “we”, or “our”) on <b>[Your Domain]</b> (the “Site”) is for general informational purposes only. All information on the Site is provided in good faith, however we make no representation or warranty of any kind, express or implied, regarding the accuracy, adequacy, validity, reliability, availability, or completeness of any information on the Site.</p>	 	 
 <p>UNDER NO CIRCUMSTANCE SHALL WE HAVE ANY LIABILITY TO YOU FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF THE SITE OR RELIANCE ON ANY INFORMATION PROVIDED ON THE SITE. YOUR USE OF THE SITE AND YOUR RELIANCE ON ANY INFORMATION ON THE SITE IS SOLELY AT YOUR OWN RISK.</p>
@@ -25,5 +25,5 @@ back: '/terms/list'
 <p>All logos and trademarks of third parties referenced on [Your Domain] are the trademarks and logos of their respective owners. Any inclusion of such trademarks or logos does not imply or constitute any approval, endorsement or sponsorship of [Your Name] by such owners.</p> 
 <p><b>CONTACT US</b></p>	 	 
 <p>Should you have any feedback, comments, requests for technical support or other inquiries, please contact us by email: <b>[Your Email]</b>.</p>
-<p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/disclaimer/">Disclaimer</a> was created for <b>[Your Domain]</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2030-12-31.</p>		 	 
+<p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/disclaimer/">Disclaimer</a> was created for <b>[Your Domain]</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2026-08-06.</p>		 	 
 

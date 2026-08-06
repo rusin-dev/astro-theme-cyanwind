@@ -5,11 +5,42 @@ import { prod } from '@/utils/server'
 import type { SiteMeta } from '@/types'
 import config from '@/site-config'
 
-type Props = SiteMeta
+const isEnglish = Astro.url.pathname.startsWith('/en')
 
 const { articleDate, description, ogImage, title } = Astro.props
 
-const siteTitle = `${title} ${config.titleDelimiter} ${config.title}`
+const isHome=Astro.url.pathname === '/' || 
+              Astro.url.pathname === '/en' || 
+              Astro.url.pathname === '/en/'
+
+// 标题映射表（用于自动切换中英文）
+const titleMap: Record<string, { zh: string; en: string }> = {
+  '关于': { zh: '关于', en: 'About' },
+  '博客': { zh: '博客', en: 'Blog' },
+  '项目': { zh: '项目', en: 'Projects' },
+  '链接': { zh: '链接', en: 'Links' },
+  '首页': { zh: '首页', en: 'Home' },
+  '赞助': { zh: '赞助', en: 'Sponsorship' },
+  '标签': { zh: '标签', en: 'Tags' },
+  '分类': { zh: '分类', en: 'Categories' },
+  '归档': { zh: '归档', en: 'Archive' },
+  // 可以继续添加更多映射
+}
+
+// 根据语言选择显示标题
+const mappedTitle = titleMap[title]
+const displayTitle = mappedTitle 
+  ? (isEnglish ? mappedTitle.en : mappedTitle.zh)
+  : title  // 如果不在映射表中，使用原标题
+
+// 站点标题也支持中英文切换
+const displaySiteTitle = isEnglish ? config.titleEn : config.title
+
+// 生成完整的页面标题
+const siteTitle = isHome 
+  ? displaySiteTitle 
+  : `${displayTitle} ${config.titleDelimiter} ${displaySiteTitle}`
+
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', Astro.url).href
 ---
@@ -48,11 +79,12 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />
-<meta content={title} property='og:title' />
+<meta content={displayTitle} property='og:title' />
 <meta content={description} property='og:description' />
 <meta content={canonicalURL} property='og:url' />
-<meta content={config.title} property='og:site_name' />
-<meta content={config.locale.attrs} property='og:locale' />
+<meta content={displaySiteTitle} property='og:site_name' />
+{/* 动态设置 og:locale */}
+<meta content={isEnglish ? 'en_US' : config.locale.attrs} property='og:locale' />
 <meta content={socialImageURL} property='og:image' />
 <meta content='1200' property='og:image:width' />
 <meta content='630' property='og:image:height' />
@@ -68,7 +100,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
 {/* Twitter */}
 <meta content='summary_large_image' property='twitter:card' />
 <meta content={canonicalURL} property='twitter:url' />
-<meta content={title} property='twitter:title' />
+<meta content={displayTitle} property='twitter:title' />
 <meta content={description} property='twitter:description' />
 <meta content={socialImageURL} property='twitter:image' />
 
@@ -79,7 +111,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
 <link
   rel='alternate'
   type='application/rss+xml'
-  title={config.title}
+  title={displaySiteTitle}
   href={`${Astro.site}rss.xml`}
 />
 

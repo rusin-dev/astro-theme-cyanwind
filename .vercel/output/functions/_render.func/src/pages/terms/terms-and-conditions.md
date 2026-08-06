@@ -1,180 +1,186 @@
 ---
 layout: '@/layouts/IndividualPage.astro'
 
+<<<<<<< HEAD:.vercel/output/functions/_render.func/src/pages/terms/terms-and-conditions.md
 title: 'Terms and Conditions'
 description: 'Effective date: 2030-12-31'
 language: 'Zh-cn'
+=======
+title: '服务条款'
+description: '生效日期：2026-08-06'
+language: 'Zh'
+>>>>>>> 3c924cb (✨更新一大堆):src/pages/terms/terms-and-conditions.md
 back: '/terms/list'
 ---
 
-<h2 style="text-align: center;"><b>TERMS AND CONDITIONS</b></h2>
+<h2 style="text-align: center;"><b>服务条款</b></h2>
 
-<p>Effective date: 2030-12-31</p>	 	 
+<p>生效日期：2030-12-31</p>
 
-<p>1. <b>Introduction</b></p>	 	 
+<p>1. <b>引言</b></p>
 
-<p>Welcome to <b>[Your Name]</b> (“Company”, “we”, “our”, “us”)!</p>	 	 
+<p>欢迎使用 <b>如形</b>（“公司”、“我们”、“我们的”）！</p>
 
-<p>These Terms of Service (“Terms”, “Terms of Service”) govern your use of our website located at <b>[Your Domain]</b> (together or individually “Service”) operated by <b>[Your Name]</b>.</p>	 	 
+<p>本服务条款（“条款”、“服务条款”）适用于您使用我们的网站 <b>blog.rusin7.com</b>（单独或统称“服务”），该网站由 <b>如形</b> 运营。</p>
 
-<p>Our Privacy Policy also governs your use of our Service and explains how we collect, safeguard and disclose information that results from your use of our web pages. Please read it here <a href="/terms/privacy-policy">Privacy Policy</a>.</p>	 	 
+<p>我们的隐私政策也适用于您对我们的服务的使用，并解释了我们如何收集、保护和披露您使用我们网页所产生的信息。请在此处阅读隐私政策：<a href="/terms/privacy-policy">隐私政策</a>。</p>
 
-<p>Your agreement with us includes these Terms and our Privacy Policy (“Agreements”). You acknowledge that you have read and understood Agreements, and agree to be bound of them.</p>	 	 
+<p>您与我们之间的协议包括本条款和我们的隐私政策（“协议”）。您确认已阅读并理解协议，并同意受其约束。</p>
 
-<p>If you do not agree with (or cannot comply with) Agreements, then you may not use the Service, but please let us know by emailing at <b>[Your Email]</b> so we can try to find a solution. These Terms apply to all visitors, users and others who wish to access or use Service.</p>	 	 
+<p>如果您不同意（或无法遵守）协议，则您不得使用本服务，但请通过电子邮件 <b> i@rusin7.com </b> 告知我们，以便我们尝试寻找解决方案。本条款适用于所有希望访问或使用本服务的访问者、用户和其他人。</p>
 
-<p>2. <b>Communications</b></p>	 	 
+<p>2. <b>通讯</b></p>
 
-<p>By using our Service, you agree to subscribe to newsletters, marketing or promotional materials and other information we may send. However, you may opt out of receiving any, or all, of these communications from us by following the unsubscribe link or by emailing at [Your Email].</p>	 	 
+<p>通过使用我们的服务，您同意订阅我们可能发送的新闻通讯、营销或促销材料以及其他信息。但是，您可以通过点击取消订阅链接或发送电子邮件至 i@rusin7.com 来选择不再接收我们发送的任何或全部此类通讯。</p>
 
-<p>3. <b>Contests, Sweepstakes and Promotions</b></p>	 	 
+<p>3. <b>竞赛、抽奖和促销</b></p>
 
-<p>Any contests, sweepstakes or other promotions (collectively, “Promotions”) made available through Service may be governed by rules that are separate from these Terms of Service. If you participate in any Promotions, please review the applicable rules as well as our Privacy Policy. If the rules for a Promotion conflict with these Terms of Service, Promotion rules will apply.</p>	 	 
+<p>通过服务提供的任何竞赛、抽奖或其他促销活动（统称“促销活动”）可能受独立于本服务条款的规则管辖。如果您参与任何促销活动，请查看适用的规则以及我们的隐私政策。如果促销活动的规则与本服务条款冲突，则以促销活动规则为准。</p>
 
-<p>4. <b>Content</b></p>	 	 
+<p>4. <b>内容</b></p>
 
-<p>Content found on or through this Service are the property of [Your Name] or used with permission. You may not distribute, modify, transmit, reuse, download, repost, copy, or use said Content, whether in whole or in part, for commercial purposes or for personal gain, without express advance written permission from us.</p>	 	 
+<p>在本服务上或通过本服务找到的内容均为如形的财产，或经许可使用。未经我们事先明确书面许可，您不得出于商业目的或个人获利而分发、修改、传输、再使用、下载、转载、复制或使用上述内容（无论是全部或部分）。</p>
 
-<p>5. <b>Prohibited Uses</b></p>	 	 
+<p>5. <b>禁止用途</b></p>
 
-<p>You may use Service only for lawful purposes and in accordance with Terms. You agree not to use Service:</p>	 	 
+<p>您只能出于合法目的并按照本条款使用服务。您同意不使用服务：</p>
 
-<p>0.1. In any way that violates any applicable national or international law or regulation.</p>	 	 
+<p>0.1. 以任何违反任何适用的国家或国际法律或法规的方式。</p>
 
-<p>0.2. For the purpose of exploiting, harming, or attempting to exploit or harm minors in any way by exposing them to inappropriate content or otherwise.</p>	 	 
+<p>0.2. 以利用、伤害或试图利用或伤害未成年人的任何方式，包括向他们展示不当内容或其他方式。</p>
 
-<p>0.3. To transmit, or procure the sending of, any advertising or promotional material, including any “junk mail”, “chain letter,” “spam,” or any other similar solicitation.</p>	 	 
+<p>0.3. 传输或促使发送任何广告或促销材料，包括任何“垃圾邮件”、“连锁信”、“垃圾信息”或任何其他类似的招揽。</p>
 
-<p>0.4. To impersonate or attempt to impersonate Company, a Company employee, another user, or any other person or entity.</p>	 	 
+<p>0.4. 冒充或试图冒充公司、公司员工、其他用户或任何其他个人或实体。</p>
 
-<p>0.5. In any way that infringes upon the rights of others, or in any way is illegal, threatening, fraudulent, or harmful, or in connection with any unlawful, illegal, fraudulent, or harmful purpose or activity.</p>	 	 
+<p>0.5. 以侵犯他人权利的任何方式，或以任何非法、威胁、欺诈或有害的方式，或与任何非法、违法、欺诈或有害目的或活动相关。</p>
 
-<p>0.6. To engage in any other conduct that restricts or inhibits anyone’s use or enjoyment of Service, or which, as determined by us, may harm Company or users of Service or expose them to liability.</p>	 	 
+<p>0.6. 从事任何其他限制或抑制任何人使用或享受服务的行为，或根据我们的判断可能损害公司或服务用户或使其承担责任的行为。</p>
 
-<p>Additionally, you agree not to:</p>	 	 
+<p>此外，您同意不：</p>
 
-<p>0.1. Use Service in any manner that could disable, overburden, damage, or impair Service or interfere with any other party’s use of Service, including their ability to engage in real time activities through Service.</p>	 	 
+<p>0.1. 以任何可能禁用、超载、损坏或损害服务，或干扰任何其他方使用服务（包括其通过服务进行实时活动的能力）的方式使用服务。</p>
 
-<p>0.2. Use any robot, spider, or other automatic device, process, or means to access Service for any purpose, including monitoring or copying any of the material on Service.</p>	 	 
+<p>0.2. 使用任何机器人、蜘蛛或其他自动设备、流程或手段访问服务，用于任何目的，包括监控或复制服务上的任何材料。</p>
 
-<p>0.3. Use any manual process to monitor or copy any of the material on Service or for any other unauthorized purpose without our prior written consent.</p>	 	 
+<p>0.3. 在未经我们事先书面同意的情况下，使用任何手动流程监控或复制服务上的任何材料或用于任何其他未经授权的目的。</p>
 
-<p>0.4. Use any device, software, or routine that interferes with the proper working of Service.</p>	 	 
+<p>0.4. 使用任何干扰服务正常运行的设备、软件或程序。</p>
 
-<p>0.5. Introduce any viruses, trojan horses, worms, logic bombs, or other material which is malicious or technologically harmful.</p>	 	 
+<p>0.5. 引入任何病毒、特洛伊木马、蠕虫、逻辑炸弹或其他恶意或技术有害的材料。</p>
 
-<p>0.6. Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of Service, the server on which Service is stored, or any server, computer, or database connected to Service.</p>	 	 
+<p>0.6. 试图未经授权访问、干扰、损坏或破坏服务的任何部分、存储服务的服务器，或与服务连接的任何服务器、计算机或数据库。</p>
 
-<p>0.7. Attack Service via a denial-of-service attack or a distributed denial-of-service attack.</p>	 	 
+<p>0.7. 通过拒绝服务攻击或分布式拒绝服务攻击攻击服务。</p>
 
-<p>0.8. Take any action that may damage or falsify Company rating.</p>	 	 
+<p>0.8. 采取任何可能损害或伪造公司评级的行为。</p>
 
-<p>0.9. Otherwise attempt to interfere with the proper working of Service.</p>	 	 
+<p>0.9. 以其他方式试图干扰服务的正常工作。</p>
 
-<p>6. <b>Analytics</b></p>	 	 
+<p>6. <b>分析</b></p>
 
-<p>We may use third-party Service Providers to monitor and analyze the use of our Service.</p>	 	 
+<p>我们可能使用第三方服务提供商来监控和分析我们服务的使用情况。</p>
 
-<p>7. <b>No Use By Minors</b></p>	 	 
+<p>7. <b>未成年人禁止使用</b></p>
 
-<p>Service is intended only for access and use by individuals at least eighteen (18) years old. By accessing or using Service, you warrant and represent that you are at least eighteen (18) years old and with the full authority, right, and capacity to enter into this agreement and abide by all of the terms and conditions of Terms.</p>	 	 
+<p>本服务仅供年满十八（18）周岁的个人访问和使用。通过访问或使用服务，您保证并声明您至少年满十八（18）周岁，并拥有完全的权限、权利和能力签订本协议并遵守本条款的所有条款和条件。</p>
 
-<p>8. <b>Intellectual Property</b></p>	 	 
+<p>8. <b>知识产权</b></p>
 
-<p>Service and its original content (excluding Content provided by users), features and functionality are and will remain the exclusive property of [Your Name] and its licensors. Service is protected by copyright, trademark, and other laws of  and foreign countries. Our trademarks may not be used in connection with any product or service without the prior written consent of [Your Name].</p>	 	 
+<p>服务及其原始内容（用户提供的内容除外）、特性和功能将并仍然是如形及其许可方的独家财产。服务受版权、商标以及中国和其他国家的法律保护。未经如形事先书面同意，我们的商标不得与任何产品或服务相关联地使用。</p>
 
-<p>9. <b>Copyright Policy</b></p>	 	 
+<p>9. <b>版权政策</b></p>
 
-<p>We respect the intellectual property rights of others. It is our policy to respond to any claim that Content posted on Service infringes on the copyright or other intellectual property rights (“Infringement”) of any person or entity.</p>	 	 
+<p>我们尊重他人的知识产权。我们的政策是回应任何声称服务上发布的内容侵犯了任何个人或实体的版权或其他知识产权（“侵权”）的索赔。</p>
 
-<p>If you are a copyright owner, or authorized on behalf of one, and you believe that the copyrighted work has been copied in a way that constitutes copyright infringement, please submit your claim via email to [Your Email], with the subject line: “Copyright Infringement” and include in your claim a detailed description of the alleged Infringement as detailed below, under “DMCA Notice and Procedure for Copyright Infringement Claims”</p>	 	 
+<p>如果您是版权所有者，或经授权代表版权所有者，并且您认为受版权保护的作品以构成版权侵权的方式被复制，请通过电子邮件向 i@rusin7.com 提交您的索赔，邮件主题为：“版权侵权”，并在您的索赔中详细描述涉嫌侵权的情况，如下文“DMCA 通知和版权侵权索赔程序”中所述。</p>
 
-<p>You may be held accountable for damages (including costs and attorneys’ fees) for misrepresentation or bad-faith claims on the infringement of any Content found on and/or through Service on your copyright.</p>	 	 
+<p>对于因对您版权相关的任何内容提出虚假陈述或恶意索赔而造成的损害（包括费用和律师费），您可能要承担责任。</p>
 
-<p>10. <b>DMCA Notice and Procedure for Copyright Infringement Claims</b></p>	 	 
+<p>10. <b>DMCA 通知和版权侵权索赔程序</b></p>
 
-<p>You may submit a notification pursuant to the Digital Millennium Copyright Act (DMCA) by providing our Copyright Agent with the following information in writing (see 17 U.S.C 512(c)(3) for further detail):</p>	 	 
+<p>您可以根据《数字千年版权法案》（DMCA）向我们的版权代理提交通知，书面提供以下信息（有关详细信息，请参见 17 U.S.C 512(c)(3)）：</p>
 
-<p>0.1. an electronic or physical signature of the person authorized to act on behalf of the owner of the copyright’s interest;</p>	 	 
+<p>0.1. 版权所有者授权代表的电子或物理签名；</p>
 
-<p>0.2. a description of the copyrighted work that you claim has been infringed, including the URL (i.e., web page address) of the location where the copyrighted work exists or a copy of the copyrighted work;</p>	 	 
+<p>0.2. 您声称被侵权的受版权保护作品的描述，包括受版权保护作品存在的 URL（即网页地址）或受版权保护作品的副本；</p>
 
-<p>0.3. identification of the URL or other specific location on Service where the material that you claim is infringing is located;</p>	 	 
+<p>0.3. 您声称侵权材料在服务上的 URL 或其他具体位置的标识；</p>
 
-<p>0.4. your address, telephone number, and email address;</p>	 	 
+<p>0.4. 您的地址、电话号码和电子邮件地址；</p>
 
-<p>0.5. a statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</p>	 	 
+<p>0.5. 您的声明，表明您真诚地相信争议使用未经版权所有者、其代理人或法律授权；</p>
 
-<p>0.6. a statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner’s behalf.</p>	 	 
+<p>0.6. 您的声明，在伪证处罚下作出，表明您通知中的上述信息准确无误，并且您是版权所有者或经授权代表版权所有者行事。</p>
 
-<p>You can contact our Copyright Agent via email at [Your Email].</p>	 	 
+<p>您可以通过电子邮件 i@rusin7.com 联系我们的版权代理。</p>
 
-<p>11. <b>Error Reporting and Feedback</b></p>	 	 
+<p>11. <b>错误报告和反馈</b></p>
 
-<p>You may provide us either directly at [Your Email] or via third party sites and tools with information and feedback concerning errors, suggestions for improvements, ideas, problems, complaints, and other matters related to our Service (“Feedback”). You acknowledge and agree that: (i) you shall not retain, acquire or assert any intellectual property right or other right, title or interest in or to the Feedback; (ii) Company may have development ideas similar to the Feedback; (iii) Feedback does not contain confidential information or proprietary information from you or any third party; and (iv) Company is not under any obligation of confidentiality with respect to the Feedback. In the event the transfer of the ownership to the Feedback is not possible due to applicable mandatory laws, you grant Company and its affiliates an exclusive, transferable, irrevocable, free-of-charge, sub-licensable, unlimited and perpetual right to use (including copy, modify, create derivative works, publish, distribute and commercialize) Feedback in any manner and for any purpose.</p>	 	 
+<p>您可以直接通过 i@rusin7.com 或通过第三方网站和工具向我们提供有关错误的反馈、改进建议、想法、问题、投诉以及与我们的服务相关的其他事项（“反馈”）。您承认并同意：（i）您不得保留、获取或主张对反馈的任何知识产权或其他权利、所有权或利益；（ii）公司可能拥有与反馈相似的发展思路；（iii）反馈不包含您或任何第三方的机密信息或专有信息；以及（iv）公司对反馈不承担任何保密义务。如果因适用强制性法律而无法转让反馈的所有权，则您授予公司及其关联公司一项排他性、可转让、不可撤销、免费、可再许可、无限制和永久性的权利，以任何方式和出于任何目的使用（包括复制、修改、创建衍生作品、发布、分发和商业化）反馈。</p>
 
-<p>12. <b>Links To Other Web Sites</b></p>	 	 
+<p>12. <b>其他网站的链接</b></p>
 
-<p>Our Service may contain links to third party web sites or services that are not owned or controlled by [Your Name].</p>	 	 
+<p>我们的服务可能包含指向第三方网站或服务的链接，这些网站或服务不由如形拥有或控制。</p>
 
-<p>[Your Name] has no control over, and assumes no responsibility for the content, privacy policies, or practices of any third party web sites or services. We do not warrant the offerings of any of these entities/individuals or their websites.</p>	 	 
+<p>如形无法控制任何第三方网站或服务的内容、隐私政策或做法，也不承担任何责任。我们不保证这些实体/个人或其网站的任何内容。</p>
 
-<p>YOU ACKNOWLEDGE AND AGREE THAT COMPANY SHALL NOT BE RESPONSIBLE OR LIABLE, DIRECTLY OR INDIRECTLY, FOR ANY DAMAGE OR LOSS CAUSED OR ALLEGED TO BE CAUSED BY OR IN CONNECTION WITH USE OF OR RELIANCE ON ANY SUCH CONTENT, GOODS OR SERVICES AVAILABLE ON OR THROUGH ANY SUCH THIRD PARTY WEB SITES OR SERVICES.</p>	 	 
+<p>您承认并同意，公司不对因使用或依赖任何此类第三方网站或服务上提供的任何内容、商品或服务而造成或声称造成的任何损害或损失直接或间接承担责任或义务。</p>
 
-<p>WE STRONGLY ADVISE YOU TO READ THE TERMS OF SERVICE AND PRIVACY POLICIES OF ANY THIRD PARTY WEB SITES OR SERVICES THAT YOU VISIT.</p>	 	 
+<p>我们强烈建议您阅读您访问的任何第三方网站或服务的服务条款和隐私政策。</p>
 
-<p>13. <b>Disclaimer Of Warranty</b></p>	 	 
+<p>13. <b>免责声明</b></p>
 
-<p>THESE SERVICES ARE PROVIDED BY COMPANY ON AN “AS IS” AND “AS AVAILABLE” BASIS. COMPANY MAKES NO REPRESENTATIONS OR WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, AS TO THE OPERATION OF THEIR SERVICES, OR THE INFORMATION, CONTENT OR MATERIALS INCLUDED THEREIN. YOU EXPRESSLY AGREE THAT YOUR USE OF THESE SERVICES, THEIR CONTENT, AND ANY SERVICES OR ITEMS OBTAINED FROM US IS AT YOUR SOLE RISK.</p>	 	 
+<p>这些服务由公司按“原样”和“可用”提供。公司不作任何形式的明示或暗示陈述或保证，包括其服务的运行或其中包含的信息、内容或材料。您明确同意，您使用这些服务、其内容以及我们从您那里获得的任何服务或项目的风险完全由您自行承担。</p>
 
-<p>NEITHER COMPANY NOR ANY PERSON ASSOCIATED WITH COMPANY MAKES ANY WARRANTY OR REPRESENTATION WITH RESPECT TO THE COMPLETENESS, SECURITY, RELIABILITY, QUALITY, ACCURACY, OR AVAILABILITY OF THE SERVICES. WITHOUT LIMITING THE FOREGOING, NEITHER COMPANY NOR ANYONE ASSOCIATED WITH COMPANY REPRESENTS OR WARRANTS THAT THE SERVICES, THEIR CONTENT, OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES WILL BE ACCURATE, RELIABLE, ERROR-FREE, OR UNINTERRUPTED, THAT DEFECTS WILL BE CORRECTED, THAT THE SERVICES OR THE SERVER THAT MAKES IT AVAILABLE ARE FREE OF VIRUSES OR OTHER HARMFUL COMPONENTS OR THAT THE SERVICES OR ANY SERVICES OR ITEMS OBTAINED THROUGH THE SERVICES WILL OTHERWISE MEET YOUR NEEDS OR EXPECTATIONS.</p>	 	 
+<p>公司及与公司相关的任何人均不对服务的完整性、安全性、可靠性、质量、准确性或可用性作出任何保证或陈述。在不限制前述规定的前提下，公司及与公司相关的任何人均不陈述或保证服务、其内容或通过服务获得的任何服务或项目将是准确的、可靠的、无错误的或不间断的，缺陷将得到纠正，服务或提供服务的服务器没有病毒或其他有害组件，或者服务或通过服务获得的任何服务或项目将满足您的需求或期望。</p>
 
-<p>COMPANY HEREBY DISCLAIMS ALL WARRANTIES OF ANY KIND, WHETHER EXPRESS OR IMPLIED, STATUTORY, OR OTHERWISE, INCLUDING BUT NOT LIMITED TO ANY WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, AND FITNESS FOR PARTICULAR PURPOSE.</p>	 	 
+<p>公司特此否认所有类型的保证，无论是明示还是暗示、法定或其他方式，包括但不限于对适销性、不侵权和特定用途适用性的任何保证。</p>
 
-<p>THE FOREGOING DOES NOT AFFECT ANY WARRANTIES WHICH CANNOT BE EXCLUDED OR LIMITED UNDER APPLICABLE LAW.</p>	 	 
+<p>上述规定不影响根据适用法律不能排除或限制的任何保证。</p>
 
-<p>14. <b>Limitation Of Liability</b></p>	 	 
+<p>14. <b>责任限制</b></p>
 
-<p>EXCEPT AS PROHIBITED BY LAW, YOU WILL HOLD US AND OUR OFFICERS, DIRECTORS, EMPLOYEES, AND AGENTS HARMLESS FOR ANY INDIRECT, PUNITIVE, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGE, HOWEVER IT ARISES (INCLUDING ATTORNEYS’ FEES AND ALL RELATED COSTS AND EXPENSES OF LITIGATION AND ARBITRATION, OR AT TRIAL OR ON APPEAL, IF ANY, WHETHER OR NOT LITIGATION OR ARBITRATION IS INSTITUTED), WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE, OR OTHER TORTIOUS ACTION, OR ARISING OUT OF OR IN CONNECTION WITH THIS AGREEMENT, INCLUDING WITHOUT LIMITATION ANY CLAIM FOR PERSONAL INJURY OR PROPERTY DAMAGE, ARISING FROM THIS AGREEMENT AND ANY VIOLATION BY YOU OF ANY FEDERAL, STATE, OR LOCAL LAWS, STATUTES, RULES, OR REGULATIONS, EVEN IF COMPANY HAS BEEN PREVIOUSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. EXCEPT AS PROHIBITED BY LAW, IF THERE IS LIABILITY FOUND ON THE PART OF COMPANY, IT WILL BE LIMITED TO THE AMOUNT PAID FOR THE PRODUCTS AND/OR SERVICES, AND UNDER NO CIRCUMSTANCES WILL THERE BE CONSEQUENTIAL OR PUNITIVE DAMAGES. SOME STATES DO NOT ALLOW THE EXCLUSION OR LIMITATION OF PUNITIVE, INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE PRIOR LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.</p>	 	 
+<p>除法律禁止外，您将使我们及我们的高级职员、董事、雇员和代理人免受任何间接、惩罚性、特殊、附带或后果性损害，无论其如何产生（包括律师费以及诉讼和仲裁的所有相关费用和开支，或审判或上诉（如有），无论是否提起仲裁或诉讼），无论是基于合同、疏忽还是其他侵权行为，或由于本协议引起的或与之相关的，包括但不限于因本协议以及您违反任何联邦、州或地方法律、法规、规章或条例而提出的人身伤害或财产损失索赔，即使公司已事先被告知此类损害的可能性。除法律禁止外，如果公司承担赔偿责任，责任将限于为产品和/或服务支付的金额，并且在任何情况下均不承担后果性或惩罚性赔偿。某些州不允许排除或限制惩罚性、附带或后果性损害，因此上述限制或排除可能不适用于您。</p>
 
-<p>15. <b>Termination</b></p>	 	 
+<p>15. <b>终止</b></p>
 
-<p>We may terminate or suspend your account and bar access to Service immediately, without prior notice or liability, under our sole discretion, for any reason whatsoever and without limitation, including but not limited to a breach of Terms.</p>	 	 
+<p>我们可以根据我们的自行决定，以任何理由（包括但不限于违反条款）立即终止或暂停您的帐户并禁止您访问服务，而无需事先通知或承担任何责任。</p>
 
-<p>If you wish to terminate your account, you may simply discontinue using Service.</p>	 	 
+<p>如果您希望终止您的帐户，您只需停止使用服务即可。</p>
 
-<p>All provisions of Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.</p>	 	 
+<p>本条款中根据其性质应在终止后继续有效的所有条款应在终止后继续有效，包括但不限于所有权条款、保证免责声明、赔偿和责任限制。</p>
 
-<p>16. <b>Governing Law</b></p>	 	 
+<p>16. <b>管辖法律</b></p>
 
-<p>These Terms shall be governed and construed in accordance with the laws of , which governing law applies to agreement without regard to its conflict of law provisions.</p>	 	 
+<p>本条款应受中国法律管辖并据其解释，该管辖法律适用于协议，不考虑其法律冲突条款。</p>
 
-<p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect. These Terms constitute the entire agreement between us regarding our Service and supersede and replace any prior agreements we might have had between us regarding Service.</p>	 	 
+<p>我们未能执行本条款的任何权利或规定不应被视为放弃这些权利。如果本条款的任何规定被法院认定为无效或不可执行，则本条款的其余规定将继续有效。这些条款构成我们之间关于我们服务的完整协议，并取代我们先前可能就服务达成的任何协议。</p>
 
-<p>17. <b>Changes To Service</b></p>	 	 
+<p>17. <b>服务的变更</b></p>
 
-<p>We reserve the right to withdraw or amend our Service, and any service or material we provide via Service, in our sole discretion without notice. We will not be liable if for any reason all or any part of Service is unavailable at any time or for any period. From time to time, we may restrict access to some parts of Service, or the entire Service, to users, including registered users.</p>	 	 
+<p>我们保留自行决定随时撤回或修改我们的服务以及我们通过服务提供的任何服务或材料的权利，恕不另行通知。如果由于任何原因服务在任何时间或任何期间全部或部分不可用，我们不承担责任。我们可能不时限制用户（包括注册用户）对服务的某些部分或整个服务的访问。</p>
 
-<p>18. <b>Amendments To Terms</b></p>	 	 
+<p>18. <b>条款的修订</b></p>
 
-<p>We may amend Terms at any time by posting the amended terms on this site. It is your responsibility to review these Terms periodically.</p>	 	 
+<p>我们可以随时通过在本网站上发布修订条款来修改条款。您有责任定期审查这些条款。</p>
 
-<p>Your continued use of the Platform following the posting of revised Terms means that you accept and agree to the changes. You are expected to check this page frequently so you are aware of any changes, as they are binding on you.</p>	 	 
+<p>在修订条款发布后继续使用平台即表示您接受并同意这些更改。您应经常查看此页面，以便了解任何更改，因为它们对您具有约束力。</p>
 
-<p>By continuing to access or use our Service after any revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, you are no longer authorized to use Service.</p>	 	 
+<p>在修订生效后继续访问或使用我们的服务，即表示您同意受修订条款的约束。如果您不同意新条款，您将不再被授权使用服务。</p>
 
-<p>19. <b>Waiver And Severability</b></p>	 	 
+<p>19. <b>豁免和可分割性</b></p>
 
-<p>No waiver by Company of any term or condition set forth in Terms shall be deemed a further or continuing waiver of such term or condition or a waiver of any other term or condition, and any failure of Company to assert a right or provision under Terms shall not constitute a waiver of such right or provision.</p>	 	 
+<p>公司对本条款中任何条款或条件的豁免不应被视为对该条款或条件的进一步或持续豁免，或对任何其他条款或条件的豁免，公司未能主张本条款项下的权利或规定不应构成对该权利或规定的放弃。</p>
 
-<p>If any provision of Terms is held by a court or other tribunal of competent jurisdiction to be invalid, illegal or unenforceable for any reason, such provision shall be eliminated or limited to the minimum extent such that the remaining provisions of Terms will continue in full force and effect.</p>	 	 
+<p>如果本条款的任何规定被有管辖权的法院或其他法庭认定为无效、非法或不可执行，则该规定应被删除或限制在最小范围内，以便本条款的其余规定继续完全有效。</p>
 
-<p>20. <b>Acknowledgement</b></p>	 	 
+<p>20. <b>确认</b></p>
 
-<p>BY USING SERVICE OR OTHER SERVICES PROVIDED BY US, YOU ACKNOWLEDGE THAT YOU HAVE READ THESE TERMS OF SERVICE AND AGREE TO BE BOUND BY THEM.</p>	 	 
+<p>通过使用我们提供的服务或其他服务，您确认您已阅读这些服务条款并同意受其约束。</p>
 
-<p>21. <b>Contact Us</b></p>	 	 
+<p>21. <b>联系我们</b></p>
 
-<p>Please send your feedback, comments, requests for technical support by email: <b>[Your Email]</b>.</p>
+<p>请将您的反馈、评论、技术支持请求发送至电子邮件：<b> i@rusin7.com </b>。</p>
 
-<p style="margin-top: 5em; font-size: 0.7em;">These <a href="https://policymaker.io/terms-and-conditions/">Terms of Service</a> were created for <b>[Your Domain]</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2030-12-31.</p>	 	 
+<p style="margin-top: 5em; font-size: 0.7em;">这些服务条款是为 <b>blog.rusin7.com</b> 由 <a href="https://policymaker.io">PolicyMaker.io</a> 于 2026-08-06 创建。</p>

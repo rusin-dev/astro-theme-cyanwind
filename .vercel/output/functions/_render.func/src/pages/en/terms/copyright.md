@@ -2,13 +2,13 @@
 layout: '@/layouts/IndividualPage.astro'
 
 title: 'Copyright'
-description: 'Effective date: 2030-12-31'
+description: 'Effective date: 2026-08-06'
 language: 'En'
 back: '/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>COPYRIGHT NOTICE</b></h2>
-<p>Effective date: 2030-12-31</p>	 	 
+<p>Effective date: 2026-08-06</p>	 	 
 
 <p>Unless otherwise noted, all original content on <b>[Your Domain]</b> — including but not limited to text, code snippets, and tutorials — is created by <b>[Your Name]</b> and licensed under the 
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">

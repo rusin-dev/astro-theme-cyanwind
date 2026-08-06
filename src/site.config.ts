@@ -4,6 +4,7 @@ export const theme: ThemeUserConfig = {
   // === Basic configuration ===
   /** Title for your website. Will be used in metadata and as browser tab title. */
   title: "如形の博客",
+  titleEn: 'Rusin\'s Blog',
   /** Will be used in index page & copyright declaration */
   author: '如形',
   author_en: 'Rusin',
@@ -31,7 +32,7 @@ export const theme: ThemeUserConfig = {
   },
 
   // === Global configuration ===
-  titleDelimiter: '•',
+  titleDelimiter: '|',
   prerender: true,
   npmCDN: 'https://cdn.jsdmirror.cn/npm',
 
@@ -153,27 +154,33 @@ export const integ: IntegrationUserConfig = {
   }
 }
 
+// 定义中文列表
+const termsList = [
+  { title: '隐私政策', link: '/terms/privacy-policy' },
+  { title: '服务条款', link: '/terms/terms-and-conditions' },
+  { title: '版权声明', link: '/terms/copyright' },
+  { title: '免责声明', link: '/terms/disclaimer' }
+];
+
+// 定义英文列表
+const termsListEn = [
+  { title: 'Privacy Policy', link: '/terms/privacy-policy' },
+  { title: 'Terms and Conditions', link: '/terms/terms-and-conditions' },
+  { title: 'Copyright', link: '/terms/copyright' },
+  { title: 'Disclaimer', link: '/terms/disclaimer' }
+];
+
+// 保留原有的 terms 对象，使用中文列表
 export const terms: CardListData = {
+  title: '条款内容',
+  list: termsList
+};
+
+// 导出英文列表供英文页面使用
+export const termsEn = {
   title: 'Terms content',
-  list: [
-    {
-      title: 'Privacy Policy',
-      link: '/terms/privacy-policy'
-    },
-    {
-      title: 'Terms and Conditions',
-      link: '/terms/terms-and-conditions'
-    },
-    {
-      title: 'Copyright',
-      link: '/terms/copyright'
-    },
-    {
-      title: 'Disclaimer',
-      link: '/terms/disclaimer'
-    }
-  ]
-}
+  list: termsListEn
+};
 
 const config = { ...theme, integ } as Config
 export default config

@@ -1,41 +1,39 @@
 ---
 layout: '@/layouts/IndividualPage.astro'
 
-title: 'Copyright'
-description: 'Effective date: 2030-12-31'
-language: 'En'
+title: '版权声明'
+description: '生效日期：2026-08-06'
+language: 'Zh'
 back: '/terms/list'
 ---
 
-<h2 style="text-align: center;"><b>COPYRIGHT NOTICE</b></h2>
-<p>Effective date: 2030-12-31</p>	 	 
+<h2 style="text-align: center;"><b>版权声明</b></h2>
+<p>生效日期：2026-08-06</p>
 
-<p>Unless otherwise noted, all original content on <b>[Your Domain]</b> — including but not limited to text, code snippets, and tutorials — is created by <b>[Your Name]</b> and licensed under the 
+<p>除非另有说明，<b>blog.rusin7.com</b> 上的所有原创内容（包括但不限于文字、代码片段和教程）均由 <b>如形</b> 创作，并采用 
 <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">
-Creative Commons Attribution 4.0 International License (CC BY 4.0)
-</a>.</p>
+知识共享署名 4.0 国际许可协议（CC BY 4.0）
+</a> 进行许可。</p>
 
-<p>This license allows you to:</p>
+<p>本许可允许您：</p>
 <ul>
-  <li><b>Share</b> — copy and redistribute the material in any medium or format</li>
-  <li><b>Adapt</b> — remix, transform, and build upon the material for any purpose, even commercially</li>
+  <li><b>共享</b> — 以任何媒介或格式复制和重新分发本材料</li>
+  <li><b>改编</b> — 出于任何目的（甚至商业目的）对本材料进行混编、转换和再创作</li>
 </ul>
 
-<p>Under the following condition:</p>
+<p>在以下条件下：</p>
 <ul>
-  <li><b>Attribution</b> — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may not imply endorsement by the original author.</li>
+  <li><b>署名</b> — 您必须给出适当的署名，提供指向许可协议的链接，并标明是否已进行修改。您不得暗示原始作者对您的使用表示认可。</li>
 </ul>
 
-<p><b>Note:</b> The majority of blog post cover images ("Hero Images") are selected from publicly available works on 
-<a href="https://www.pixiv.net/" target="_blank" rel="noopener noreferrer">Pixiv</a>, with credit and original links provided in each post.</p>
+<p><b>注意：</b> 本博客大部分文章的题图（“Hero Images”）选自 <a href="https://www.pixiv.net/" target="_blank" rel="noopener noreferrer">Pixiv</a> 上的公开作品，每篇文章中均会注明作者并提供原始链接。</p>
 
-<p>This site may also include third-party images, logos, trademarks, or other materials sourced from the internet. These assets — regardless of whether they are explicitly marked with ©, ™, or other symbols — remain the intellectual property of their respective rights holders. Their use on this site is strictly for illustrative or non-commercial purposes. No copyright or trademark infringement is intended.</p>
+<p>本网站还可能包含来自互联网的第三方图片、标识、商标或其他素材。这些资产——无论是否明确标有 ©、™ 或其他符号——均归其各自权利持有人所有。它们在本网站上的使用严格用于说明或非商业目的。无意侵犯任何版权或商标权。</p>
 
-<p>If you believe that any content on <b>[Your Domain]</b> infringes upon your rights, please contact us at <b>[Your Email]</b>. We will respond promptly and remove the content if necessary.</p>
+<p>如果您认为 <b>blog.rusin7.com</b> 上的任何内容侵犯了您的权利，请通过 <b>i@rusin7.com</b> 与我们联系。我们将及时回复，并在必要时删除相关内容。</p>
 
-<p>Example attribution (for content reuse):</p>
+<p>署名示例（用于内容再使用）：</p>
 <blockquote>
-  Originally published on <a href="https://[Your Domain]" target="_blank">[Your Domain]</a> by [Your Name], licensed under 
-  <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>.
+  最初发表于 <a href="https://blog.rusin7.com" target="_blank">blog.rusin7.com</a>，作者 如形，采用 
+  <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a> 许可。
 </blockquote>
-

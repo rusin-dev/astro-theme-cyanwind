@@ -2,14 +2,14 @@
 layout: '@/layouts/IndividualPage.astro'
 
 title: 'Terms and Conditions'
-description: 'Effective date: 2030-12-31'
+description: 'Effective date: 2026-08-06'
 language: 'En'
 back: '/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>TERMS AND CONDITIONS</b></h2>
 
-<p>Effective date: 2030-12-31</p>	 	 
+<p>Effective date: 2026-08-06</p>	 	 
 
 <p>1. <b>Introduction</b></p>	 	 
 
@@ -177,4 +177,8 @@ back: '/terms/list'
 
 <p>Please send your feedback, comments, requests for technical support by email: <b> i@rusin7.com </b>.</p>
 
+<<<<<<< HEAD:.vercel/output/functions/_render.func/src/pages/en/terms/terms-and-conditions.md
 <p style="margin-top: 5em; font-size: 0.7em;">These <a href="https://policymaker.io/terms-and-conditions/">Terms of Service</a> were created for <b>blog.rusin7.com</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2030-12-31.</p>	 	 
+=======
+<p style="margin-top: 5em; font-size: 0.7em;">These <a href="https://policymaker.io/terms-and-conditions/">Terms of Service</a> were created for <b>blog.rusin7.com</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2026-08-06.</p>	 	 
+>>>>>>> 3c924cb (✨更新一大堆):src/pages/en/terms/terms-and-conditions.md
