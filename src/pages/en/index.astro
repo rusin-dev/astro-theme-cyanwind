@@ -18,6 +18,8 @@ import GitHubActivityCalendar from '@/components/home/GitHubActivityCalendar.ast
           alt='profile'
           class='h-36 w-auto rounded-lg border p-1'
           loading='eager'
+          fetchpriority='high'
+          decoding='async'
         />
         <div class='flex flex-col gap-y-4'>
           <h1 class='text-3xl font-bold'>{config.author_en}</h1>

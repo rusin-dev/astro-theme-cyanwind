@@ -4,11 +4,12 @@
 import { prod } from '@/utils/server'
 import type { SiteMeta } from '@/types'
 import config from '@/site-config'
+import globalCss from '@/assets/styles/global.css?inline'
 
 // 直接基于 URL 检测语言
 const isEnglish = Astro.url.pathname.includes('/en')
 
-console.log(isEnglish)
+// console.log(isEnglish)
 
 const { articleDate, description, ogImage, title } = Astro.props
 
@@ -68,6 +69,13 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
   type='font/ttf'
   crossorigin
 />
+<link
+  rel='preload'
+  href='/fonts/LXGWWenKai-Medium.ttf'
+  as='font'
+  type='font/ttf'
+  crossorigin
+/>
 
 {/* Canonical URL */}
 <link rel='canonical' href={canonicalURL} />
@@ -121,7 +129,7 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
 <meta content={Astro.generator} name='generator' />
 
 {/* Styles */}
-<link rel='stylesheet' href='/styles/global.css' />
+<style is:inline set:html={globalCss} />
 
 {/* View transitions */}
 <!-- <ClientRouter /> -->

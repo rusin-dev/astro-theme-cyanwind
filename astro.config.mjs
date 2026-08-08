@@ -71,6 +71,9 @@ export default defineConfig({
   server: {
     host: true
   },
+  build: {
+    inlineStylesheets: 'auto'
+  },
 
   markdown: {
     remarkPlugins: [remarkMath, remarkGfm],

@@ -43,11 +43,11 @@ export const theme: ThemeUserConfig = {
   /** Configure the header of your site. */
   header: {
     menu: [
-      { title: '文章', link: '/article' },
-      { title: '学术', link: '/academic' },
-      { title: '项目', link: '/projects' },
-      { title: '友链', link: '/links' },
-      { title: '关于', link: '/about' }
+      { title: '文章', titleEn: 'Articles', link: '/article' },
+      { title: '学术', titleEn: 'Academic', link: '/academic' },
+      { title: '项目', titleEn: 'Projects', link: '/projects' },
+      { title: '友链', titleEn: 'Links', link: '/links' },
+      { title: '关于', titleEn: 'About', link: '/about' }
     ]
   },
 

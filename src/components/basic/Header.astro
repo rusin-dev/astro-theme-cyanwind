@@ -5,25 +5,30 @@ import LanguageSwitch from '@/components/user/LanguageSwitch.astro'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { getBlogCollection, getUniqueCategories } from '@/server'
 
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
+
 // Get all categories for the dropdown menu
 const allCollections = await getBlogCollection()
 const allCategories = getUniqueCategories(allCollections)
 
-// Define category display names and filter allowed categories
-const categoryMap: Record<string, string> = {
-  'tech': 'Technical',
-  'life': 'Daily Life',
-  'solution': 'Solution',
-  'ccf': 'IT'
+const categoryMap: Record<string, { zh: string; en: string }> = {
+  'tech': { zh: '技术', en: 'Technical' },
+  'life': { zh: '生活', en: 'Daily Life' },
+  'solution': { zh: '题解', en: 'Solution' },
+  'ccf': { zh: '信奥', en: 'IT' }
 }
 
-// Define custom order (Research first)
+// 自定义顺序
 const categoryOrder = ['tech', 'ccf', 'life', 'solution']
 
-// Filter and map categories with custom order
+// 根据语言过滤并映射分类名称
 const categories = categoryOrder
   .filter(cat => allCategories.includes(cat))
-  .map(cat => ({ slug: cat, name: categoryMap[cat] }))
+  .map(cat => ({ 
+    slug: cat, 
+    name: isEnglish ? categoryMap[cat].en : categoryMap[cat].zh 
+  }))
 
 function getLocalizedUrl(locale: string | undefined, path: string) {
   let url = getRelativeLocaleUrl(locale || 'zh', path)
@@ -32,22 +37,16 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
   }
   return url
 }
-
-// console.log('allCategories:', allCategories)
 ---
 
 <header-component
   class='group sticky top-4 z-30 mb-12 flex items-center justify-between rounded-xl border border-transparent max-sm:py-1 sm:rounded-2xl [&.not-top]:border-border [&.not-top]:bg-background/60 [&.not-top]:px-1.5 [&.not-top]:backdrop-blur-md dark:[&.not-top]:bg-muted/60'
 >
-  <!-- <div
-      class='absolute -left-4 -top-8 -z-10 box-content hidden h-20 w-[calc(100%+2rem)] !duration-0 max-sm:group-[.expanded]:block max-sm:group-[.expanded.not-top]:hidden max-sm:group-[.expanded]:bg-white dark:max-sm:group-[.expanded]:bg-muted'
-    >
-    </div> -->
   <a
     class='z-30 text-xl font-semibold group-[.not-top]:ms-2 sm:group-[.not-top]:ms-3'
     style='transition:margin-inline 0.3s'
     href={getLocalizedUrl(Astro.currentLocale, '/')}
-    aria-label='Brand'>{config.title}</a
+    aria-label='Brand'>{isEnglish ? config.titleEn : config.title}</a
   >
 
   <div class='flex items-center gap-x-2'>
@@ -59,7 +58,11 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
       <div class='flex flex-col items-center justify-center md:flex-row'>
         {
           (config.header?.menu || []).map((item: any) => {
-            const isBlogMenu = item.link === '/article' || item.title === 'Blog' || item.title === '博客'
+            // 根据语言选择标题
+            const displayTitle = isEnglish ? (item.titleEn || item.title) : item.title
+            // 仅根据链接判断是否为博客菜单（更可靠）
+            const isBlogMenu = item.link === '/article'
+            
             if (isBlogMenu && categories.length > 0) {
               return (
                 <div class='menu-item-with-dropdown relative w-full md:w-fit' style='position: relative;'>
@@ -68,7 +71,7 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
                     class='blog-menu-link flex w-full flex-none items-center justify-end py-2 font-medium transition-none hover:text-primary md:px-3 md:justify-center'
                     aria-label='Nav menu item'
                   >
-                    {item.title}
+                    {displayTitle}
                     <Icon name='chevron-down' class='chevron-icon ml-1 size-4 transition-transform' />
                   </a>
                   {/* Dropdown menu */}
@@ -94,7 +97,7 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
                 class='w-full flex-none grow py-2 text-right font-medium transition-none hover:text-primary md:w-fit md:px-3'
                 aria-label='Nav menu item'
               >
-                {item.title}
+                {displayTitle}
               </a>
             )
           })
@@ -163,11 +166,6 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
       // Dark Mode
       const darkModeBtn = this.querySelector('#toggleDarkMode') as HTMLElement
       darkModeBtn.addEventListener('click', () => {
-        // Old way: dispatch event
-        // const toggleDarkModeEvent = new CustomEvent('theme-change', {
-        //   detail: { theme: localStorage.getItem('theme') === 'light' ? 'dark' : 'light' }
-        // })
-        // document.dispatchEvent(toggleDarkModeEvent)
         const newTheme = setTheme(undefined, true)
         darkModeBtn.dataset.theme = newTheme
         showToast({ message: `Set theme to ${newTheme}` })
