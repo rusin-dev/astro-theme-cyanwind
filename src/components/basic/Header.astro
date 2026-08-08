@@ -12,28 +12,28 @@ const allCategories = getUniqueCategories(allCollections)
 // Define category display names and filter allowed categories
 const categoryMap: Record<string, string> = {
   'tech': 'Technical',
-  'daily': 'Daily Life',
-  'research': 'Research',
-  'journal': 'Month Journal'
+  'life': 'Daily Life',
+  'solution': 'Solution',
+  'ccf': 'IT'
 }
 
 // Define custom order (Research first)
-const categoryOrder = ['research', 'tech', 'daily', 'journal']
+const categoryOrder = ['tech', 'ccf', 'life', 'solution']
 
 // Filter and map categories with custom order
 const categories = categoryOrder
   .filter(cat => allCategories.includes(cat))
   .map(cat => ({ slug: cat, name: categoryMap[cat] }))
 
-// 处理 trailingSlash: 'never' 配置的辅助函数
 function getLocalizedUrl(locale: string | undefined, path: string) {
   let url = getRelativeLocaleUrl(locale || 'zh', path)
-  // 移除尾部斜杠（除了根路径 /）
   if (url !== '/' && url.endsWith('/')) {
     url = url.slice(0, -1)
   }
   return url
 }
+
+// console.log('allCategories:', allCategories)
 ---
 
 <header-component
@@ -59,7 +59,7 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
       <div class='flex flex-col items-center justify-center md:flex-row'>
         {
           (config.header?.menu || []).map((item: any) => {
-            const isBlogMenu = item.link === '/article/tech' || item.title === 'Blog'
+            const isBlogMenu = item.link === '/article' || item.title === 'Blog' || item.title === '博客'
             if (isBlogMenu && categories.length > 0) {
               return (
                 <div class='menu-item-with-dropdown relative w-full md:w-fit' style='position: relative;'>

@@ -14,8 +14,6 @@ export const ThemeConfigSchema = () =>
     title: z
       .string()
       .describe('Title for your website. Will be used in metadata and as browser tab title.'),
-
-    /** English version of title */
     titleEn: z.string().optional().describe('English version of title'),
 
     /** Will be used in index page & copyright declaration */

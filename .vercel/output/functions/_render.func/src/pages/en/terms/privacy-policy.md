@@ -2,14 +2,14 @@
 layout: '@/layouts/IndividualPage.astro'
 
 title: 'Privacy Policy'
-description: 'Effective date: 2026-08-06'
+description: 'Effective date: 2030-12-31'
 language: 'En'
 back: '/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>PRIVACY POLICY</b></h2>
 
-<p>Effective date: 2026-08-06</p>
+<p>Effective date: 2030-12-31</p>
 
 <p>1. <b>Introduction</b></p>
 
@@ -242,5 +242,5 @@ back: '/terms/list'
 
 <p>If you have any questions about this Privacy Policy, please contact us by email: <b>[Your Email]</b>.</p>
 
-<p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a> was created for <b>[Your Domain]</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2026-08-06.</p>	 	 
+<p style="margin-top: 5em; font-size: 0.7em;">This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a> was created for <b>[Your Domain]</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2030-12-31.</p>	 	 
 

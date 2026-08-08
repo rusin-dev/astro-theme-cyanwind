@@ -2,7 +2,7 @@
 import { Button, CardList } from '@/components/user'
 import { cn } from '@/utils'
 import PageLayout from '@/layouts/BaseLayout.astro'
-import { integ, termsEn } from '@/site-config'   // 导入英文列表
+import { integ, terms } from '@/site-config'
 
 const meta = {
   title: 'Site policy',
@@ -19,7 +19,7 @@ const meta = {
 
     <div id='content' class={cn('animate mt-8 max-w-none md:min-w-[45ch]', integ.typography.class)}>
       <h2 class='text-xl font-medium'>Site policy documentation</h2>
-      <CardList title={termsEn.title} list={termsEn.list} />
+      <CardList {...terms} />
     </div>
   </main>
 </PageLayout>

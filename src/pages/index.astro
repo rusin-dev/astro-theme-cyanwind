@@ -9,7 +9,7 @@ import avatar from '@/assets/avatar.png'
 import config from '@/site-config'
 ---
 
-<PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
+<PageLayout meta={{ title: '' }} highlightColor='#659EB966'>
   <main class='flex w-full flex-col items-center'>
     <section class='animate mb-10 flex flex-col items-center gap-y-7' id='content-header'>
       <div class='flex flex-row items-center gap-x-6'>
@@ -67,7 +67,7 @@ import config from '@/site-config'
         >
         </Card>
       </Section>
-      <Section title='Statistics'>
+      <Section title='统计'>
         <BlogStats blogStartDate={config.personal?.blogStartDate ? new Date(config.personal.blogStartDate) : new Date('2026-08-02')} />
       </Section>
       {config.personal?.githubUsername && (

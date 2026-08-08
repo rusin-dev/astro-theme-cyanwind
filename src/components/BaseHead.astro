@@ -5,13 +5,12 @@ import { prod } from '@/utils/server'
 import type { SiteMeta } from '@/types'
 import config from '@/site-config'
 
-const isEnglish = Astro.url.pathname.startsWith('/en')
+// 直接基于 URL 检测语言
+const isEnglish = Astro.url.pathname.includes('/en')
+
+console.log(isEnglish)
 
 const { articleDate, description, ogImage, title } = Astro.props
-
-const isHome=Astro.url.pathname === '/' || 
-              Astro.url.pathname === '/en' || 
-              Astro.url.pathname === '/en/'
 
 // 标题映射表（用于自动切换中英文）
 const titleMap: Record<string, { zh: string; en: string }> = {
@@ -36,7 +35,11 @@ const displayTitle = mappedTitle
 // 站点标题也支持中英文切换
 const displaySiteTitle = isEnglish ? config.titleEn : config.title
 
-// 生成完整的页面标题
+// 判断是否为首页（根路径或 /en）
+const pathname = Astro.url.pathname
+const isHome = pathname === '/' || pathname === '/en' || pathname === '/en/'
+
+// 生成标题：首页只显示站点名，其他页面显示 "页面标题 | 站点名"
 const siteTitle = isHome 
   ? displaySiteTitle 
   : `${displayTitle} ${config.titleDelimiter} ${displaySiteTitle}`
