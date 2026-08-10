@@ -4,30 +4,31 @@ import { fontFamily } from 'tailwindcss/defaultTheme'
 const fg = 'hsl(var(--foreground) / var(--tw-text-opacity, 1))'
 const fgMuted = 'hsl(var(--muted-foreground) / var(--tw-text-opacity, 1))'
 const bgMuted = 'hsl(var(--muted) / var(--tw-bg-opacity, 1))'
+const link = 'hsl(var(--primary) / var(--tw-text-opacity, 1))'
 
 const typographyConfig = ({ theme }) => ({
   axi: {
     css: {
       '--tw-prose-headings': fg,
       '--tw-prose-body': fgMuted,
-      '--tw-prose-links': fg,
+      '--tw-prose-links': link,
       '--tw-prose-quotes': fgMuted,
       '--tw-prose-code:': fg,
       '--tw-prose-pre-code': fgMuted,
       '--tw-prose-pre-bg': bgMuted,
 
       'p a, li a, blockquote a, td a': {
-        color: fg,
+        color: link,
         textDecoration: 'underline',
-        textDecorationColor: 'hsl(var(--muted-foreground) / 0.5)',
-        textUnderlineOffset: '0.125rem',
+        textDecorationColor: 'hsl(var(--primary) / 0.4)',
+        textUnderlineOffset: '0.15rem',
         transition: 'all 0.2s ease',
         borderRadius: '0.25rem',
         padding: '0.125rem 0.25rem',
         margin: '-0.125rem -0.25rem',
         '&:hover': {
           textDecoration: 'none',
-          backgroundColor: fg,
+          backgroundColor: link,
           color: 'hsl(var(--background))',
         }
       },

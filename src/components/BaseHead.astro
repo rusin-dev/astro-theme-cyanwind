@@ -61,21 +61,9 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
 {/* Font preloads */}
+<link rel='preconnect' href='https://cdn.jsdmirror.cn' crossorigin />
+<link rel='stylesheet' href='https://cdn.jsdmirror.cn/npm/lxgw-wenkai-webfont@1.1.0/style.min.css' />
 <link rel='preload' href='/fonts/JetBrainsMono-Regular.woff2' as='font' type='font/woff2' crossorigin />
-<link
-  rel='preload'
-  href='/fonts/LXGWWenKai-Regular.ttf'
-  as='font'
-  type='font/ttf'
-  crossorigin
-/>
-<link
-  rel='preload'
-  href='/fonts/LXGWWenKai-Medium.ttf'
-  as='font'
-  type='font/ttf'
-  crossorigin
-/>
 
 {/* Canonical URL */}
 <link rel='canonical' href={canonicalURL} />

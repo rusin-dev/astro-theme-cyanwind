@@ -2,33 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 霞鹜文楷 - 常规 */
-@font-face {
-  font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* 霞鹜文楷 - 粗体 */
-@font-face {
-  font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Medium.ttf') format('truetype');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* 霞鹜文楷 - 细体（可选） */
-@font-face {
-  font-family: 'LXGW WenKai';
-  src: url('/fonts/LXGWWenKai-Light.ttf') format('truetype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* JetBrains Mono - 常规 */
 @font-face {
   font-family: 'JetBrains Mono';
@@ -64,7 +37,7 @@
     --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
-    --primary: 200 29% 45%;
+    --primary: 205 45% 30%;
     --primary-foreground: 0 0% 92.5%;
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;

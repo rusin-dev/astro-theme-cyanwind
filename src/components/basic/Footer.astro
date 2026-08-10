@@ -65,14 +65,14 @@ const socialLinks = {
             </a>
           )
         }
-        <span>
+        <span class='[&_a]:underline [&_a]:decoration-muted-foreground/60 [&_a]:underline-offset-2 [&_a:hover]:text-primary [&_a:hover]:decoration-primary'>
           {labels.copyright} {year}
           {labels.author} &
           <a href='/terms/list'>{labels.sitePolicy}</a>
         </span>
         {
           footerConf.credits && (
-            <span class='text-muted-foreground [&_a:hover]:text-primary [&_a]:text-foreground'>
+            <span class='text-muted-foreground [&_a]:underline [&_a]:decoration-muted-foreground/60 [&_a]:underline-offset-2 [&_a:hover]:text-primary [&_a:hover]:decoration-primary'>
               <a href='https://github.com/withastro/astro' target='_blank'>
                 Astro
               </a>
