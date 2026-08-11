@@ -8,8 +8,6 @@ heroImage:
   src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
   color: "#7da7d4"
 ---
-
-![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
 ## 问题分析
 
 题目要求计算边长为 $N$ 的立方体被平面 $x+y+z=K$ 切割后，包含原点 $(0,0,0)$ 的部分体积的 **6 倍**是多少。\

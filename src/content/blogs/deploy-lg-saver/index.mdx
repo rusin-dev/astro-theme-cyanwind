@@ -1,0 +1,342 @@
+---
+title: 在 VPS 上部署洛谷保存站
+publishDate: 2026-08-11
+tags: [云服务器,建站,Docker]
+description: 本文讲述了如何在 Zeabur 上购买腾讯云服务器并使用 VPS 通过 Docker 镜像部署 （无需实名）
+category: tech
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/vpqG4xgg.webp
+  color: "#58ad65"
+---
+
+import { Aside, Tabs, TabItem, Spoiler } from '@/components/user'
+import { GithubCard, LinkPreview, QRCode, ImageGroup, WebVideo } from '@/components/advanced'
+
+## 项目地址
+
+[Demo](https://luogu.rusin7.com/)
+<LinkPreview href='https://luogu.rusin7.com/' />
+
+<GithubCard repo='laikit-dev/luogu-saver' />
+
+## 前置要求
+
+在开始之前，请确保你已具备以下条件：
+- 有一个邮箱或 Github、Google 账号。
+- 有一定的 Linux 终端操作能力和 Web 知识。
+- 能支付一个月 $3$ 美元的费用或已经有服务器了。
+
+## 购买 VPS（如果你有服务器可以忽略）
+
+进入 [Zeabur 注册](https://zeabur.cn/zh-CN/login)，然后选一种方式注册，进入仪表盘后点击左侧“服务器”，然后点击“创建服务器”，选择“服务器-单机部署”，再选择“从 zeabur 购买服务器”，点击“前往购买”。
+
+![1](https://image.rusin7.com/file/uvHywUpv.png)
+
+供应商选择 Tencent，方案中区域：`亚洲`，排序：`价格 ↑`，在前 $4$ 个价格为 $3$ 美元的服务器选一个。操作系统选 ZeaburOS，然后前往结账.
+
+![2](https://image.rusin7.com/file/Zw5chk7S.png)
+
+勾选 `我已阅读并同意上述重要事项······`，点击“设置付款方式”，选“充值余额”，然后用支付宝或微信支付充值到账户里。支付后，满屏的烟花会庆祝你的成功，然后你的服务器将会安装一系列自带的 Zeabur 服务。
+
+![3](https://image.rusin7.com/file/y2hhrecN.png)
+
+到此，服务器就购买成功了！
+
+### SSH 服务器
+
+回到 Zeabur 首页，点击服务器、你的服务器名字进入详细页面，点击服务器运行信息中的 IPv4 旁边的一串 IP 地址复制下来，打开终端，输入以下内容：
+
+```bash
+ssh ubuntu@<IP>
+```
+
+如果输出 `ubuntu@<IP>'s password:`，那么没有问题，先不要关闭终端。
+
+然后回到 Zeabur 服务器页面，点击上侧的 `SSH`，点击 SSH 密码下面的“···”（**不是“连接”**），此时可能会弹出警告，大致意思是“如果你在 ssh 后一不小心弄坏（`rm -rf`）了服务器，他们无法回复，只能重装系统”，不必理会，直接点“确定放弃权利”，然后点击密码复制到剪贴板，再回到终端，粘贴密码（粘贴时不会有 `*` 等字符出现，属于正常现象），让后 `Enter`，第一次 SSH 有交互式提问，输入 `y` 即可。如果终端输出类似如下，那么就成功了！
+
+```bash
+Welcome to Ubuntu 24.04.4 LTS (GNU/Linux 6.8.0-124-generic x86_64)
+···
+```
+
+## 部署保存站
+
+### 部署基础设施 (数据库、缓存等)
+
+克隆项目仓库并进入目录：
+
+```bash
+git clone https://github.com/laikit-dev/luogu-saver.git
+cd luogu-saver
+```
+编辑 docker-compose.yml 中密码：
+
+```bash
+nano docker-compose.yml
+```
+
+用上、下键移动光标找到 `services.db.environment.MARIADB_ROOT_PASSWORD` 并修改为自己的密码，例：`MARIADB_ROOT_PASSWORD: 123456`。再找到 `services.meilisearch.environment.MEILI_MASTER_KEY` 并修改为自己的密码，例：`MEILI_MASTER_KEY: 123456`。然后按 `Ctrl + O , Enter`（字母 `O`，不是 $0$），最后按 `Ctrl + X` 退出。
+
+然后启动基础设施服务：
+
+```bash
+sudo docker compose up -d
+```
+
+### 构建项目
+
+#### 升级 Node.js
+
+由于默认 Node.js 版本过低（v18.19.1）而项目要求的 Node.js 版本是 22.18.0 或更高（见 README），Vite 也要求 20.19+ 或 22.12+。需要升级 Node.js。
+
+安装 nvm
+
+```bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+source ~/.bashrc
+```
+安装并切换到 Node.js 22
+
+```bash
+nvm install 22
+nvm alias default 22
+nvm use 22
+```
+
+验证一下：
+
+```bash
+node -v
+```
+
+应该显示 `v22.x.x`。
+
+#### 开始构建
+
+```bash
+npm install
+npm run build
+export VITE_API_URL=http://你的域名 # 替换为你的自定义域名
+cd ~/luogu-saver/packages/backend
+npm install --production --ignore-scripts
+```
+
+#### 安装依赖、创建数据库
+
+```bash
+sudo npm install -g pm2
+sudo apt update && sudo apt install nginx -y
+
+sudo docker exec -it mariadb-docker-saver mariadb -u root -p
+```
+
+然后输入 `docker-compose.yml` 中你设置的第 $1$ 个（MariaDB）的密码（输入时不会有 `*` 等字符出现，属于正常现象）。进入控制台后粘贴以下脚本：
+
+```bash
+CREATE DATABASE luogu_saver CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+EXIT;
+```
+
+### 配置后端
+
+编辑 `config.yml`：
+
+```bash
+cd ~/luogu-saver/packages/backend
+nano config.yml
+```
+
+粘贴以下内容，注意修改自己的密码：
+
+```yaml
+port: 3000
+env: "development"
+
+network:
+  timeout: 30000
+
+db:
+  host: "127.0.0.1"
+  port: 3306
+  user: "root"
+  password: "你的MariaDB密码"
+  database: "luogu_saver"
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  password: ""
+  keyPrefix: ""
+
+chroma:
+  enable: false
+  ssl: false
+  host: "127.0.0.1"
+  port: 8000
+  collectionName: "lgs_articles"
+
+queue:
+  save:
+    concurrencyLimit: 2
+    maxRequestToken: 20
+    regenerationInterval: 1000
+    maxQueueLength: 1000
+  ai:
+    concurrencyLimit: 10
+    maxRequestToken: 50
+    regenerationInterval: 1000
+    maxQueueLength: 2000
+  update:
+    concurrencyLimit: 2
+    maxRequestToken: 20
+    regenerationInterval: 1000
+    maxQueueLength: 1000
+
+llm:
+  providers: []
+  scenarios:
+    chat:
+      use: "openai"
+      temperature: 0.7
+      maxTokens: 2048
+      topP: 1
+      frequencyPenalty: 0
+      presencePenalty: 0
+      stopSequences: []
+    summary:
+      use: "openai"
+      temperature: 0.7
+      maxTokens: 1024
+    embedding:
+      use: "openai"
+    censor:
+      use: "openai"
+
+recommendation:
+  anonymous:
+    expireTime: 604800
+    maxCount: 100
+  maxHistory: 500
+  decayFactor: 0.9
+  relevantThreshold: 0.75
+
+verification:
+  luogu:
+    codeExpireTime: 300
+    codeLength: 32
+
+judgement:
+  enabled: true
+  intervalMs: 1200000
+  runOnStartup: true
+  sourceUrl: "https://www.luogu.com.cn/judgement"
+```
+
+启动后端：
+
+```bash
+pm2 start dist/index.js --name luogu-backend
+```
+
+### 托管前端
+
+#### 配置 Nginx
+
+这是最后一步，让前端页面可以通过 HTTP 访问。
+
+```bash
+sudo nano /etc/nginx/sites-available/default
+```
+
+将内容替换为（注意添加你的生产域名在 `server_name`）：
+
+```nginx
+server {
+    listen 81;
+    server_name _;   # 示例：server_name _ example.com;
+
+    root /home/ubuntu/luogu-saver/packages/frontend/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /api/ {
+        rewrite ^/api/(.*) /$1 break;
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+
+保存后，测试并启动 Nginx：
+
+```bash
+ssudo chmod o+x /home/ubuntu
+sudo chmod -R o+rX /home/ubuntu/luogu-saver/packages/frontend/dist
+sudo nginx -t
+sudo systemctl restart nginx
+sudo systemctl enable nginx
+```
+
+### 自定义域名
+
+在你的域名服务商后台，添加一条 A 记录：
+
+- 主机记录：`luogu`（取决于你想用哪个子域名）
+
+- 记录值：`你的服务器 IP`
+
+- TTL：随意
+
+### 转发端口
+
+现在，我们需要在 Zeabur 上部署一个 Nginx 服务，专门用来转发流量，是可以通过 $80$ 端口（`https://example.com`）访问（即访问网站时的默认端口，否则只能通过 `https://example.com:81` 访问，不够优雅）。
+
+
+在仪表盘右上角点“创建项目”新建一个 Zeabur 项目，点击左侧“新建服务”，点击“模板”，输入“Nginx”部署，然后点“设置”，选择“打开配置文件编辑器”，粘贴以下代码：
+
+```nginx
+worker_processes  5;
+error_log  stderr;
+worker_rlimit_nofile 8192;
+
+events {}
+
+http {
+  default_type application/octet-stream;
+  log_format   main '$remote_addr - $remote_user [$time_local]  $status '
+    '"$request" $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+  access_log   /dev/stdout  main;
+  sendfile     on;
+  tcp_nopush   on;
+  server_names_hash_bucket_size 128;
+
+  server {
+    listen 80 default_server;
+    server_name _;   
+
+    location / {
+        proxy_pass http://服务器 IP:81;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+  }
+}
+```
+
+然后点击网络-绑定外部域名，添加你的域名 `example.com` 并确认。
+
+然后会自动开始部署，耐心等待一会，当状态变为运行中时，可以打开你的域名，如果没有问题的话。
+
+恭喜你，部署成功了！
+
+## 参考资料

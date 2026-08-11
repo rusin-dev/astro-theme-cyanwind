@@ -9,8 +9,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 [**纯享阅读区**](https://www.luogu.com.cn/article/twhfrn73 "纯享阅读区")  
 [题目传送门](https://www.luogu.com.cn/problem/P14730 "P14730 [ICPC 2022 Seoul R] Palindrome Type")
 

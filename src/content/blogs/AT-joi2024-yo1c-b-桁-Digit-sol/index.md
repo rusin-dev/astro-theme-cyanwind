@@ -9,8 +9,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 [**安利一下自己的博客**](http://blog.rusin7.com "博客")
 
 [题目传送门](https://www.luogu.com.cn/problem/AT_joi2024_yo1c_b "题目传送门")

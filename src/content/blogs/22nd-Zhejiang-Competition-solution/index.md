@@ -4,9 +4,9 @@ publishDate: 2026-04-03 21:00:28
 tags: [题解,比赛]
 description: 本文讲述了第22届浙大宁波理工学院程序设计大赛的 C++ 代码。
 category: ccf
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/VdGvvMhu.webp
 ---
-
-![111](https://blog.rusin7.com/img/top_cover/74289.webp)
 
 ## A. 字符串
 

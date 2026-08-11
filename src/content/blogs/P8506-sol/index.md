@@ -9,8 +9,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 ## 前言
 
 本篇题解适合**刚学[字符串](https://www.luogu.com.cn/problem/list?type=luogu\&page=1\&tag=357)和[模拟](https://www.luogu.com.cn/problem/list?type=luogu\&difficulty=1\&page=1\&tag=1)的同学**阅读，语言浅显易懂。~~谁让作者是个蒟蒻呢。~~

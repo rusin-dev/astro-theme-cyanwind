@@ -9,10 +9,8 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 [CF2139B Cake Collection](https://www.luogu.com.cn/problem/CF2139B "CF2139B Cake Collection")  
-[**安利一下*博客***](https://blog.rusin7.com/ "博客 🥳🎆🎉祝大家 2026 新年快乐")🥳🎆🎉祝大家 2026 新年快乐！
+[**安利一下**博客](https://blog.rusin7.com/ "博客 🥳🎆🎉祝大家 2026 新年快乐")🥳🎆🎉祝大家 2026 新年快乐！
 
 [纯享阅读区](https://www.luogu.com.cn/article/odez28v6 "纯享阅读区")
 

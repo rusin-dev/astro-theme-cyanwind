@@ -11,8 +11,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 本题解被打回无法重新提交嘤嘤嘤
 
 ## 题意理解

@@ -9,8 +9,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![111](https://blog.rusin7.com/img/top_cover/2472048401.webp)
-
 # 图论之欧拉回路、差分约束——算法笔记
 
 [比赛](https://vjudge.net/contest/767358)

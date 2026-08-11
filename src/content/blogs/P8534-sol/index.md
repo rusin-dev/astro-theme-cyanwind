@@ -9,8 +9,6 @@ heroImage:
   color: "#7da7d4"
 ---
 
-![111](https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp)
-
 [题目传送门](https://www.luogu.com.cn/problem/P8534)
 
 ## 题意分析

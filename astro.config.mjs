@@ -1,17 +1,19 @@
 // @ts-check
 
+import cloudflare from '@astrojs/cloudflare'
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 // Adapters
 import vercel from '@astrojs/vercel'
-import cloudflare from '@astrojs/cloudflare'
-// Integrations
-import AstroAxiIntegration from './src/axi-integration.ts'
 import { defineConfig } from 'astro/config'
 // Rehype & remark packages
 import rehypeKatex from 'rehype-katex'
-import remarkMath from 'remark-math'
+import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 
+// Integrations
+import AstroAxiIntegration from './src/axi-integration.ts'
+import { rehypeLuoguBlocks, remarkLuoguBlocks } from './src/plugins/luogu-blocks.ts'
 // Others
 // import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -37,7 +39,11 @@ const isGithubPages = platform === 'github'
 // https://astro.build/config
 export default defineConfig({
   // Top-Level Options
-  site: isGithubPages ? `https://${config.personal?.domains?.githubPages || 'example.github.io'}/` : (isCloudflare ? `https://${config.personal?.domains?.cloudflare || 'example.pages.dev'}/` : `https://${config.personal?.domains?.main || 'example.com'}/`),
+  site: isGithubPages
+    ? `https://${config.personal?.domains?.githubPages || 'example.github.io'}/`
+    : isCloudflare
+      ? `https://${config.personal?.domains?.cloudflare || 'example.pages.dev'}/`
+      : `https://${config.personal?.domains?.main || 'example.com'}/`,
   // base: '/docs',
   trailingSlash: 'never',
 
@@ -50,8 +56,8 @@ export default defineConfig({
     }
   },
 
-  adapter: isGithubPages ? undefined : (isCloudflare ? cloudflare() : vercel()),
-  output: isGithubPages ? 'static' : (isCloudflare ? 'static' : 'server'),
+  adapter: isGithubPages ? undefined : isCloudflare ? cloudflare() : vercel(),
+  output: isGithubPages ? 'static' : isCloudflare ? 'static' : 'server',
 
   image: {
     service: {
@@ -89,8 +95,9 @@ export default defineConfig({
   },
   // Markdown Options
   markdown: {
-    remarkPlugins: [remarkMath, remarkGfm],
+    remarkPlugins: [remarkMath, remarkGfm, remarkDirective, remarkLuoguBlocks],
     rehypePlugins: [
+      rehypeLuoguBlocks,
       rehypeHeadingIds,
       [rehypeKatex, {}],
       [
@@ -112,6 +119,9 @@ export default defineConfig({
       themes: {
         light: 'github-light',
         dark: 'github-dark'
+      },
+      langAlias: {
+        nginx: 'ini', // 或尝试 'ini', 'config'
       },
       transformers: [
         transformerNotationDiff(),
