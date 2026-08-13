@@ -1,0 +1,225 @@
+/* ============================================================
+   洛谷 Markdown 插件（挂件）样式
+   移植自 Hexo 版插件，适配本主题（含暗色模式）
+   ============================================================ */
+
+/* ---------- 对齐 ---------- */
+.align-left {
+  text-align: left !important;
+}
+
+.align-center {
+  text-align: center !important;
+}
+
+.align-right {
+  text-align: right !important;
+}
+
+/* ---------- 引文 epigraph ---------- */
+.epigraph {
+  width: 40%;
+  margin-left: 60%;
+}
+
+.epigraph > :last-child {
+  margin-top: 0;
+  border-top: 1px solid #888;
+  text-align: right;
+}
+
+/* ---------- 可折叠容器 ---------- */
+.foldable {
+  padding: 0.5em 1em;
+  margin: 1em 0 1em 0.2em;
+  border-left-width: 5px;
+  border-left-style: solid;
+  overflow: hidden;
+}
+
+.foldable.info {
+  border-left-color: rgb(52, 152, 219);
+}
+
+.foldable.warning {
+  border-left-color: rgb(255, 193, 22);
+}
+
+.foldable.success {
+  border-left-color: rgb(82, 196, 26);
+}
+
+.foldable.error,
+.foldable.bug {
+  border-left-color: rgb(231, 76, 60);
+}
+
+.foldable.flask {
+  border-left-color: rgb(155, 89, 182);
+}
+
+.foldable > div {
+  margin-top: 0.5em;
+}
+
+.foldable > div > :first-child {
+  margin-top: 0;
+}
+
+.foldable > div > :last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- summary 标题行 ---------- */
+details.foldable > summary {
+  list-style: none;
+  -webkit-user-select: none;
+  user-select: none;
+  outline: 0;
+  margin: 0;
+  position: relative;
+  padding-left: 24px;
+  font-weight: 700;
+  display: list-item;
+  min-height: 1em;
+  cursor: pointer;
+}
+
+details.foldable.info > summary {
+  color: rgb(52, 152, 219);
+}
+
+details.foldable.warning > summary {
+  color: rgb(255, 193, 22);
+}
+
+details.foldable.success > summary {
+  color: rgb(82, 196, 26);
+}
+
+details.foldable.error > summary,
+details.foldable.bug > summary {
+  color: rgb(231, 76, 60);
+}
+
+details.foldable.flask > summary {
+  color: rgb(155, 89, 182);
+}
+
+/* 类型图标 */
+details.foldable.info > summary::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM216 336h24V272H216c-13.3 0-24-10.7-24-24s10.7-24 24-24h48c13.3 0 24 10.7 24 24v88h8c13.3 0 24 10.7 24 24s-10.7 24-24 24H216c-13.3 0-24-10.7-24-24s10.7-24 24-24zm40-208a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>');
+}
+
+details.foldable.success > summary::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>');
+}
+
+details.foldable.warning > summary::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zm0-384c13.3 0 24 10.7 24 24V264c0 13.3-10.7 24-24 24s-24-10.7-24-24V152c0-13.3 10.7-24 24-24zM224 352a32 32 0 1 1 64 0 32 32 0 1 1 -64 0z"/></svg>');
+}
+
+details.foldable.error > summary::before,
+details.foldable.bug > summary::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"%20viewBox="0 0 512 512"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z"/></svg>');
+}
+
+details.foldable.flask > summary::before {
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons:CC BY 4.0,Fonts:SIL OFL 1.1,Code:MIT License) Copyright 2024 Fonticons,Inc. --><path d="M288 0L160 0 128 0C110.3 0 96 14.3 96 32s14.3 32 32 32l0 132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6C0 480.9 31.1 512 69.4 512l309.2 0c38.3 0 69.4-31.1 69.4-69.4c0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5L320 64c17.7 0 32-14.3 32-32s-14.3-32-32-32L288 0zM192 196.8L192 64l64 0 0 132.8c0 23.7 6.6 46.9 19 67.1L309.5 320l-171 0L173 263.9c12.4-20.2 19-43.4 19-67.1z"/></svg>');
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons:CC BY 4.0,Fonts:SIL OFL 1.1,Code:MIT License) Copyright 2024 Fonticons,Inc. --><path d="M288 0L160 0 128 0C110.3 0 96 14.3 96 32s14.3 32 32 32l0 132.8c0 11.8-3.3 23.5-9.5 33.5L10.3 406.2C3.6 417.2 0 429.7 0 442.6C0 480.9 31.1 512 69.4 512l309.2 0c38.3 0 69.4-31.1 69.4-69.4c0-12.8-3.6-25.4-10.3-36.4L329.5 230.4c-6.2-10.1-9.5-21.7-9.5-33.5L320 64c17.7 0 32-14.3 32-32s-14.3-32-32-32L288 0zM192 196.8L192 64l64 0 0 132.8c0 23.7 6.6 46.9 19 67.1L309.5 320l-171 0L173 263.9c12.4-20.2 19-43.4 19-67.1z"/></svg>');
+}
+
+/* 图标基底 */
+details.foldable > summary::before {
+  content: '';
+  background-color: currentcolor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+}
+
+/* 展开箭头 */
+details.foldable > summary::after {
+  content: '';
+  background-color: currentcolor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20512%22%3E%3Cpath%20d%3D%22M246.6%20278.6c12.5-12.5%2012.5-32.8%200-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8%2016.6-19.8%2029.6l0%20256c0%2012.9%207.8%2024.6%2019.8%2029.6s25.7%202.2%2034.9-6.9l128-128z%22%2F%3E%3C%2Fsvg%3E");
+  mask-image: url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20512%22%3E%3Cpath%20d%3D%22M246.6%20278.6c12.5-12.5%2012.5-32.8%200-45.3l-128-128c-9.2-9.2-22.9-11.9-34.9-6.9s-19.8%2016.6-19.8%2029.6l0%20256c0%2012.9%207.8%2024.6%2019.8%2029.6s25.7%202.2%2034.9-6.9l128-128z%22%2F%3E%3C%2Fsvg%3E");
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+details.foldable[open] > summary::after {
+  transform: translateY(-50%) rotate(90deg);
+}
+
+/* ---------- 暗色模式适配 ---------- */
+.dark .foldable {
+  background-color: rgb(255 255 255 / 0.03);
+}
+
+.dark .foldable.info {
+  border-left-color: rgb(86, 174, 255);
+}
+
+.dark .foldable.warning {
+  border-left-color: rgb(255, 210, 89);
+}
+
+.dark .foldable.success {
+  border-left-color: rgb(122, 216, 60);
+}
+
+.dark .foldable.error,
+.dark .foldable.bug {
+  border-left-color: rgb(255, 105, 89);
+}
+
+.dark .foldable.flask {
+  border-left-color: rgb(179, 126, 207);
+}
+
+.dark details.foldable.info > summary {
+  color: rgb(86, 174, 255);
+}
+
+.dark details.foldable.warning > summary {
+  color: rgb(255, 210, 89);
+}
+
+.dark details.foldable.success > summary {
+  color: rgb(122, 216, 60);
+}
+
+.dark details.foldable.error > summary,
+.dark details.foldable.bug > summary {
+  color: rgb(255, 105, 89);
+}
+
+.dark details.foldable.flask > summary {
+  color: rgb(179, 126, 207);
+}

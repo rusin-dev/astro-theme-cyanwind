@@ -1,0 +1,18 @@
+---
+import { Button } from '@/components/user'
+import PageLayout from '@/layouts/BaseLayout.astro'
+
+const meta = {
+  description: 'Not found',
+  title: '404'
+}
+---
+
+<PageLayout {meta}>
+  <div class='px-4 py-10 text-center sm:px-6 lg:px-8'>
+    <h1 class='block text-7xl font-bold sm:text-9xl'>404</h1>
+    <p class='mt-3 text-muted-foreground'>哦，似乎有什么不对劲。</p>
+    <p class='text-lg'>抱歉，我们找不到您想要的页面。</p>
+    <Button title='回到首页' href='/' style='ahead' class='mt-5' />
+  </div>
+</PageLayout>

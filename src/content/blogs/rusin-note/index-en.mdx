@@ -1,0 +1,172 @@
+---
+title: Rusin note Project Recommend
+publishDate: 2026-08-13 14:57:28
+tags: [建站,Github,开源项目,教程]
+description: Recommend a lightweight Python project for server deployment. Welcome to submit PRs and join the development!
+category: tech
+heroImage:
+  src: https://image.rusin7.com/file/hexo/cover/FCskF2aQ.webp
+  color: "#ada3e2"
+language: en
+---
+
+<GithubCard repo='rusin-dev/rusin-note' />
+
+:::success
+Welcome to Star and Fork this project!
+:::
+
+:::info
+This article may not be updated in time. Please refer to the [README](https://github.com/rusin-dev/rusin-note) for the latest information.
+:::
+
+## Quick Start
+
+### Requirements
+
+Python version $\geq 3.10$.
+
+### Local Development
+
+1. Clone the repository
+
+    ```bash
+    git clone https://github.com/rusin-dev/rusin-note.git
+    cd rusin-note
+    ```
+
+2. Install dependencies
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Start the service
+
+    ```bash
+    python3 main.py
+    ```
+
+    Then open <https://localhost:8080> to see the result.
+
+### Online Deployment
+
+Connect to your server and then:
+
+1. Clone the repository
+
+    ```bash
+    git clone https://github.com/rusin-dev/rusin-note.git
+    cd rusin-note
+    ```
+
+2. Install dependencies
+   
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Start the service
+
+    ```bash
+    python3 main.py
+
+    # Run in background
+    nohup python3 rusin-note.py > app.log 2>&1 &
+    ```
+
+4. Configure Nginx (optional)
+
+    Create a site configuration file:
+
+    ```bash
+    sudo nano /etc/nginx/sites-available/rusin-note
+    ```
+
+    Copy the following content:
+
+    ```nginx
+    server {
+        listen 80;
+        server_name _ your_domain.com;
+
+        location / {
+            proxy_pass http://127.0.0.1:8080;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+    ```
+
+    ```bash
+    # Enable and reload
+    sudo ln -s /etc/nginx/sites-available/rusin-note /etc/nginx/sites-enabled
+    sudo nginx -t && sudo systemctl reload nginx
+    sudo ufw allow 'Nginx Full'
+    ```
+
+## Project Structure
+
+```plaintext
+rusin-note:.
+│  README_en.md
+│  config.json (configuration)
+│  Disclaimer.md (disclaimer)
+│  LICENSE
+│  main.py (core code)
+│  README.md
+│  contribute.md (collaboration guide)
+│  
+├─image
+│      logo.png
+│      
+├─.github
+│  └─workflows
+│          check.yml (test PRs)
+│          auto-merge.yml (auto-merge)
+│          labeler.yml (auto-label)
+│          
+└─notes
+```
+
+### Configuration Explained
+
+- `max_note_size_kb`: Maximum note size (unit: **KB**), default `512` (i.e., 0.5 MB).
+- `sitename`: Website name. Fill in your site name.
+- `rate_limit`: Rate limiting.
+   
+   - `window_seconds`: Time window $t$, default `60`;
+   - `max_requests`: Maximum requests $s$, default `30`;
+
+   Maximum $s$ requests within $t$ seconds.
+- `id_generation`: Random URL configuration.
+   - `length`: Length, default `4`;
+   - `use_uppercase`: Whether to use uppercase letters, default `false`;
+   - `use_lowercase`: Whether to use lowercase letters, default `true`;
+   - `use_digits`: Whether to use digits, default `false`;
+- `share_token`: Share link token configuration.
+   - `length`: Length, default `64`;
+   - `use_uppercase`: Whether to use uppercase letters, default `true`;
+   - `use_lowercase`: Whether to use lowercase letters, default `true`;
+   - `use_digits`: Whether to use digits, default `true`;
+- `session_timeout`: Single session timeout.
+   - `enabled`: Whether to enable, default `false`;
+   - `minutes`: Duration (unit: **minutes**), default `15`;
+
+   When the time exceeds the set value, the visitor account will be logged out.
+- `note_expiration`: Automatic note cleanup (clips that exceed the retention time are automatically deleted).
+   - `enabled`: Whether to enable, default `false`;
+   - `hours`: Retention period (unit: **hours**), default `24`;
+
+   When enabled, clips (public + private) that have not been modified for more than the set hours will be automatically deleted by a background thread, scanning every 30 minutes.
+- `latex_render`: LaTeX formula rendering.
+   - `enabled`: Whether to enable, default `true`;
+   - `cdn`: Base directory for KaTeX static files, default jsdelivr (for Chinese users, you can switch to BootCDN: `https://cdn.bootcdn.net/ajax/libs/katex/0.16.11`);
+
+   When enabled, Markdown read‑only pages support inline formulas with `$...$` and block formulas with `$$...$$` (KaTeX, same as Luogu, client‑side rendering, no server dependencies).
+- `password_policy`: Password policy, defining complexity requirements for visitor passwords.  
+   - `min_length`: Minimum password length, default `8`;  
+   - `require_uppercase`: Whether uppercase letters are required, default `true`;  
+   - `require_lowercase`: Whether lowercase letters are required, default `true`;  
+   - `require_digits`: Whether digits are required, default `true`;  
+   - `require_special`: Whether special symbols (excluding `/ \ ( ) " '`) are required, default `true`.
