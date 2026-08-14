@@ -21,7 +21,7 @@ export const FaviconSchema = () =>
 
       if (!isFaviconExt(ext)) {
         ctx.addIssue({
-          code: z.ZodIssueCode.custom,
+          code: 'custom',
           message: 'favicon must be a .ico, .gif, .jpg, .png, or .svg file'
         })
 

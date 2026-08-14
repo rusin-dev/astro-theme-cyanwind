@@ -2,21 +2,17 @@ import { spawn } from 'node:child_process'
 import { dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 // Astro
-import type { AstroIntegration, RehypePlugins, RemarkPlugins } from 'astro'
+import type { AstroIntegration } from 'astro'
 // Integrations
 import mdx from '@astrojs/mdx'
 import sitemap from '@astrojs/sitemap'
-import rehypeExternalLinks from 'rehype-external-links'
 
-import { remarkAddZoomable, remarkReadingTime } from './plugins/remark-plugins'
 import { vitePluginUserConfig } from './plugins/virtual-user-config'
 import { UserConfigSchema, type UserInputConfig } from './types/user-config'
 import { parseWithFriendlyErrors } from './utils/error-map'
 
 export default function AstroAxiIntegration(opts: UserInputConfig): AstroIntegration {
-  let integrations: AstroIntegration[] = []
-  let remarkPlugins: RemarkPlugins = []
-  let rehypePlugins: RehypePlugins = []
+  const integrations: AstroIntegration[] = []
   return {
     name: 'astro-axi',
     hooks: {
@@ -37,25 +33,6 @@ export default function AstroAxiIntegration(opts: UserInputConfig): AstroIntegra
           integrations.push(mdx({ optimize: true }))
         }
 
-        // Add supported remark plugins based on user config.
-        if (userConfig.integ.mediumZoom.enable)
-          remarkPlugins.push([remarkAddZoomable, userConfig.integ.mediumZoom.options])
-        remarkPlugins.push(remarkReadingTime)
-
-        // Add supported rehype plugins based on user config.
-        rehypePlugins.push([
-          rehypeExternalLinks,
-          {
-            content: { type: 'text', value: userConfig.content?.externalLinksContent || ' ↗' },
-            target: '_blank',
-            rel: ['nofollow', 'noopener', 'noreferrer']
-          }
-        ])
-        // Add Starlight directives restoration integration at the end of the list so that remark
-        // plugins injected by Starlight plugins through Astro integrations can handle text and
-        // leaf directives before they are transformed back to their original form.
-        // integrations.push(starlightDirectivesRestorationIntegration())
-
         // Add integrations immediately after Starlight in the config array.
         // e.g. if a user has `integrations: [starlight(), tailwind()]`, then the order will be
         // `[starlight(), expressiveCode(), sitemap(), mdx(), tailwind()]`.
@@ -67,14 +44,6 @@ export default function AstroAxiIntegration(opts: UserInputConfig): AstroIntegra
           vite: {
             // @ts-ignore
             plugins: [vitePluginUserConfig(userConfig, config)]
-          },
-          markdown: {
-            remarkPlugins,
-            rehypePlugins
-            // rehypePlugins: [rehypeRtlCodeSupport()],
-            // shikiConfig:
-            // Configure Shiki theme if the user is using the default github-dark theme.
-            //   config.markdown.shikiConfig.theme !== 'github-dark' ? {} : { theme: 'css-variables' }
           },
           scopedStyleStrategy: 'where',
           // If not already configured, default to prefetching all links on hover.

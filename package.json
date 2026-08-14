@@ -1,9 +1,11 @@
 {
-  "name": "astro-theme-axi",
+  "name": "astro-theme-cyanwind",
   "type": "module",
-  "version": "4.0.1-beta",
+  "version": "2.0.0",
   "scripts": {
     "dev": "astro dev",
+    "dev:force": "astro dev --force",
+    "dev:stop": "astro dev stop",
     "dev:check": "astro check --watch & astro dev",
     "build:base": "astro check && astro build",
     "build": "npm run build:base",

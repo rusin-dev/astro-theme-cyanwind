@@ -4,8 +4,6 @@
   "compilerOptions": {
     // Basic
     "allowJs": true,
-    // Building for a library
-    "declaration": true,
     // Code runs in the DOM
     "lib": ["es2022", "dom", "dom.iterable"],
     // Others

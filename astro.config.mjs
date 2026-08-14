@@ -10,16 +10,17 @@ import rehypeKatex from 'rehype-katex'
 import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
+import rehypeExternalLinks from 'rehype-external-links'
 
 // Integrations
 import AstroAxiIntegration from './src/axi-integration.ts'
 import { rehypeLuoguBlocks, remarkLuoguBlocks } from './src/plugins/luogu-blocks.ts'
+import { remarkAddZoomable, remarkReadingTime } from './src/plugins/remark-plugins'
 // Others
 // import { visualizer } from 'rollup-plugin-visualizer'
 
 // Local integrations
 import { outputCopier } from './src/plugins/output-copier.ts'
-import { debugDump } from 'C:/Users/22790/AppData/Local/Temp/opencode/debug-dump.ts'
 // Local rehype & remark plugins
 import rehypeAutolinkHeadings from './src/plugins/rehype-auto-link-headings.ts'
 // Shiki
@@ -36,6 +37,17 @@ import config from './src/site.config.ts'
 const platform = process.env.DEPLOYMENT_PLATFORM || 'vercel'
 const isCloudflare = platform === 'cloudflare'
 const isGithubPages = platform === 'github'
+
+/** @param {typeof config} cfg */
+function buildRemarkPlugins(cfg) {
+  /** @type {import('astro').RemarkPlugins} */
+  const remarkPlugins = [remarkMath, remarkGfm, remarkDirective, remarkLuoguBlocks]
+  if (cfg.integ.mediumZoom.enable) {
+    remarkPlugins.push([remarkAddZoomable, cfg.integ.mediumZoom.options ?? {}])
+  }
+  remarkPlugins.push(remarkReadingTime)
+  return remarkPlugins
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -97,26 +109,35 @@ export default defineConfig({
   compressHTML: true,
   // Markdown Options
   markdown: {
-    processor: unified(),
-    remarkPlugins: [remarkMath, remarkGfm, remarkDirective, remarkLuoguBlocks],
-    rehypePlugins: [
-      rehypeLuoguBlocks,
-      rehypeHeadingIds,
-      [rehypeKatex, {}],
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: 'append',
-          properties: { className: ['anchor'] },
-          content: { type: 'text', value: '#' }
-        }
-      ]
-    ],
-    remarkRehype: {
-      footnoteLabel: '脚注',
-      footnoteBackLabel: '返回内容',
-      footnoteBackContent: '↑'
-    },
+    processor: unified({
+      remarkPlugins: buildRemarkPlugins(config),
+      rehypePlugins: [
+        rehypeLuoguBlocks,
+        rehypeHeadingIds,
+        [rehypeKatex, { strict: 'ignore' }],
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: 'append',
+            properties: { className: ['anchor'] },
+            content: { type: 'text', value: '#' }
+          }
+        ],
+        [
+          rehypeExternalLinks,
+          {
+            content: { type: 'text', value: config.content?.externalLinksContent || ' ↗' },
+            target: '_blank',
+            rel: ['nofollow', 'noopener', 'noreferrer']
+          }
+        ]
+      ],
+      remarkRehype: {
+        footnoteLabel: '脚注',
+        footnoteBackLabel: '返回内容',
+        footnoteBackContent: '↑'
+      }
+    }),
     // https://docs.astro.build/en/guides/syntax-highlighting/
     shikiConfig: {
       themes: {
@@ -135,8 +156,5 @@ export default defineConfig({
         addCopyButton(2000)
       ]
     }
-  },
-  vite: {
-    plugins: [debugDump()]
   }
 })

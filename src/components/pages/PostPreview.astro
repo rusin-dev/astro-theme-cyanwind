@@ -1,17 +1,9 @@
 ---
 import { Image } from 'astro:assets'
-import { render, getCollection } from 'astro:content'
+import { render } from 'astro:content'
 import { getRelativeLocaleUrl } from 'astro:i18n'
 import { cn } from '@/utils'
 import { Button, FormattedDate, Icon } from '@/components/user'
-
-type Post = Awaited<ReturnType<typeof getCollection>>[number]
-type Props = {
-  as?: keyof HTMLElementTagNameMap
-  post: Post
-  detailed?: boolean
-  class?: string
-}
 
 const { as: Tag = 'div', post, detailed = false, class: className } = Astro.props
 
@@ -76,7 +68,7 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
     <Tag class='z-10 flex-grow'>
       {/* title */}
       <div class='flex justify-between'>
-        <div class={detailed && 'font-medium'}>
+        <div class={detailed ? 'font-medium' : ''}>
           {data.draft && <span class='text-red-500'>(Draft) </span>}
           {data.title}
         </div>

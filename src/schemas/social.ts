@@ -4,10 +4,10 @@ import { socialLinks } from '@/types/constants'
 
 export const SocialLinksSchema = () =>
   z
-    .record(
+    .partialRecord(
       z.enum(socialLinks),
       // Link to the respective social profile for this site
-      z.string().url()
+      z.url()
     )
     .transform((links) => {
       const labelledLinks: Partial<Record<keyof typeof links, { label: string; url: string }>> = {}

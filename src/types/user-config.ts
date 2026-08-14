@@ -45,7 +45,7 @@ export const UserConfigSchema = z.object({
       website: z.string().optional()
     }).optional(),
     credits: z.boolean().optional().default(true),
-    social: z.record(z.string()).optional()
+    social: z.record(z.string(), z.string()).optional()
   }).optional(),
   
   // 内容配置
