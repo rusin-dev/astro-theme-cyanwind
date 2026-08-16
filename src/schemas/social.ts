@@ -20,6 +20,8 @@ export const SocialLinksSchema = () =>
           gitlab: 'GitLab',
           gitee: 'Gitee',
           demo: 'demo',
+          luogu: 'luogu',
+          codeforces: 'codeforces',
           discord: 'Discord',
           youtube: 'YouTube',
           instagram: 'Instagram',
