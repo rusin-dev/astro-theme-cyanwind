@@ -19,10 +19,6 @@ export interface RendererInfo {
 export type Language = 'zh' | 'en'
 
 export interface I18nContent {
-  webglError: {
-    title: string
-    content: string
-  }
   performanceWarning: {
     title: string
     content: string

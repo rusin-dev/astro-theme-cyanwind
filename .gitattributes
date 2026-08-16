@@ -1,0 +1,18 @@
+# 所有文本文件自动转换 LF（适用于跨平台）
+* text=auto
+
+# 明确指定某些文件强制 LF
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.astro text eol=lf
+*.css text eol=lf
+*.html text eol=lf
+*.sh text eol=lf
+
+# 二进制文件不转换
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff2 binary
