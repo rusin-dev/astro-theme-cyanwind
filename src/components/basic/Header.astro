@@ -41,6 +41,7 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
 
 <header-component
   class='group sticky top-4 z-30 mb-12 flex items-center justify-between rounded-xl border border-transparent max-sm:py-1 sm:rounded-2xl [&.not-top]:border-border [&.not-top]:bg-background/60 [&.not-top]:px-1.5 [&.not-top]:backdrop-blur-md dark:[&.not-top]:bg-muted/60'
+  data-lang={isEnglish ? 'en' : 'zh'}
 >
   <a
     class='z-30 text-xl font-semibold group-[.not-top]:ms-2 sm:group-[.not-top]:ms-3'
@@ -168,7 +169,18 @@ function getLocalizedUrl(locale: string | undefined, path: string) {
       darkModeBtn.addEventListener('click', () => {
         const newTheme = setTheme(undefined, true)
         darkModeBtn.dataset.theme = newTheme
-        showToast({ message: `Set theme to ${newTheme}` })
+        const lang = this.dataset.lang || 'zh'
+        const themeMap: Record<string, string> = {
+          dark: '暗色',
+          light: '亮色',
+          system: '系统'
+        }
+        const themeName = themeMap[newTheme as keyof typeof themeMap] || newTheme
+        if (lang === 'en') {
+          showToast({ message: `Set theme to ${newTheme}` })
+        } else {
+          showToast({ message: `切换主题为 ${themeName}` })
+        }
       })
 
       // Menu
