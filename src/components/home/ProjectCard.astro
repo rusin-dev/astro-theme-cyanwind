@@ -15,11 +15,11 @@ const {
   altText
 } = Astro.props as ProjectCardProps
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  '/src/assets/projects/*.{jpeg,jpg,png,gif}'
+  '/src/assets/projects/*.{jpeg,jpg,png,gif,svg}'
 )
 if (!images[imagePath])
   throw new Error(
-    `"${imagePath}" does not exist in glob: "src/assets/projects/*.{jpeg,jpg,png,gif}"`
+    `"${imagePath}" does not exist in glob: "src/assets/projects/*.{jpeg,jpg,png,gif,svg}"`
   )
 ---
 
