@@ -1,0 +1,40 @@
+---
+import { getPostCollections } from '@/server'
+import PageLayout from '@/layouts/BaseLayout.astro'
+import { Button } from '@/components/user'
+import { CollectionPreview } from '@/components/pages'
+
+const collections = await getPostCollections()
+
+const meta = {
+  title: '集合',
+  description: '看所有文章集合'
+}
+---
+
+<PageLayout {meta}>
+  <Button title='返回' href='/' style='back' />
+  
+  <main class='mt-6 lg:mt-10'>
+    <div id='content-header' class='animate'>
+        <h1 class='text-3xl font-bold mb-6'>集合</h1>
+        <p class='text-muted-foreground mb-10 text-lg'>
+            以特定主题为主题的文章集。
+        </p>
+    </div>
+
+    <section id='content' class='animate'>
+        {collections.length > 0 ? (
+            <div class='grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+                {collections.map((collection) => (
+                    <CollectionPreview {collection} />
+                ))}
+            </div>
+        ) : (
+            <div class='py-12 text-center text-muted-foreground'>
+                <p>暂时没有集合</p>
+            </div>
+        )}
+    </section>
+  </main>
+</PageLayout>

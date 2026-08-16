@@ -1,0 +1,144 @@
+---
+// import { ClientRouter } from 'astro:transitions'
+
+import { prod } from '@/utils/server'
+import config from '@/site-config'
+import globalCss from '@/assets/styles/global.css?inline'
+
+// 直接基于 URL 检测语言
+const isEnglish = Astro.url.pathname.includes('/en')
+
+// console.log(isEnglish)
+
+const { articleDate, description, ogImage, title } = Astro.props
+
+// 标题映射表（用于自动切换中英文）
+const titleMap: Record<string, { zh: string; en: string }> = {
+  '关于': { zh: '关于', en: 'About' },
+  '博客': { zh: '博客', en: 'Blog' },
+  '项目': { zh: '项目', en: 'Projects' },
+  '链接': { zh: '链接', en: 'Links' },
+  '首页': { zh: '首页', en: 'Home' },
+  '赞助': { zh: '赞助', en: 'Sponsorship' },
+  '标签': { zh: '标签', en: 'Tags' },
+  '分类': { zh: '分类', en: 'Categories' },
+  '归档': { zh: '归档', en: 'Archive' },
+  // 可以继续添加更多映射
+}
+
+// 根据语言选择显示标题
+const mappedTitle = titleMap[title]
+const displayTitle = mappedTitle 
+  ? (isEnglish ? mappedTitle.en : mappedTitle.zh)
+  : title  // 如果不在映射表中，使用原标题
+
+// 站点标题也支持中英文切换
+const displaySiteTitle = isEnglish ? config.titleEn : config.title
+
+// 判断是否为首页（根路径或 /en）
+const pathname = Astro.url.pathname
+const isHome = pathname === '/' || pathname === '/en' || pathname === '/en/'
+
+// 生成标题：首页只显示站点名，其他页面显示 "页面标题 | 站点名"
+const siteTitle = isHome 
+  ? displaySiteTitle 
+  : `${displayTitle} ${config.titleDelimiter} ${displaySiteTitle}`
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
+const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', Astro.url).href
+---
+
+<meta charset='utf-8' />
+<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+<meta content='IE=edge' http-equiv='X-UA-Compatible' />
+<title>{siteTitle}</title>
+
+{/* Icons / Favicon */}
+<link rel='apple-touch-icon' sizes='180x180' href='/favicon/favicon.ico' />
+<link rel='icon' type='image/png' sizes='32x32' href='/favicon/favicon.ico' />
+<link rel='icon' type='image/png' sizes='16x16' href='/favicon/favicon.ico' />
+<link rel='manifest' href='/favicon/site.webmanifest' />
+
+{/* Font preloads */}
+<link rel='preconnect' href='https://cdn.jsdmirror.cn' crossorigin />
+<link rel='stylesheet' href='https://cdn.jsdmirror.cn/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.min.css' />
+<link rel='stylesheet' href='https://cdn.jsdmirror.cn/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-bold.min.css' />
+<link rel='preload' href='/fonts/JetBrainsMono-Regular.woff2' as='font' type='font/woff2' crossorigin />
+
+{/* Canonical URL */}
+<link rel='canonical' href={canonicalURL} />
+
+{/* Primary Meta Tags */}
+<meta content={siteTitle} name='title' />
+<meta content={description} name='description' />
+<meta content={config.author} name='author' />
+
+{/* Theme Color */}
+<meta content='' name='theme-color' />
+
+{/* Open Graph / Facebook */}
+<meta content={articleDate ? 'article' : 'website'} property='og:type' />
+<meta content={displayTitle} property='og:title' />
+<meta content={description} property='og:description' />
+<meta content={canonicalURL} property='og:url' />
+<meta content={displaySiteTitle} property='og:site_name' />
+{/* 动态设置 og:locale */}
+<meta content={isEnglish ? 'en_US' : config.locale.attrs} property='og:locale' />
+<meta content={socialImageURL} property='og:image' />
+<meta content='1200' property='og:image:width' />
+<meta content='630' property='og:image:height' />
+{
+  articleDate && (
+    <>
+      <meta content={config.author} property='article:author' />
+      <meta content={articleDate} property='article:published_time' />
+    </>
+  )
+}
+
+{/* Twitter */}
+<meta content='summary_large_image' property='twitter:card' />
+<meta content={canonicalURL} property='twitter:url' />
+<meta content={displayTitle} property='twitter:title' />
+<meta content={description} property='twitter:description' />
+<meta content={socialImageURL} property='twitter:image' />
+
+{/* Sitemap */}
+<link href='/sitemap-index.xml' rel='sitemap' />
+
+{/* RSS auto-discovery */}
+<link
+  rel='alternate'
+  type='application/rss+xml'
+  title={displaySiteTitle}
+  href={`${Astro.site}rss.xml`}
+/>
+
+<meta content={Astro.generator} name='generator' />
+
+{/* Styles */}
+<style is:inline set:html={globalCss} />
+
+{/* View transitions */}
+<!-- <ClientRouter /> -->
+<!-- <script is:inline>
+  const style = document.createElement('style')
+  style.textContent = `* { transition: none !important; }`
+  document.addEventListener('astro:after-swap', () => {
+    document.head.appendChild(style)
+    setTimeout(() => {
+      style.remove()
+    }, 100)
+  })
+</script> -->
+
+{
+  /* User script*/
+  prod && (
+    <script>
+      console.log( '%c Astro Theme Axi %c https://github.com/ruying-suixing/',
+      'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
+      'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0px;' )
+    </script>
+  )
+}

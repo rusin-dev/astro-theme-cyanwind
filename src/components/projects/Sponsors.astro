@@ -1,0 +1,35 @@
+---
+import { cn } from '@/utils'
+
+interface Props {
+  class?: string
+  sponsors: {
+    name: string
+    amount: string
+    date: string
+  }[]
+}
+const { class: className, sponsors, ...props } = Astro.props
+
+// 判断是否为英文页面
+const isEnglish = Astro.url.pathname.includes('/en/')
+---
+
+<div class={cn('border px-3 sm:px-4 py-2 rounded-xl', className)} {...props}>
+  <table class='my-0'>
+    <tr class='text-start'>
+      <th>{isEnglish ? 'Name' : '姓名'}</th>
+      <th>{isEnglish ? 'Amount' : '金额'}</th>
+      <th>{isEnglish ? 'Date' : '日期'}</th>
+    </tr>
+    {
+      sponsors.map((sponsor) => (
+        <tr>
+          <td>{sponsor.name}</td>
+          <td>{sponsor.amount}</td>
+          <td>{sponsor.date}</td>
+        </tr>
+      ))
+    }
+  </table>
+</div>
