@@ -25,6 +25,7 @@ export function backgroundCheckWebGL(): void {
       }
     }
   } catch (error) {
+    console.log(error)
     // Silent fail for background check
   }
 }

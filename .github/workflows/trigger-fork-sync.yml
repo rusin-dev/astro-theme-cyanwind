@@ -12,7 +12,7 @@ jobs:
         env:
           PAT: ${{ secrets.FORK_REPO_PAT }}
           FORK_OWNER: ruying-suixing
-          FORK_REPO: rusin-note
+          FORK_REPO: cyanwind-blog
         run: |
           curl -X POST \
             -H "Accept: application/vnd.github+json" \
