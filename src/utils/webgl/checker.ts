@@ -46,21 +46,11 @@ export function checkGraphicsSupport(): void {
         !(rendererInfo && rendererInfo.isSoftwareRenderer)
     })
     
-    if (!acceleration.webglSupported) {
-      disableGradientBackground()
-      const content = i18nContent[currentLang].webglError
-      showWarning(content.title, content.content, 'error')
-    } else if (
-      !acceleration.hardwareAccelerated ||
-      (rendererInfo && rendererInfo.isSoftwareRenderer)
-    ) {
-      disableGradientBackground()
-      const content = i18nContent[currentLang].performanceWarning
-      showWarning(content.title, content.content, 'warning')
-    } else {
-      enableGradientBackground()
-    }
+    disableGradientBackground()
+    const content = i18nContent[currentLang].performanceWarning
+    showWarning(content.title, content.content, 'warning')
   } catch (error) {
+    console.log(error)
     // Silent fail for graphics check
   }
 }
