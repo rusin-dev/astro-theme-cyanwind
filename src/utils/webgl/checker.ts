@@ -46,9 +46,15 @@ export function checkGraphicsSupport(): void {
         !(rendererInfo && rendererInfo.isSoftwareRenderer)
     })
     
-    disableGradientBackground()
-    const content = i18nContent[currentLang].performanceWarning
-    showWarning(content.title, content.content, 'warning')
+    if (
+      !acceleration.hardwareAccelerated
+    ) {
+      disableGradientBackground()
+      const content = i18nContent[currentLang].performanceWarning
+      showWarning(content.title, content.content, 'warning')
+    } else {
+      enableGradientBackground()
+    }
   } catch (error) {
     console.log(error)
     // Silent fail for graphics check
