@@ -22,11 +22,24 @@ Welcome to Star and Fork this project!
 This article may not be updated in time. Please refer to the [README](https://github.com/rusin-dev/rusin-note) for the latest information.
 :::
 
+![屏幕截图](/images/screen.png)
+
+## Features
+
+- **Cloud clipboard that works out of the box**: A lightweight Flask implementation for VPS or serverless (Vercel / AWS Lambda) deployment, letting you save and access text quickly from any browser.
+- **Public and private notes**: Use random short paths for public notes, or keep private note lists under guest accounts for both temporary sharing and personal storage.
+- **Secure share links**: Generate random-token share links for user notes, with optional write-back support for simple cross-device collaboration.
+- **Markdown and LaTeX rendering**: Read-only pages and the benben feed support Markdown and KaTeX math, making the app useful for code snippets, notes, documentation, and formulas.
+- **Benben feed**: A built-in lightweight feed where logged-in users can post and anonymous users can read, with live preview, paginated loading, and post cooldowns.
+- **Multi-language UI**: Simplified Chinese and English are built in, with manual switching and browser-language fallback.
+- **Deployment-friendly configuration**: Common options live in `config.json`, including note expiration, session timeout, password policy, trusted proxy IP handling, and HTTPS cookies. For serverless deployment, data can go to external storage (Upstash Redis / Neon PostgreSQL), surviving cold starts.
+- **Practical baseline protection**: Includes CSRF protection, request rate limits, save limits, registration limits, content sanitization, and a proxy-header trust switch for safer public deployments.
+
 ## Quick Start
 
 ### Requirements
 
-Python version $\geq 3.10$.
+Python version $\geq$ 3.10.
 
 ### Local Development
 
@@ -37,23 +50,49 @@ Python version $\geq 3.10$.
     cd rusin-note
     ```
 
-2. Install dependencies
-   
+2. Dependency installation
+
    ```bash
    pip install -r requirements.txt
    ```
 
-3. Start the service
+3. Start the server
 
     ```bash
-    python3 main.py
+    python3 -m app
     ```
 
-    Then open [localhost:8080](https://localhost:8080) to see the result.
+    Then open https://localhost:8080 to view the result.
 
-### Online Deployment
+### Production Deployment
 
-Connect to your server and then:
+#### Option 1: Vercel (Serverless, Recommended)
+
+The repository ships with Vercel configuration (`vercel.json` + `api/index.py`):
+
+1. Import this repository on [Vercel](https://vercel.com) (the Python runtime is auto-detected).
+2. Pick a storage backend:
+   - **Neon (PostgreSQL)**: install [Neon](https://vercel.com/marketplace/neon) from the Vercel Storage / Marketplace — Vercel injects `DATABASE_URL` automatically (Vercel KV has been sunset; Neon is the recommended persistent option).
+   - **Upstash Redis**: install Upstash Redis from the Vercel Marketplace and set `KV_REST_API_URL` / `KV_REST_API_TOKEN` manually. Upstash wins if both are set.
+3. Add the environment variable `RUSIN_SECRET_KEY` (any long random string, used for session/CSRF signing — **required**; without it login state is lost on each cold start).
+4. Deploy. Notes, users, sessions, shares and benben posts are all stored in Neon/Upstash — shared across instances, survives cold starts.
+
+Optional: set `REDIS_URL` so rate-limit counters are shared across instances (defaults to per-instance memory).
+
+> Note: `config.json` defaults to `trust_proxy_headers: true` and `secure_cookies: true` for serverless platforms. Change them back for local/VPS use if needed.
+
+#### Option 2: AWS Lambda (Serverless)
+
+`lambda_handler.py` (Mangum WSGI adapter) is included:
+
+1. Package the repository (including `templates/`, `config.json`, etc.);
+2. Handler: `lambda_handler.handler`, with API Gateway proxy integration;
+3. Env vars as on Vercel (`KV_REST_API_URL` / `KV_REST_API_TOKEN` / `RUSIN_SECRET_KEY`);
+4. Memory ≥ 512MB recommended (Markdown rendering).
+
+#### Option 3: VPS / Traditional Server
+
+Connect to your server, then:
 
 1. Clone the repository
 
@@ -62,24 +101,23 @@ Connect to your server and then:
     cd rusin-note
     ```
 
-2. Install dependencies
-   
+2. Dependency installation
+
    ```bash
    pip install -r requirements.txt
    ```
-
-3. Start the service
+3. Start the server
 
     ```bash
-    python3 main.py
+    python3 -m app
 
-    # Run in background
-    nohup python3 rusin-note.py > app.log 2>&1 &
+    # Run in the background
+    nohup python3 -m app > app.log 2>&1 &
     ```
 
 4. Configure Nginx (optional)
 
-    Create a site configuration file:
+    Create a site configuration:
 
     ```bash
     sudo nano /etc/nginx/sites-available/rusin-note
@@ -100,6 +138,10 @@ Connect to your server and then:
     }
     ```
 
+    > After setting up the Nginx reverse proxy, set `trust_proxy_headers` to `true` in
+    > `config.json` so the server trusts the `X-Real-IP` header for rate limiting by the
+    > real client IP (disabled by default to prevent header-forging bypasses).
+
     ```bash
     # Enable and reload
     sudo ln -s /etc/nginx/sites-available/rusin-note /etc/nginx/sites-enabled
@@ -107,68 +149,205 @@ Connect to your server and then:
     sudo ufw allow 'Nginx Full'
     ```
 
+### Zeabur Auto Deployment
+
+When deploying from GitHub on Zeabur, the application directory is rebuilt on each deployment. To prevent clipboards, users, share links, and benben posts from being cleared, store runtime data in a persistent volume:
+
+1. Open the current service in your Zeabur project.
+2. Go to `Storage` / `Volumes` and create a new Volume.
+3. Set the Volume mount path to `/data`.
+4. Go to `Environment Variables` and add `RUSIN_DATA_DIR=/data`.
+5. Redeploy the service.
+
+Do not mount the Volume to the project root, or it may hide the deployed application code. After setup, runtime data is stored under `/data`:
+
+```plaintext
+/data/notes/
+/data/users.json
+/data/sessions.json
+/data/shares.json
+/data/log/
+```
+
+Benben posts are now persisted to the storage backend (up to `benben.max_posts`, default 200) instead of pure memory.
+
+### Storage Backends (Key for Serverless)
+
+The storage layer (`app/storage.py`) provides four backends, selected explicitly via the `RUSIN_STORAGE` env var or auto-detected:
+
+| Backend | How to enable | Notes |
+|---|---|---|
+| `file` | default (local/VPS) | Data under `RUSIN_DATA_DIR` (default: current dir), layout as above |
+| `upstash` | set `KV_REST_API_URL` + `KV_REST_API_TOKEN` (Upstash Redis REST API) | Data in external KV — shared across instances, survives cold starts; plain HTTPS requests, works on any Python serverless platform |
+| `postgres` | set `DATABASE_URL` (Neon or any PostgreSQL; injected automatically when Neon is attached on Vercel) | Data in PostgreSQL tables (`storage_kv` / `storage_notes`); cross-instance mutual exclusion via PG advisory locks |
+| `memory` | `RUSIN_STORAGE=memory` (auto-enabled on serverless platforms without the above) | In-memory only, cleared on restart |
+
+Auto-detect priority: explicit `RUSIN_STORAGE` > `KV_REST_API_URL`+`KV_REST_API_TOKEN` (upstash) > `DATABASE_URL` (postgres) > serverless platform (memory) > local (file).
+
+- Serverless environments (detected via `VERCEL` / `NETLIFY` / `AWS_LAMBDA_FUNCTION_NAME`) do not start background threads — cleanup runs opportunistically inside requests; logs fall back to stderr (platform log streams).
+- Set `RUSIN_SECRET_KEY` on serverless platforms; if unset and the backend is persistent (file/upstash/postgres) a key is generated and stored automatically, otherwise a random per-instance key is used.
+- See `.env.example` for the full env var list.
+
 ## Project Structure
 
 ```plaintext
 rusin-note:.
-│  README_en.md
 │  config.json (configuration)
+│  contributing.md (collaboration guide)
+│  Disclaimer-en.md (English disclaimer)
 │  Disclaimer.md (disclaimer)
-│  LICENSE
-│  main.py (core code)
+│  favicon.ico
 │  README.md
-│  contribute.md (collaboration guide)
-│  
-├─image
+│  README_en.md
+│  requirements.txt (Python dependencies)
+│  zbpack.json (packaging configuration)
+│
+├─app (core code)
+│  │  __init__.py
+│  │  __main__.py (entry: python3 -m app)
+│  │  auth.py (password hashing & session auth)
+│  │  background.py (background cleanup tasks)
+│  │  config.py (configuration loading & global constants)
+│  │  extensions.py (Flask extension instances)
+│  │  i18n.py (multi-language support)
+│  │  logger.py (logging)
+│  │  middleware.py (request hooks and rate-limit helpers)
+│  │  notes.py (note file operations & stats)
+│  │  store.py (users/sessions/shares/benben data storage)
+│  │  theme.py (theme and static resource helpers)
+│  │  utils.py (shared utilities)
+│  │  wsgi.py (WSGI entry)
+│  │
+│  └─views (blueprints and routes)
+│          __init__.py (blueprint registration)
+│          _helpers.py (view helpers)
+│          auth.py (login and registration)
+│          benben.py (benben feed)
+│          home.py (home page)
+│          share.py (share pages)
+│          static_routes.py (static and documentation pages)
+│          user.py (user and user notes)
+│          world.py (public notes)
+│          world_short.py (short-link public notes)
+│
+├─templates (Jinja2 templates)
+│  │  base.html (base layout)
+│  │  count.html (statistics page)
+│  │  disclaimer.html (disclaimer page)
+│  │  home.html (home page)
+│  │
+│  ├─auth (auth pages)
+│  ├─benben (benben pages)
+│  ├─errors (error pages)
+│  ├─notes (note pages)
+│  ├─partials (shared partials)
+│  └─share (share pages)
+│
+├─image (image assets)
 │      logo.png
-│      
+│
 ├─.github
-│  └─workflows
-│          check.yml (test PRs)
+│  │  issue-labeler.yml (Issue label configuration)
+│  │
+│  ├─ISSUE_TEMPLATE (Issue templates)
+│  └─workflows (GitHub Actions)
 │          auto-merge.yml (auto-merge)
-│          labeler.yml (auto-label)
-│          
-└─notes
+│          check.yml (checks)
+│          codeql.yml (CodeQL analysis)
+│          labeler.yml (auto-labeling)
+│          release.yml (release)
+│          trigger-fork-sync.yml (trigger fork sync)
+│          upstream-sync.yml (upstream sync)
 ```
 
-### Configuration Explained
+### Configuration Options
 
-- `max_note_size_kb`: Maximum note size (unit: **KB**), default `512` (i.e., 0.5 MB).
-- `sitename`: Website name. Fill in your site name.
-- `rate_limit`: Rate limiting.
-   
-   - `window_seconds`: Time window $t$, default `60`;
-   - `max_requests`: Maximum requests $s$, default `30`;
+- `max_note_size_kb`：Maximum note size (in **KB**), default `512` (0.5 MB).
+- `sitename`: Website name. Enter your site name.
+- `rate_limit`：Rate limiting configuration.
 
-   Maximum $s$ requests within $t$ seconds.
-- `id_generation`: Random URL configuration.
-   - `length`: Length, default `4`;
-   - `use_uppercase`: Whether to use uppercase letters, default `false`;
-   - `use_lowercase`: Whether to use lowercase letters, default `true`;
-   - `use_digits`: Whether to use digits, default `false`;
-- `share_token`: Share link token configuration.
-   - `length`: Length, default `64`;
-   - `use_uppercase`: Whether to use uppercase letters, default `true`;
-   - `use_lowercase`: Whether to use lowercase letters, default `true`;
-   - `use_digits`: Whether to use digits, default `true`;
-- `session_timeout`: Single session timeout.
-   - `enabled`: Whether to enable, default `false`;
-   - `minutes`: Duration (unit: **minutes**), default `15`;
+    - `window_seconds`：Time window $t$, default `60`.
+    - `max_requests`：Maximum number of requests $s$, default `30`.
 
-   When the time exceeds the set value, the visitor account will be logged out.
-- `note_expiration`: Automatic note cleanup (clips that exceed the retention time are automatically deleted).
-   - `enabled`: Whether to enable, default `false`;
-   - `hours`: Retention period (unit: **hours**), default `24`;
+    Maximum $s$ requests allowed within $t$ seconds.
 
-   When enabled, clips (public + private) that have not been modified for more than the set hours will be automatically deleted by a background thread, scanning every 30 minutes.
+- `get_rate_limit`：Independent rate limiting for GET requests.
+    - `window_seconds`：Time window $t$, default `60`.
+    - `max_requests`：Maximum number of requests $s$, default `45`.
+
+    Maximum $s$ GET requests (page loads, favicon, etc.) within $t$ seconds.
+
+- `save_rate_limit`：Independent rate limiting for save-type POST requests (note saves / share write-backs).
+    - `window_seconds`：Time window $t$, default `60`.
+    - `max_requests`：Maximum number of requests $s$, default `120`.
+
+    Maximum $s$ note saves within $t$ seconds, decoupled from the global POST limit (`rate_limit`) so frequent saves are not throttled.
+
+- `trust_proxy_headers`：Whether to trust `X-Forwarded-For` / `X-Real-IP` headers set by a reverse proxy, default `false`.
+
+    **Security note**: Disabled by default — rate limiting is always based on the direct TCP peer IP to prevent clients from forging headers to bypass limits. Only set to `true` when deployed behind a trusted reverse proxy (e.g. Nginx).
+
+- `secure_cookies`：Whether to add the `Secure` flag to the session cookie, default `false`.
+
+    **Security note**: Only set to `true` when the site is served over HTTPS; otherwise browsers will refuse to send the cookie over HTTP.
+
+- `id_generation`：Random URL generation configuration.
+    - `length`：URL length, default `4`.
+    - `use_uppercase`：Use uppercase letters, default `false`.
+    - `use_lowercase`：Use lowercase letters, default `true`.
+    - `use_digits`：Use digits, default `false`.
+
+- `share_token`：Share link token configuration.
+    - `length`：Token length, default `64`.
+    - `use_uppercase`：Use uppercase letters, default `true`.
+    - `use_lowercase`：Use lowercase letters, default `true`.
+    - `use_digits`：Use digits, default `true`.
+
+- `session_timeout`：Session timeout configuration.
+    - `enabled`：Enable session timeout, default `false`.
+    - `minutes`：Timeout duration (in **minutes**), default $15$.
+
+    Visitors will be logged out when the session exceeds the configured time.
+- `note_expiration`：Note auto-cleanup (notes/clipboards are deleted after their save duration expires).
+    - `enabled`：Enable auto-cleanup, default `false`.
+    - `hours`：Save duration (in **hours**), default $24$.
+
+    When enabled, notes (public + private) not modified within the configured hours are deleted by a background thread, which scans every 30 minutes.
+- `global_cdn`: Base URL of the global CDN for front-end static assets.
+    - Default `https://cdn.jsdmirror.cn`.
+
+    Front-end assets are loaded by concatenating this base URL: FontAwesome icons, the marked editor script, DOMPurify, and KaTeX (all use `npm/`-style paths, so `https://cdn.jsdelivr.net` and other npm CDNs also work). You can replace the whole CDN in `config.json` to match your network environment without touching code.
 - `latex_render`: LaTeX formula rendering.
-   - `enabled`: Whether to enable, default `true`;
-   - `cdn`: Base directory for KaTeX static files, default jsdelivr (for Chinese users, you can switch to BootCDN: `https://cdn.bootcdn.net/ajax/libs/katex/0.16.11`);
+    - `enabled`: Enable rendering, default `true`.
+    - KaTeX static assets are loaded from the `global_cdn` base URL (default jsdmirror; jsdelivr, etc. also work).
 
-   When enabled, Markdown read‑only pages support inline formulas with `$...$` and block formulas with `$$...$$` (KaTeX, same as Luogu, client‑side rendering, no server dependencies).
-- `password_policy`: Password policy, defining complexity requirements for visitor passwords.  
-   - `min_length`: Minimum password length, default `8`;  
-   - `require_uppercase`: Whether uppercase letters are required, default `true`;  
-   - `require_lowercase`: Whether lowercase letters are required, default `true`;  
-   - `require_digits`: Whether digits are required, default `true`;  
-   - `require_special`: Whether special symbols (excluding `/ \ ( ) " '`) are required, default `true`.
+    When enabled, Markdown read-only pages support `$...$` inline and `$$...$$` display math (KaTeX, client-side rendering, no server dependency).
+- `code_highlight`: code highlighting (highlight.js, client-side rendering).
+    - `enabled`: Enable highlighting, default `true`.
+    - `cdn`: Base directory of highlight.js static files, default jsdelivr's `@highlightjs/cdn-assets` package; China mirrors can use jsdmirror (e.g. `https://cdn.jsdmirror.cn/gh/highlightjs/cdn-release@11.9.0/build`).
+
+    When enabled, code blocks in all Markdown-rendered locations (note read-only pages, editor live preview, benben feed, disclaimer) get automatic syntax highlighting with line numbers, following the site's light/dark theme with no server dependency.
+- `avatar`: user avatars (generated via a third-party service, shown next to the current user in the navbar, benben post authors, and the user notes list title).
+    - `enabled`: enable avatars, default `true`; set `false` to hide avatars entirely.
+    - `url_template`: avatar URL template, default `https://cn.cravatar.com/avatar/{hash}?d=identicon&f=y`. Supports two placeholders: `{hash}` (`md5(username)` lowercase hex) and `{username}` (URL-encoded username). Since this site's users have no email, `md5(username)` is used as the hash; `d=identicon` makes Gravatar-style services generate a deterministic geometric avatar per hash. You can also swap in other username-seeded services (e.g. DiceBear: `https://api.dicebear.com/9.x/identicon/svg?seed={username}`).
+    - `size`: default size in the template (currently only a fallback value; templates use fixed sizes per location).
+- `password_policy`: password policy, defining the complexity requirements for guest passwords.  
+   - `min_length`: minimum password length, default `8`;  
+   - `max_length`: maximum password length, default `128` (hard cap `128`, preventing oversized passwords from entering the PBKDF2 slow hash and consuming CPU);  
+   - `require_uppercase`: whether uppercase letters are required, default `true`;  
+   - `require_lowercase`: whether lowercase letters are required, default `true`;  
+   - `require_digits`: whether digits are required, default `true`;  
+   - `require_special`: whether special characters (excluding `/ \ ( ) " '`) are required, default `true`;
+- `RUSIN_DATA_DIR`: optional environment variable for the runtime data directory, defaulting to the current project directory (`file` backend only).
+
+   Notes, users, sessions, shares, and logs are written under this directory as `notes/`, `users.json`, `sessions.json`, `shares.json`, `benben.json`, and `log/`. On auto-deploy platforms such as Zeabur, mount a persistent volume at `/data` and set `RUSIN_DATA_DIR=/data` to prevent clipboard data from being cleared on each deployment.
+- `RUSIN_STORAGE`: optional env var to force the storage backend: `file` (default, local/VPS), `memory` (in-memory), `upstash` (external KV for serverless), `postgres` (Neon/PostgreSQL). When unset: `KV_REST_API_URL`/`KV_REST_API_TOKEN` set → `upstash`; `DATABASE_URL` set → `postgres`; serverless platform env detected → `memory`; otherwise `file`. See "Storage Backends" above.
+- **Multi-language**: The interface supports Simplified Chinese and English. Language switch links (`/lang/zh` / `/lang/en`) are provided on the right side of the navbar; the preference is remembered via a cookie (`rusin-lang`); when unset, it falls back to the browser's `Accept-Language`, defaulting to Chinese. After switching, all site text (navbar, buttons, hints, error messages, benben previews, etc.) switches language instantly.
+- `benben` (feed at `/benben`, logged-in users can post, anonymous read-only).
+   - `max_length`: max length of a single feed post (in **characters**), default `1024` (~1KB);
+   - `page_size`: posts loaded per batch, default `50`;
+   - `cooldown_seconds`: minimum interval between two posts by the same user (in **seconds**), default `3`;
+   - `max_height_px`: maximum display height of rendered feed content (in **px**), default `1000`, overflow scrolls within the content area;
+   - `max_posts`: maximum number of posts persisted, default `200` (keeps external KV value size bounded; oldest posts are dropped);
+
+   Content supports Markdown and LaTeX math (`$...$` / `$$...$$`, controlled by the `latex_render` switch); the post form has a live preview (client-side marked.js rendering, which filters dangerous tags and links too); rendering is sanitized with bleach to prevent XSS; each page shows `page_size` posts, loaded in batches via "Load more"; loading and posting are both subject to request rate limits (GET/POST), and posting is also subject to a per-user cooldown (`cooldown_seconds`); each post's header shows the poster's IP (whether proxy headers are trusted follows `trust_proxy_headers`; not shown for old data without an IP field).

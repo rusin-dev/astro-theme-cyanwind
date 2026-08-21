@@ -20,16 +20,16 @@ export const ThemeConfigSchema = () =>
     author: z.string().describe('Will be used in index page & copyright declaration'),
 
     /** English version of author name */
-    author_en: z.string().optional().describe('English version of author name'),
+    authorEn: z.string().optional().describe('English version of author name'),
 
     /** Description metadata for your website. Can be used in page metadata. */
     description: z
       .string()
-      .default('Built with Astro-Axi')
+      .default('Built with Astro-Cyanwind')
       .describe('Description metadata for your website. Can be used in page metadata.'),
 
     /** English version of description */
-    description_en: z.string().optional().describe('English version of description'),
+    descriptionEn: z.string().optional().describe('English version of description'),
 
     /** The default favicon for your site which should be a path to an image in the `public/` directory. */
     favicon: FaviconSchema(),

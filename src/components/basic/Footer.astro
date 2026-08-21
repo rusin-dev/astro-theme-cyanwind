@@ -12,7 +12,7 @@ const isEnglish = pathSegments[0] === 'en'
 // 多语言文本
 const labels = {
   copyright: isEnglish ? '©' : '©',
-  author: isEnglish ? config.author_en || config.author : config.author,
+  author: isEnglish ? config.authorEn || config.author : config.author,
   sitePolicy: isEnglish ? 'Site Policy' : '网站政策',
   themePowered: isEnglish ? 'theme powered' : '主题驱动'
 }

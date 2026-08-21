@@ -25,10 +25,10 @@ const runCommand = (command, cwd, timeout = 5000) => {
 export default async function main() {
   if (process.env.BUN_LINK_PKG === 'true') {
     try {
-      console.log('Running "bun link" at "./packages/axi"')
-      console.log(await runCommand('bun link', './packages/axi'))
-      console.log('Running "bun link astro-axi" at "."')
-      console.log(await runCommand('bun link astro-axi', '.'))
+      console.log('Running "bun link" at "./packages/rusin"')
+      console.log(await runCommand('bun link', './packages/rusin'))
+      console.log('Running "bun link astro-rusin" at "."')
+      console.log(await runCommand('bun link astro-rusin', '.'))
       console.log('Commands executed successfully.')
     } catch (error) {
       console.error(error)

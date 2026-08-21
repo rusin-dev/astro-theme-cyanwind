@@ -7,11 +7,11 @@
     </p>
     <p>作者：<a href="https://github.com/ruying-suixing">如形</a></p>
     <p align="center">
-        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rusin-dev/rusin-note" alt="License" /></a>
-        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/releases"><img src="https://img.shields.io/github/release/rusin-dev/rusin-note" alt="latest version" /></a>
+        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/blob/main/LICENSE"><img src="https://img.shields.io/github/license/rusin-dev/astro-theme-cyanwind" alt="License" /></a>
+        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/releases"><img src="https://img.shields.io/github/release/rusin-dev/astro-theme-cyanwind" alt="latest version" /></a>
         <a href="https://github.com/rusin-dev/astro-theme-cyanwind/releases"><img src="https://img.shields.io/github/downloads/rusin-dev/astro-theme-cyanwind/total?color=%239F7AEA&logo=github" alt="Downloads" /></a>
-        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/stargazers"><img src="https://img.shields.io/github/stars/rusin-dev/rusin-note" alt="Stars" /></a>
-        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/network/members"><img src="https://img.shields.io/github/forks/rusin-dev/rusin-note" alt="Forks" /></a>
+        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/stargazers"><img src="https://img.shields.io/github/stars/rusin-dev/astro-theme-cyanwind" alt="Stars" /></a>
+        <a href="https://github.com/rusin-dev/astro-theme-cyanwind/network/members"><img src="https://img.shields.io/github/forks/rusin-dev/astro-theme-cyanwind" alt="Forks" /></a>
         <a href="https://www.repostatus.org/#active"><img src="https://img.shields.io/badge/repo%20status-Active-Green" alt="Project Status: Active – The project has reached a stable, usable state and is being actively developed."></a>
         <a href="./"><img src="https://img.shields.io/badge/astro--theme-cyanwind-cyan" alt="theme">
         </a>
@@ -53,18 +53,25 @@
 ### 安装步骤
 
 1. **克隆仓库**
+
    ```bash
-   git clone https://github.com/ruying-suixing/astro-blog.git
-   cd astro-blog
+   # npm 7+
+   npm create astro@latest cyanwind-blog -- --template rusin-dev/astro-theme-cyanwind
+
+   # 或 pnpm（用 npm install -g pnpm 安装）
+   pnpm dlx create-astro cyanwind-blog --template rusin-dev/astro-theme-cyanwind
+   
+   cd cyanwind-blog
    ```
 
 2. **安装依赖**
+
    ```bash
    pnpm install
    ```
 
 3. **配置网站**
-   
+
    编辑 `src/site.config.ts` 进行自定义:
    - 网站标题和作者信息
    - 导航菜单
@@ -72,6 +79,7 @@
    - 主题设置和集成选项
 
 4. **启动开发服务器**
+
    ```bash
    pnpm dev
    ```
@@ -79,6 +87,7 @@
    访问 `http://localhost:3000` 查看你的网站
 
 5. **生产构建**
+
    ```bash
    pnpm build
    ```
@@ -88,7 +97,7 @@
 ## 📖 可用命令
 
 | 命令 | 说明 |
-|------|------|
+| :------: | :------: |
 | `pnpm dev` | 启动开发服务器，自动重载 |
 | `pnpm dev:force` | 强制重启开发服务器 |
 | `pnpm dev:check` | 开发服务器 + TypeScript 检查 |
@@ -100,6 +109,7 @@
 | `pnpm quality` | 运行所有代码质量检查 |
 | `pnpm sync` | 同步 Astro 内容集合 |
 | `pnpm clean` | 清理构建产物 |
+| `pnpm new "name"` | 新建文章（`pnpm new -h` 查看详细信息） |
 
 ---
 
@@ -112,8 +122,11 @@
 ```typescript
 export const theme: ThemeUserConfig = {
   title: "你的博客标题",
+  titleEn: '你的英语博客标题',
   author: "你的名字",
+  author: "你的英文名",
   description: "博客描述",
+  descriptionEn: "博客英文描述"
   favicon: "/favicon/favicon.ico",
   locale: { /* 语言和日期设置 */ }
 }
@@ -140,6 +153,8 @@ export const integ: IntegrationUserConfig = {
   // 更多集成选项...
 }
 ```
+
+具体如何配置 waline 评论，参见[官方文档](https://waline.js.org)。
 
 查看 `src/site.config.ts` 了解完整的配置选项。
 
@@ -170,7 +185,7 @@ export const integ: IntegrationUserConfig = {
 
 ### 博客文章
 
-在 `src/content/` 中放置博客文章，使用以下 frontmatter 格式:
+在 `src/content/` 中放置博客文章或者使用 `pnpm new "title"` | `pnpm new -l en "title"` 新建以 `title` 为题的 markdown 文章，详见 `pnpm new -h` | See `pnpm new -h en`，使用以下 frontmatter 格式（`pnpm new` 可以自动生成 `publishDate`）：
 
 ```markdown
 ---
@@ -179,7 +194,7 @@ publishDate: 2024-01-01
 tags: [标签1, 标签2]
 description: "文章描述"
 category: (可选)
-heroImage: 
+heroImage: #头图
   src: (可选)
   color: "#7da7d4" (可选)
 ---
@@ -194,6 +209,7 @@ heroImage:
 - **项目** - 项目展示 (`/projects`)
 - **友链** - 友情链接管理 (`/links`)
 - **关于** - 关于页面 (`/about`)
+- **标签** - 标签页面（`/tags`）
 
 自定义请在 ./src/pages 中更改，也可以提交 PR。
 

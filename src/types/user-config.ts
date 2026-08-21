@@ -11,7 +11,7 @@ export const UserConfigSchema = z.object({
   title: z.string(),
   titleEn: z.string(),
   author: z.string(),
-  author_en: z.string().optional(),
+  authorEn: z.string().optional(),
   description: z.string().optional(),
   description_en: z.string().optional(),
   favicon: z.string().optional(),

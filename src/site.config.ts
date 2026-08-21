@@ -7,10 +7,10 @@ export const theme: ThemeUserConfig = {
   titleEn: 'Rusin\'s Blog',
   /** Will be used in index page & copyright declaration */
   author: '如形',
-  author_en: 'Rusin',
+  authorEn: 'Rusin',
   /** Description metadata for your website. Can be used in page metadata. */
   description: '如形的个人博客，记录学习、科技、生活等内容。',
-  description_en: 'Rusin\'s personal blog, recording learning, technology, life and other content.',
+  descriptionEn: 'Rusin\'s personal blog, recording learning, technology, life and other content.',
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** Specify the default language for this site. */
@@ -44,6 +44,7 @@ export const theme: ThemeUserConfig = {
   header: {
     menu: [
       { title: '文章', titleEn: 'Articles', link: '/article' },
+      { title: '标签', titleEn: 'Tags', link: '/tags' },
       { title: '学术', titleEn: 'Academic', link: '/academic' },
       { title: '项目', titleEn: 'Projects', link: '/projects' },
       { title: '友链', titleEn: 'Links', link: '/links' },
@@ -59,7 +60,7 @@ export const theme: ThemeUserConfig = {
       // text: '',
       // website: '' // only show ICP if url === website
     },
-    /** Enable displaying a "Astro & Axi theme powered" link in your site's footer. */
+    /** Enable displaying a "Astro & Cyanwind powered" link in your site's footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
     social: { github: 'https://github.com/ruying-suixing', gitee: 'https://github.com/rusin/astro-theme-cyanwind', luogu: 'https://www.luogu.com.cn/user/1620655', codeforces: 'https://codeforces.com/profile/ruyingsuixing'}
@@ -123,7 +124,7 @@ export const integ: IntegrationUserConfig = {
   typography: {
     // https://github.com/tailwindlabs/tailwindcss-typography
     class:
-      'break-words prose prose-axi dark:prose-invert dark:prose-axi prose-headings:font-medium'
+      'break-words prose prose-rusin dark:prose-invert dark:prose-rusin prose-headings:font-medium'
   },
   // A lightbox library that can add zoom effect
   mediumZoom: {

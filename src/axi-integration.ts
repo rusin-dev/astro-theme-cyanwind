@@ -11,16 +11,16 @@ import { vitePluginUserConfig } from './plugins/virtual-user-config'
 import { UserConfigSchema, type UserInputConfig } from './types/user-config'
 import { parseWithFriendlyErrors } from './utils/error-map'
 
-export default function AstroAxiIntegration(opts: UserInputConfig): AstroIntegration {
+export default function AstroRusinIntegration(opts: UserInputConfig): AstroIntegration {
   const integrations: AstroIntegration[] = []
   return {
-    name: 'astro-axi',
+    name: 'ruying-suixing',
     hooks: {
       'astro:config:setup': async ({ config, updateConfig }) => {
-        let userConfig = parseWithFriendlyErrors(
+        const userConfig = parseWithFriendlyErrors(
           UserConfigSchema,
           opts,
-          'Invalid config passed to astro-axi integration'
+          'Invalid config passed to astro-rusin integration'
         )
 
         // Add built-in integrations only if they are not already added by the user through the
@@ -37,7 +37,7 @@ export default function AstroAxiIntegration(opts: UserInputConfig): AstroIntegra
         // e.g. if a user has `integrations: [starlight(), tailwind()]`, then the order will be
         // `[starlight(), expressiveCode(), sitemap(), mdx(), tailwind()]`.
         // This ensures users can add integrations before/after Starlight and we respect that order.
-        const selfIndex = config.integrations.findIndex((i) => i.name === 'astro-axi')
+        const selfIndex = config.integrations.findIndex((i) => i.name === 'ruying-suixing')
         config.integrations.splice(selfIndex + 1, 0, ...integrations)
 
         updateConfig({
