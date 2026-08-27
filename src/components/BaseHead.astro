@@ -8,36 +8,90 @@ import globalCss from '@/assets/styles/global.css?inline'
 // 直接基于 URL 检测语言
 const isEnglish = Astro.url.pathname.includes('/en')
 
-// console.log(isEnglish)
-
 const { articleDate, description, ogImage, title } = Astro.props
-
-// 标题映射表（用于自动切换中英文）
-const titleMap: Record<string, { zh: string; en: string }> = {
-  '关于': { zh: '关于', en: 'About' },
-  '博客': { zh: '博客', en: 'Blog' },
-  '项目': { zh: '项目', en: 'Projects' },
-  '链接': { zh: '链接', en: 'Links' },
-  '首页': { zh: '首页', en: 'Home' },
-  '赞助': { zh: '赞助', en: 'Sponsorship' },
-  '标签': { zh: '标签', en: 'Tags' },
-  '分类': { zh: '分类', en: 'Categories' },
-  '归档': { zh: '归档', en: 'Archive' },
-  // 可以继续添加更多映射
-}
-
-// 根据语言选择显示标题
-const mappedTitle = titleMap[title]
-const displayTitle = mappedTitle 
-  ? (isEnglish ? mappedTitle.en : mappedTitle.zh)
-  : title  // 如果不在映射表中，使用原标题
-
-// 站点标题也支持中英文切换
-const displaySiteTitle = isEnglish ? config.titleEn : config.title
 
 // 判断是否为首页（根路径或 /en）
 const pathname = Astro.url.pathname
 const isHome = pathname === '/' || pathname === '/en' || pathname === '/en/'
+
+// 全局页面标题映射（基于路径）
+const PAGE_TITLES: Record<string, { zh: string; en: string }> = {
+  '/': { zh: '', en: 'Home' },
+  '/article': { zh: '文章', en: 'Articles' },
+  '/tags': { zh: '标签', en: 'Tags' },
+  '/archives': { zh: '归档', en: 'Archives' },
+  '/search': { zh: '搜索', en: 'Search' },
+  '/about': { zh: '关于', en: 'About' },
+  '/projects': { zh: '项目', en: 'Projects' },
+  '/links': { zh: '友链', en: 'Links' },
+  '/collection': { zh: '集合', en: 'Collections' },
+  '/academic': { zh: '学术', en: 'Academic' },
+  '/terms': { zh: '网站政策', en: 'Site Policy' },
+  '/terms/privacy-policy': { zh: '隐私政策', en: 'Privacy Policy' },
+  '/terms/terms-and-conditions': { zh: '条款与条件', en: 'Terms and Conditions' },
+  '/terms/copyright': { zh: '版权声明', en: 'Copyright' },
+  '/terms/disclaimer': { zh: '免责声明', en: 'Disclaimer' },
+  '/en/article': { zh: '文章', en: 'Articles' },
+  '/en/tags': { zh: '标签', en: 'Tags' },
+  '/en/archives': { zh: '归档', en: 'Archives' },
+  '/en/search': { zh: '搜索', en: 'Search' },
+  '/en/about': { zh: '关于', en: 'About' },
+  '/en/projects': { zh: '项目', en: 'Projects' },
+  '/en/links': { zh: '友链', en: 'Links' },
+  '/en/collection': { zh: '集合', en: 'Collections' },
+  '/en/academic': { zh: '学术', en: 'Academic' },
+  '/en/terms': { zh: '网站政策', en: 'Site Policy' },
+  '/en/terms/privacy-policy': { zh: '隐私政策', en: 'Privacy Policy' },
+  '/en/terms/terms-and-conditions': { zh: '条款与条件', en: 'Terms and Conditions' },
+  '/en/terms/copyright': { zh: '版权声明', en: 'Copyright' },
+  '/en/terms/disclaimer': { zh: '免责声明', en: 'Disclaimer' },
+}
+
+// 文章分类名映射
+const CATEGORY_NAME_MAP: Record<string, string> = {
+  'tech': { zh: '技术', en: 'Tech' },
+  'life': { zh: '生活', en: 'Life' },
+  'solution': { zh: '题解', en: 'Solutions' },
+  'ccf': { zh: '信竞', en: 'CCF' },
+  'other': { zh: '其他', en: 'Other' },
+}
+
+// 动态路径匹配（从最长路径优先匹配）
+function resolveTitle(pathname: string): string | undefined {
+  // 精确匹配
+  const exact = PAGE_TITLES[pathname]
+  if (exact) return exact[isEnglish ? 'en' : 'zh']
+
+  // /article/:category 或 /en/article/:category
+  const articleCatMatch = pathname.match(/^\/(en\/)?article\/([^/]+)\/?.*$/)
+  if (articleCatMatch) {
+    const cat = articleCatMatch[2]
+    const name = CATEGORY_NAME_MAP[cat]
+    if (name) {
+      return isEnglish ? `${name.en} Articles` : `${name.zh} 文章`
+    }
+  }
+
+  // /tags/:tag 或 /en/tags/:tag
+  const tagMatch = pathname.match(/^\/(en\/)?tags\/.+$/)
+  if (tagMatch) {
+    return isEnglish ? 'Tags' : '标签'
+  }
+
+  // /collection/:id 或 /en/collection/:id
+  const colMatch = pathname.match(/^\/(en\/)?collection\/.+$/)
+  if (colMatch) {
+    return isEnglish ? 'Collections' : '集合'
+  }
+
+  return undefined
+}
+
+const resolvedTitle = resolveTitle(pathname)
+const displayTitle = resolvedTitle ?? title
+
+// 站点标题也支持中英文切换
+const displaySiteTitle = isEnglish ? config.titleEn : config.title
 
 // 生成标题：首页只显示站点名，其他页面显示 "页面标题 | 站点名"
 const siteTitle = isHome 
