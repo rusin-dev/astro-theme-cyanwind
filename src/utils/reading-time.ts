@@ -58,14 +58,16 @@ function countWords(text: string): number {
   return words
 }
 
-export function getReadingTime(text: string, wordsPerMinute: number = 200): ReadingTimeResult {
+export function getReadingTime(text: string, wordsPerMinute: number = 200, isEnglish?: boolean): ReadingTimeResult {
   const words = countWords(text)
   const minutes = words / wordsPerMinute
   const time = Math.round(minutes * 60 * 1000)
   const displayed = Math.ceil(minutes)
 
+  const textLabel = isEnglish ? `${displayed} min read` : `${displayed} 分钟`
+
   return {
-    text: `${displayed} min read`,
+    text: textLabel,
     minutes,
     time,
     words

@@ -1,7 +1,8 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-import { cn, getFormattedDate } from '@/utils'
+import { cn } from '@/utils'
+import config from '@/site-config'
 
 type Props = HTMLAttributes<'time'> & {
   date: Date
@@ -11,7 +12,17 @@ type Props = HTMLAttributes<'time'> & {
 
 const { date, dateTimeOptions, class: className, ...attrs } = Astro.props
 
-const postDate = getFormattedDate(date, dateTimeOptions)
+const isEnglish = Astro.currentLocale === 'en'
+const postDate = isEnglish
+  ? new Date(date).toLocaleDateString(config.locale.dateLocale, {
+      ...(config.locale.dateOptions as Intl.DateTimeFormatOptions),
+      ...dateTimeOptions
+    })
+  : new Date(date).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
 ---
 
 <span class={cn('text-muted-foreground font-mono', className)} {...attrs}>

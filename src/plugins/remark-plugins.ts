@@ -19,7 +19,8 @@ export const remarkAddZoomable: Plugin<[{ className?: string }], Root> = functio
 export const remarkReadingTime: Plugin<[], Root> = function () {
   return function (tree, { data }) {
     const textOnPage = mdastToString(tree)
-    const readingTime = getReadingTime(textOnPage)
+    const isEnglish = data.astro?.relativeUrl?.includes('/en') ?? false
+    const readingTime = getReadingTime(textOnPage, 200, isEnglish)
     // readingTime.text will give us minutes read as a friendly string,
     // i.e. "3 min read"
     if (data.astro && data.astro.frontmatter) {

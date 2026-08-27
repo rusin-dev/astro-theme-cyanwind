@@ -11,8 +11,8 @@ interface Props {
 }
 const { class: className, sponsors, ...props } = Astro.props
 
-// 判断是否为英文页面
-const isEnglish = Astro.url.pathname.includes('/en/')
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
 ---
 
 <div class={cn('border px-3 sm:px-4 py-2 rounded-xl', className)} {...props}>
