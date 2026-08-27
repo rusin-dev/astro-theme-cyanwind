@@ -24,6 +24,9 @@ export const remarkReadingTime: Plugin<[], Root> = function () {
     // readingTime.text will give us minutes read as a friendly string,
     // i.e. "3 min read"
     if (data.astro && data.astro.frontmatter) {
+      if (!data.astro.frontmatter.updatedDate) {
+        data.astro.frontmatter.updatedDate = data.astro.frontmatter.publishDate
+      }
       data.astro.frontmatter.minutesRead = readingTime.text
       data.astro.frontmatter.words = readingTime.words
     }
