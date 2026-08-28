@@ -1,6 +1,7 @@
 ---
 // https://github.com/withastro/starlight/blob/main/packages/starlight/user-components/Tabs.astro
 import { processPanels } from '@/plugins/rehype-tabs'
+import type { Panel } from '@/plugins/rehype-tabs'
 
 interface Props {
   syncKey?: string
@@ -8,7 +9,7 @@ interface Props {
 
 const { syncKey } = Astro.props
 const panelHtml = await Astro.slots.render('default')
-const { html, panels } = processPanels(panelHtml)
+const { html, panels } = processPanels(panelHtml) as { html: string; panels: Panel[] }
 
 /**
  * Synced tabs are persisted across page using `localStorage`. The script used to restore the

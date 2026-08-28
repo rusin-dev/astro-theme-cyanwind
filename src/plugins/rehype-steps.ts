@@ -3,7 +3,10 @@
 import { AstroError } from 'astro/errors'
 import type { Element, Root } from 'hast'
 import { rehype } from 'rehype'
-import type { VFile } from 'vfile'
+
+interface VFileLike {
+  value: string
+}
 
 const prettyPrintProcessor = rehype().data('settings', { fragment: true })
 
@@ -14,7 +17,7 @@ const stepsProcessor = rehype()
   .data('settings', { fragment: true })
 
   .use(function steps() {
-    return (tree: Root, vfile: VFile) => {
+    return (tree: Root, vfile: VFileLike) => {
       const rootElements = tree.children.filter((item): item is Element => item.type === 'element')
 
       const [rootElement] = rootElements
