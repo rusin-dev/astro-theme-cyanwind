@@ -7,13 +7,13 @@ const bgMuted = 'hsl(var(--muted) / var(--tw-bg-opacity, 1))'
 const link = 'hsl(var(--primary) / var(--tw-text-opacity, 1))'
 
 const typographyConfig = ({ theme }) => ({
-  axi: {
+  rusin: {
     css: {
       '--tw-prose-headings': fg,
       '--tw-prose-body': fgMuted,
       '--tw-prose-links': link,
       '--tw-prose-quotes': fgMuted,
-      '--tw-prose-code:': fg,
+      '--tw-prose-code': fg,
       '--tw-prose-pre-code': fgMuted,
       '--tw-prose-pre-bg': bgMuted,
 
