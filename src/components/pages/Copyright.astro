@@ -18,6 +18,9 @@ const {
 
 const image = typeof heroImage?.src === 'string' ? heroImage?.src : (heroImage?.src?.src ?? '')
 
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
+
 const shares = {
   weibo: {
     link: `http://service.weibo.com/share/share.php?url=${Astro.url}&title=${title}&pic=${image}`
@@ -131,7 +134,7 @@ const shares = {
     href='/projects#sponsorship'
     class='flex items-center justify-between text-muted-foreground no-underline'
   >
-    <span>Buy me a cup of coffee ☕.</span>
+    <span>{isEnglish ? 'Buy me a cup of coffee ☕.' : '请我喝杯咖啡 ☕。'}</span>
     <Icon class='box-content size-5 p-1' name='receive-money' />
   </a>
 </div>

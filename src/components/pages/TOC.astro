@@ -11,7 +11,9 @@ interface Props {
 
 const { headings, class: className, ...props } = Astro.props
 
-const isEnglish = Astro.url.pathname.includes('/en/')
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
+
 const tocTitle = isEnglish ? 'TABLE OF CONTENTS' : '本页面目录'
 
 const toc = generateToc(headings)

@@ -5,8 +5,8 @@ import { prod } from '@/utils/server'
 import config from '@/site-config'
 import globalCss from '@/assets/styles/global.css?inline'
 
-// 直接基于 URL 检测语言
-const isEnglish = Astro.url.pathname.includes('/en')
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean)
+const isEnglish = pathSegments[0] === 'en'
 
 const { articleDate, description, ogImage, title } = Astro.props
 
