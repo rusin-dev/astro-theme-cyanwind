@@ -83,5 +83,10 @@
   },
   "overrides": {
     "@emmetio/css-parser": "0.5.0"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "astro-llms-md": "patches/astro-llms-md.patch"
+    }
   }
 }
