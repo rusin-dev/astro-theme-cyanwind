@@ -1,0 +1,142 @@
+---
+interface Props {
+  heading: string
+  placeholder: string
+  submitLabel: string
+}
+
+const { heading, placeholder, submitLabel } = Astro.props
+---
+
+<style>
+  .followit-form {
+    margin-top: 30px;
+    padding: clamp(17px, 5%, 40px) clamp(17px, 7%, 50px);
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(34, 60, 47, 0.12);
+    background-color: var(--followit-bg, rgba(166, 226, 212, 0.4));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  :global(html.dark) .followit-form {
+    background-color: var(--followit-bg-dark, rgba(166, 226, 212, 0.12));
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.35);
+  }
+
+  .followit-form *,
+  .followit-form *::before,
+  .followit-form *::after {
+    box-sizing: border-box;
+  }
+
+  .followit-form .followit-heading {
+    width: 100%;
+    margin: 0 0 20px 0;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    color: var(--followit-text, #000000);
+  }
+
+  :global(html.dark) .followit-form .followit-heading {
+    color: var(--followit-text-dark, #e2e8f0);
+  }
+
+  .followit-form .followit-input {
+    width: 100%;
+    height: 40px;
+    border-radius: 6px;
+    border: 2px solid #e9e8e8;
+    background-color: #ffffff;
+    outline: none;
+    color: #000000;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  :global(html.dark) .followit-form .followit-input {
+    border-color: #4a5568;
+    background-color: #1e293b;
+    color: #e2e8f0;
+  }
+
+  .followit-form .followit-input::placeholder {
+    color: #000000;
+    opacity: 0.7;
+  }
+
+  :global(html.dark) .followit-form .followit-input::placeholder {
+    color: #94a3b8;
+  }
+
+  .followit-form .followit-button {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: 0;
+    border-radius: 6px;
+    background-color: var(--followit-btn, #000000);
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+
+  :global(html.dark) .followit-form .followit-button {
+    background-color: var(--followit-btn-dark, #334155);
+  }
+
+  .followit-form .followit-button:hover {
+    opacity: 0.85;
+  }
+
+  .followit-powered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--followit-powered, #231f20);
+  }
+
+  :global(html.dark) .followit-powered {
+    color: var(--followit-powered-dark, #94a3b8);
+  }
+
+  .followit-powered img {
+    margin-left: 10px;
+    height: 1.13em;
+    max-height: 1.13em;
+  }
+</style>
+
+<div class="followit-form" attr-a attr-b attr-c attr-d attr-e attr-f>
+  <form
+    action="https://api.follow.it/subscription-form/eVFSbVU0QThidVVuaWNOMFJDSG1sZnJDNGJFK0dCNWRQVzhxZGVLUFU1L2RJNUxsVGE3QXZXZ3ZkNVdPbm9vZnEyU0NmTm9YblozczVGTXFIZkhkeElYbWFKR1dmMUFMT1JLQVFjUkJUaUFPMEJ3NkVybHZZSnJCUHNLSGowRTJ8aExzN3BKM0xkRG16U0dXZFpPbkVyeVdValNkYjd2RVM4anptd2UwS01adz0=/8"
+    method="post"
+  >
+    <h5 class="followit-heading">{heading}</h5>
+    <input
+      class="followit-input"
+      type="email"
+      name="email"
+      required
+      placeholder={placeholder}
+      spellcheck="false"
+    />
+    <button class="followit-button" type="submit">{submitLabel}</button>
+  </form>
+  <!-- <a href="https://follow.it" class="followit-powered" target="_blank" rel="noopener noreferrer">
+    Powered by
+    <img src="https://follow.it/images/colored-logo.svg" alt="follow.it" height="17px" />
+  </a> -->
+</div>

@@ -48,6 +48,7 @@ export const theme: ThemeUserConfig = {
       { title: '学术', titleEn: 'Academic', link: '/academic' },
       { title: '项目', titleEn: 'Projects', link: '/projects' },
       { title: '友链', titleEn: 'Links', link: '/links' },
+      { title: '订阅', titleEn: 'Subscribe', link: '/subscribe' },
       { title: '关于', titleEn: 'About', link: '/about' }
     ]
   },

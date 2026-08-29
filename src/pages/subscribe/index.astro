@@ -1,0 +1,18 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import SubscriptionForm from '@/components/pages/SubscriptionForm.astro'
+
+const headings = [{ depth: 2, slug: 'subscribe', text: '订阅' }]
+---
+
+<PageLayout title='订阅' {headings} info='/subscribe'>
+  <h2 id='subscribe'>订阅<a class='anchor' href='#subscribe'>#</a></h2>
+  <p>
+    通过电子邮件订阅本站，每当有新文章发布时，及时收到邮件通知，不错过任何更新。
+  </p>
+  <SubscriptionForm
+    heading='通过电子邮件获取新文章：'
+    placeholder='输入您的邮箱地址'
+    submitLabel='订阅'
+  />
+</PageLayout>

@@ -196,3 +196,10 @@ const socialImageURL = new URL(ogImage ? ogImage : '/images/social-card.webp', A
     </script>
   )
 }
+
+{
+  /* Analytics (only in production) */
+  prod && (
+    <script is:inline defer src="https://stai.rusin7.com/script.js" data-website-id="2fd17833-ed47-49a3-a5d9-fc9784fadcd2"></script>
+  )
+}
