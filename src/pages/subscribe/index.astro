@@ -2,11 +2,17 @@
 import PageLayout from '@/layouts/CommonPage.astro'
 import SubscriptionForm from '@/components/pages/SubscriptionForm.astro'
 
-const headings = [{ depth: 2, slug: 'subscribe', text: '订阅' }]
+const headings = [
+  { depth: 2, slug: 'email-subscribe', text: '电子邮件订阅' },
+  { depth: 2, slug: 'rss-subscribe', text: 'Rss 订阅' },
+  { depth: 2, slug: 'github-subscribe', text: 'Github 订阅' }
+
+]
+
 ---
 
 <PageLayout title='订阅' {headings} info='/subscribe'>
-  <h2 id='subscribe'>订阅<a class='anchor' href='#subscribe'>#</a></h2>
+  <h2 id='email-subscribe'>电子邮件订阅<a class='anchor' href='#email-subscribe'>#</a></h2>
   <p>
     通过电子邮件订阅本站，每当有新文章发布时，及时收到邮件通知，不错过任何更新。
   </p>
@@ -15,4 +21,14 @@ const headings = [{ depth: 2, slug: 'subscribe', text: '订阅' }]
     placeholder='输入您的邮箱地址'
     submitLabel='订阅'
   />
+  <h2 id='rss-subscribe'>Rss 订阅<a class='anchor' href='#rss-subscribe'>#</a></h2>
+  <p>
+    通过定期查看 Rss 订阅本站，<a href='rss.xml'>Rss 地址</a>。
+  </p>
+  <h2 id='github-subscribe'>Github 订阅<a class='anchor' href='#rss-subscribe'>#</a></h2>
+  <p>
+    通过 Star github 仓库订阅本站，打开<a href='https://github.com/rusin-dev/astro-theme-cyanwind'>仓库</a>后点右上角 Star，不仅能接受文章更新，
+    <b>还能查看 Bug 修复和 Feature 添加</b>
+    。
+  </p>
 </PageLayout>

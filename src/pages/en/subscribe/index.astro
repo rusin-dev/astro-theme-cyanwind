@@ -2,11 +2,15 @@
 import PageLayout from '@/layouts/CommonPage.astro'
 import SubscriptionForm from '@/components/pages/SubscriptionForm.astro'
 
-const headings = [{ depth: 2, slug: 'subscribe', text: 'Subscribe' }]
+const headings = [
+  { depth: 2, slug: 'email-subscribe', text: 'Email Subscription' },
+  { depth: 2, slug: 'rss-subscribe', text: 'RSS Subscription' },
+  { depth: 2, slug: 'github-subscribe', text: 'GitHub Subscription' }
+]
 ---
 
 <PageLayout title='Subscribe' {headings} info='/subscribe'>
-  <h2 id='subscribe'>Subscribe<a class='anchor' href='#subscribe'>#</a></h2>
+  <h2 id='email-subscribe'>Email Subscription<a class='anchor' href='#email-subscribe'>#</a></h2>
   <p>
     Subscribe via email to receive notifications whenever a new article is published, so you never miss an update.
   </p>
@@ -15,4 +19,13 @@ const headings = [{ depth: 2, slug: 'subscribe', text: 'Subscribe' }]
     placeholder='Enter your email address'
     submitLabel='Subscribe'
   />
+  <h2 id='rss-subscribe'>RSS Subscription<a class='anchor' href='#rss-subscribe'>#</a></h2>
+  <p>
+    Stay updated by periodically checking the <a href='rss.xml'>RSS feed</a>.
+  </p>
+  <h2 id='github-subscribe'>GitHub Subscription<a class='anchor' href='#github-subscribe'>#</a></h2>
+  <p>
+    Subscribe by starring the GitHub <a href='https://github.com/rusin-dev/astro-theme-cyanwind'>repository</a>. Click the Star button in the top-right corner to receive article updates,
+    <b>as well as bug fixes and new feature additions</b>.
+  </p>
 </PageLayout>
