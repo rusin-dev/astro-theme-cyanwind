@@ -35,10 +35,16 @@
           "intro": "分享技术与科技生活"
         },
         {
-          "name": "赵欣泽",
+          "name": "补水小栈",
           "link": "http://blog.bslzzz.cn/",
           "avatar": "https://cdn.luogu.com.cn/upload/usericon/1217878.png",
           "intro": "一个热爱 C++ 的信竞生。"
+        },
+        {
+          "name": "Hexvork",
+          "link": "https://www.hexvork.com/",
+          "avatar": "https://webp.hexvork.com/0/favicon.webp",
+          "intro": "分享网络优化、开发实战和工具评测，用人话讲技术。"
         }
       ]
     }

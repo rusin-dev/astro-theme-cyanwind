@@ -11,6 +11,7 @@ import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeExternalLinks from 'rehype-external-links'
+import llmsMd from 'astro-llms-md'
 
 // Integrations
 import AstroAxiIntegration from './src/axi-integration.ts'
@@ -84,6 +85,7 @@ export default defineConfig({
     // mdx(),
     // tailwind({ applyBaseStyles: false }),
     AstroAxiIntegration(config),
+    llmsMd(),
     // (await import('@playform/compress')).default({
     //   SVG: false,
     //   Exclude: ['index.*.js']
