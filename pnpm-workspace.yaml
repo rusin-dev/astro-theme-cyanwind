@@ -1,6 +1,12 @@
-allowBuilds:
-  esbuild: true
-  sharp: true
-  workerd: true
 patchedDependencies:
   astro-llms-md: patches/astro-llms-md.patch
+
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - workerd
+
+allowBuilds:
+  esbuild: set this to true or false
+  sharp: set this to true or false
+  workerd: set this to true or false
