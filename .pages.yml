@@ -1,0 +1,138 @@
+media: public
+
+content:
+  # 博客文章（中文）
+  - name: blog-zh
+    label: 博客文章（中文）
+    type: collection
+    path: src/content/blogs
+    subfolders: true
+    format: yaml-frontmatter
+    filename: index.mdx
+    fields:
+      - name: title
+        type: string
+        label: 标题
+        required: true
+      - name: description
+        type: text
+        label: 描述
+        required: true
+      - name: publishDate
+        type: date
+        label: 发布日期
+        required: true
+      - name: updatedDate
+        type: date
+        label: 更新日期
+      - name: tags
+        type: string
+        label: 标签
+        list: true
+      - name: category
+        type: string
+        label: 分类
+      - name: language
+        type: string
+        label: 语言
+      - name: draft
+        type: boolean
+        label: 草稿
+        default: false
+      - name: comment
+        type: boolean
+        label: 评论
+        default: true
+      - name: heroImage
+        type: object
+        label: 封面图
+        fields:
+          - name: src
+            type: image
+            label: 图片
+          - name: alt
+            type: string
+            label: 替代文本
+          - name: color
+            type: string
+            label: 主色调
+    view:
+      primary: title
+      sort: publishDate
+      order: desc
+      search: [title, description, tags]
+
+  # 博客文章（英文）
+  - name: blog-en
+    label: Blog Posts (English)
+    type: collection
+    path: src/content/blogs
+    subfolders: true
+    format: yaml-frontmatter
+    filename: index-en.mdx
+    fields:
+      - name: title
+        type: string
+        label: Title
+        required: true
+      - name: description
+        type: text
+        label: Description
+        required: true
+      - name: publishDate
+        type: date
+        label: Publish Date
+        required: true
+      - name: updatedDate
+        type: date
+        label: Updated Date
+      - name: tags
+        type: string
+        label: Tags
+        list: true
+      - name: category
+        type: string
+        label: Category
+      - name: language
+        type: string
+        label: Language
+      - name: draft
+        type: boolean
+        label: Draft
+        default: false
+      - name: comment
+        type: boolean
+        label: Comment
+        default: true
+      - name: heroImage
+        type: object
+        label: Hero Image
+        fields:
+          - name: src
+            type: image
+            label: Image
+          - name: alt
+            type: string
+            label: Alt Text
+          - name: color
+            type: string
+            label: Color
+    view:
+      primary: title
+      sort: publishDate
+      order: desc
+      search: [title, description, tags]
+
+  # 站点配置
+  - name: site-config
+    label: 站点配置
+    type: file
+    path: src/site.config.ts
+    format: code
+    fields:
+      - name: title
+        type: string
+        label: 站点标题
+      - name: description
+        type: string
+        label: 站点描述

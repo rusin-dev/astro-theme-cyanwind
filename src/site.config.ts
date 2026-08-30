@@ -45,7 +45,6 @@ export const theme: ThemeUserConfig = {
     menu: [
       { title: '文章', titleEn: 'Articles', link: '/article' },
       { title: '标签', titleEn: 'Tags', link: '/tags' },
-      { title: '学术', titleEn: 'Academic', link: '/academic' },
       { title: '项目', titleEn: 'Projects', link: '/projects' },
       { title: '友链', titleEn: 'Links', link: '/links' },
       { title: '订阅', titleEn: 'Subscribe', link: '/subscribe' },

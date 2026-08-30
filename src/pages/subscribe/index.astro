@@ -1,6 +1,7 @@
 ---
 import PageLayout from '@/layouts/CommonPage.astro'
 import SubscriptionForm from '@/components/pages/SubscriptionForm.astro'
+import config from '@/site-config'
 
 const headings = [
   { depth: 2, slug: 'email-subscribe', text: '电子邮件订阅' },
@@ -11,7 +12,7 @@ const headings = [
 
 ---
 
-<PageLayout title='订阅' {headings} info='/subscribe'>
+<PageLayout title='订阅' {headings} info={{ slug: '/subscribe', hideComment: true }}>
   <h2 id='email-subscribe'>电子邮件订阅<a class='anchor' href='#email-subscribe'>#</a></h2>
   <p>
     通过电子邮件订阅本站，每当有新文章发布时，及时收到邮件通知，不错过任何更新。
@@ -32,3 +33,25 @@ const headings = [
     。
   </p>
 </PageLayout>
+
+<script
+  is:inline
+  type='module'
+  data-astro-rerun
+  define:vars={{ npmCDN: config.npmCDN, walineServer: config.integ.waline.server }}
+>
+  const normalizePath = (path) => {
+    if (path === '/') return path
+    return path.endsWith('/') ? path.slice(0, -1) : path
+  }
+
+  const loadPageviewCount = async () => {
+    const pageview = await import(`${npmCDN}/@waline/client@v3/dist/pageview.js`)
+    pageview.pageviewCount({
+      serverURL: walineServer,
+      path: normalizePath(window.location.pathname)
+    })
+  }
+
+  await loadPageviewCount()
+</script>

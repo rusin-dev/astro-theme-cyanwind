@@ -19,6 +19,10 @@
     </p>
 </div>
 
+<div align="center">
+<img src="https://s0.wp.com/mshots/v1/https://blog.rusin7.com/" alt="截图" />
+</div>
+
 一个现代化、功能丰富的 Astro 主题，专为个人博客和内容创作设计。采用 Astro、Tailwind CSS 和 TypeScript 构建，提供最佳的开发体验。
 
 ---

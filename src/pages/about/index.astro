@@ -3,12 +3,24 @@ import PageLayout from '@/layouts/CommonPage.astro'
 import AlgorithmShowcase from '@/components/about/AlgorithmShowcase.astro'
 import ToolSection from '@/components/about/ToolSection.astro'
 import { Comment } from '@/components/advanced'
-import { Button, DistributionSection, Spoiler } from '@/components/user'
+import {
+  Button,
+  DistributionSection,
+  Icon,
+  PublicationSection,
+  ResearchProjectSection,
+  SimpleIcon,
+  Spoiler
+} from '@/components/user'
 
 const headings = [
+  { depth: 2, slug: 'about-me', text: '关于我' },
+  { depth: 2, slug: 'research-interests', text: '研究爱好' },
+  { depth: 2, slug: 'publications', text: '专栏' },
+  { depth: 2, slug: 'open-source-projects', text: '开源仓库' },
   { depth: 2, slug: 'distribution', text: '子站' },
   { depth: 2, slug: 'tools', text: '工具' },
-  { depth: 2, slug: 'copyright', text: 'Copyright' },
+  { depth: 2, slug: 'copyright', text: '版权' },
   { depth: 2, slug: 'theme', text: '主题' }
 ]
 
@@ -34,6 +46,84 @@ const distributions = [
     你好，我是一个OIer，欢迎访问我的博客！我的座右铭：<Spoiler>亲身体验，终生实践。</Spoiler>
   </p>
   <Button title='赞助我' class='w-fit' href='/projects#sponsorship' style='ahead' />
+  <h2 id='about-me'>关于我<a class='anchor' href='#about-me'>#</a></h2>
+  <p>我在 JCSY 和 SH 学习，坐标 ZJ，准备参加 CSP。</p>
+  <p>CSP-J 目标 2=，CSP-S 目标进复赛！</p>
+  <p>近期强力学术中，勿扰</p>
+  <p>这是 NOI 大纲，欢迎下载。</p>
+  <Button title='下载大纲' class='w-fit' href='https://www.noi.cn/upload/resources/file/2025/04/18/NOI_Syllabus_Edition_2025.pdf' target='_blank'>
+    <Icon class='size-5' name='download' slot='before' />
+  </Button>
+  <h2 id='research-interests'>
+    研究爱好<a class='anchor' href='#research-interests'>#</a>
+  </h2>
+  <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    {
+      [
+        {
+          title: 'C++',
+          description: '树、图论、动态规划、数据结构。',
+          icon: 'pytorch'
+        },
+        {
+          title: 'Web',
+          description: '网络安全、网站建设、前端框架',
+          icon: 'huggingface'
+        }
+      ].map((interest) => (
+        <div class='group relative overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-foreground/25 hover:shadow-md'>
+          <div class='flex items-start gap-4'>
+            <div class='flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20'>
+              <SimpleIcon
+                class='size-5 text-primary transition-transform duration-300 group-hover:scale-110'
+                name={interest.icon}
+              />
+            </div>
+            <div class='flex-1'>
+              <p class='text-xl font-medium leading-tight text-foreground transition-colors group-hover:text-primary'>
+                {interest.title}
+              </p>
+              <p class='text-sm leading-relaxed text-muted-foreground'>{interest.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+  <h2 id='publications'>专栏<a class='anchor' href='#publications'>#</a></h2>
+  <PublicationSection
+    publications={[
+      {
+        title: '在 Hexo 中复现洛谷插件',
+        authors: [{ name: '_ruyingsuixing_', isMe: true }],
+        venue: '洛谷专栏',
+        year: '2026',
+        type: 'conference',
+        abstract: '在 Hexo 中通过自定义 markedjs 解析和 css 使用洛谷的 markdown-it。',
+        links: [
+          { type: '洛谷', href: 'https://luogu.rusin.top/article/79x8skck' },
+          { type: '本站', href: '/article/luogu-plugin-in-hexo' }
+        ],
+        status: 'published'
+      }
+    ]}
+  />
+  <h2 id='open-source-projects'>
+    开源仓库<a class='anchor' href='#open-source-projects'>#</a>
+  </h2>
+  <ResearchProjectSection
+    projects={[
+      {
+        title: '如形の笔记',
+        description: '🖊︎ 一个受 note.ms 启发的轻量级云端剪贴板项目，专为 VPS 部署设计，开箱即用。',
+        category: 'Python,Web',
+        status: 'active',
+        links: [
+          { type: 'github', href: 'https://github.com/rusin-dev/rusin-note', label: 'Code' }
+        ]
+      }
+    ]}
+  />
   <h2 id='distribution'>网页分发<a class='anchor' href='#distribution'>#</a></h2>
   <p>
     本站在多个平台部署了一系列站点，您可以选择合适的站点进行访问：
