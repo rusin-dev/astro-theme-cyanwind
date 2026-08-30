@@ -6,9 +6,7 @@ content:
     label: 博客文章（中文）
     type: collection
     path: src/content/blogs
-    subfolders: true
     format: yaml-frontmatter
-    filename: index.mdx
     fields:
       - name: title
         type: string
@@ -67,9 +65,7 @@ content:
     label: Blog Posts (English)
     type: collection
     path: src/content/blogs
-    subfolders: true
     format: yaml-frontmatter
-    filename: index-en.mdx
     fields:
       - name: title
         type: string
