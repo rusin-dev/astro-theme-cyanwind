@@ -6,57 +6,58 @@ content:
     label: 博客文章（中文）
     type: collection
     path: src/content/blogs
+    subfolders: true
     format: yaml-frontmatter
+    filename: index.mdx
     fields:
       - name: title
-        type: string
         label: 标题
+        type: string
         required: true
       - name: description
-        type: text
         label: 描述
+        type: text
         required: true
       - name: publishDate
-        type: date
         label: 发布日期
+        type: date
         required: true
       - name: updatedDate
-        type: date
         label: 更新日期
+        type: date
       - name: tags
-        type: string
         label: 标签
+        type: string
         list: true
       - name: category
-        type: string
         label: 分类
-      - name: language
         type: string
+      - name: language
         label: 语言
+        type: string
       - name: draft
-        type: boolean
         label: 草稿
+        type: boolean
         default: false
       - name: comment
-        type: boolean
         label: 评论
+        type: boolean
         default: true
       - name: heroImage
-        type: object
         label: 封面图
+        type: object
         fields:
           - name: src
-            type: image
             label: 图片
+            type: image
           - name: alt
-            type: string
             label: 替代文本
-          - name: color
             type: string
+          - name: color
             label: 主色调
             type: string
       - name: body
-        label: Body
+        label: 正文
         type: rich-text
     view:
       primary: title
@@ -69,53 +70,54 @@ content:
     label: Blog Posts (English)
     type: collection
     path: src/content/blogs
+    subfolders: true
     format: yaml-frontmatter
+    filename: index-en.mdx
     fields:
       - name: title
-        type: string
         label: Title
+        type: string
         required: true
       - name: description
-        type: text
         label: Description
+        type: text
         required: true
       - name: publishDate
-        type: date
         label: Publish Date
+        type: date
         required: true
       - name: updatedDate
-        type: date
         label: Updated Date
+        type: date
       - name: tags
-        type: string
         label: Tags
+        type: string
         list: true
       - name: category
-        type: string
         label: Category
-      - name: language
         type: string
+      - name: language
         label: Language
+        type: string
       - name: draft
-        type: boolean
         label: Draft
+        type: boolean
         default: false
       - name: comment
-        type: boolean
         label: Comment
+        type: boolean
         default: true
       - name: heroImage
-        type: object
         label: Hero Image
+        type: object
         fields:
           - name: src
-            type: image
             label: Image
+            type: image
           - name: alt
-            type: string
             label: Alt Text
-          - name: color
             type: string
+          - name: color
             label: Color
             type: string
       - name: body
@@ -127,6 +129,33 @@ content:
       order: desc
       search: [title, description, tags]
 
+  # 文档集合
+  - name: docs
+    label: 文档页面
+    type: collection
+    path: src/content/collection
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: 标题
+        type: string
+        required: true
+      - name: title_en
+        label: 英文标题
+        type: string
+      - name: description
+        label: 描述
+        type: text
+      - name: description_en
+        label: 英文描述
+        type: text
+      - name: body
+        label: 正文
+        type: rich-text
+    view:
+      primary: title
+      search: [title, description]
+
   # 站点配置
   - name: site-config
     label: 站点配置
@@ -135,8 +164,8 @@ content:
     format: code
     fields:
       - name: title
-        type: string
         label: 站点标题
-      - name: description
         type: string
+      - name: description
         label: 站点描述
+        type: string
