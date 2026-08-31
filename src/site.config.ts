@@ -63,7 +63,7 @@ export const theme: ThemeUserConfig = {
     /** Enable displaying a "Astro & Cyanwind powered" link in your site's footer. */
     credits: true,
     /** Optional details about the social media accounts for this site. */
-    social: { github: 'https://github.com/ruying-suixing', gitee: 'https://github.com/rusin/astro-theme-cyanwind', luogu: 'https://www.luogu.com.cn/user/1620655', codeforces: 'https://codeforces.com/profile/ruyingsuixing'}
+    social: { github: 'https://github.com/ruying-suixing', gitee: 'https://gitee.com/rusin7/astro-theme-cyanwind', luogu: 'https://www.luogu.com.cn/user/1620655', codeforces: 'https://codeforces.com/profile/ruyingsuixing'}
   },
 
   content: {

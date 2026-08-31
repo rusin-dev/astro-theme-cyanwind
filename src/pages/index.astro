@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets'
 import { Button, Card, Icon, Label } from '@/components/user'
 import GitHubActivityCalendar from '@/components/home/GitHubActivityCalendar.astro'
+import LikeAndStar from '@/components/home/LikeAndStar.astro'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import Section from '@/components/home/Section.astro'
 import BlogStats from '@/components/home/BlogStats.astro'
@@ -73,6 +74,12 @@ import config from '@/site-config'
       </Section>
       <Section title='统计'>
         <BlogStats blogStartDate={config.personal?.blogStartDate ? new Date(config.personal.blogStartDate) : new Date('2026-08-02')} />
+      </Section>
+      <Section title='点赞'>
+        <LikeAndStar
+          serverURL='https://like.rusin7.com'
+          repoURL='https://github.com/rusin-dev/astro-theme-cyanwind'
+        />
       </Section>
       {config.personal?.githubUsername && (
         <GitHubActivityCalendar username={config.personal.githubUsername}/>

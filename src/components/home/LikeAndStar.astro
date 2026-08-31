@@ -1,0 +1,222 @@
+---
+import { Icon } from '@/components/user'
+
+interface Props {
+  serverURL: string
+  repoURL: string
+  isEnglish?: boolean
+}
+
+const { serverURL, repoURL, isEnglish = false } = Astro.props as Props
+---
+
+<div class='grid w-full grid-cols-2 gap-4'>
+  <div id='likeme'></div>
+  <a
+    href={repoURL}
+    target='_blank'
+    rel='noopener noreferrer'
+    class='likeStarCard flex items-center justify-center gap-2 rounded-[var(--radius)] border border-border bg-card p-5 text-card-foreground no-underline transition-all hover:-translate-y-0.5 hover:shadow-md'
+  >
+    <Icon name='github' class='size-5' />
+    <span class='font-semibold'>{isEnglish ? 'Star the theme' : '给主题点个 Star'}</span>
+  </a>
+</div>
+
+<script is:inline define:vars={{ serverURL }}>
+  const likeMe = (() => {
+    let instance;
+    return (options) => instance || (instance = new LikeMeSingleton(options));
+  })();
+
+  class LikeMeSingleton {
+    constructor({ el, serverURL, color }) {
+      Object.assign(this, { el, url: serverURL, color: color || 'hsl(var(--primary))' });
+      this.isLiking = false;
+      this.init();
+    }
+
+    async init() {
+      try {
+        await this.renderUI();
+        this.attachEvents();
+        this.updateCount();
+      } catch (error) {
+        console.error('LikeMe init error:', error);
+      }
+    }
+
+    async renderUI() {
+      try {
+        const response = await fetch(this.url);
+        const html = await response.text();
+        const element = document.querySelector(this.el);
+        if (element) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          element.innerHTML = doc.body.innerHTML;
+          const card = element.querySelector('.likeCard');
+          if (card) {
+            card.style.setProperty('background-color', this.color);
+          }
+        }
+      } catch (error) {
+        console.error('Render UI error:', error);
+      }
+    }
+
+    attachEvents() {
+      const card = document.querySelector(`${this.el} .likeCard`);
+      if (card) {
+        card.addEventListener('click', () => this.handleLike());
+      }
+    }
+
+    async updateCount() {
+      try {
+        const response = await fetch(`${this.url}/info`);
+        const data = await response.json().catch(() => null);
+        if (response.ok && data) {
+          const count = data.data?.count || 0;
+          const textElement = document.querySelector(`${this.el} .likeCard-text`);
+          if (textElement) {
+            textElement.textContent = `❤ ${count}`;
+          }
+        }
+      } catch (error) {
+        console.error('Update count error:', error);
+      }
+    }
+
+    setUIState(isLoading, text, isSuccess = false) {
+      const card = document.querySelector(`${this.el} .likeCard`);
+      const textElement = document.querySelector(`${this.el} .likeCard-text`);
+      if (card && textElement) {
+        card.classList.remove('loading', 'success');
+        if (isLoading) {
+          card.classList.add('loading');
+        } else if (isSuccess) {
+          card.classList.add('success');
+        }
+        textElement.textContent = text;
+      }
+    }
+
+    async handleLike() {
+      if (this.isLiking) return;
+      this.isLiking = true;
+      this.setUIState(true, '❤ 爱意传递中...');
+      try {
+        const response = await fetch(`${this.url}/like`);
+        const payload = await response.json().catch(() => null);
+        if (!payload) {
+          this.setUIState(false, '❤ 网络错误');
+          setTimeout(() => { this.updateCount(); }, 1500);
+          return;
+        }
+        const { code, data = {}, msg } = payload;
+        const count = data.count || 0;
+        if (response.ok && code === '200') {
+          this.setUIState(false, '❤ 传递成功~', true);
+          setTimeout(() => { this.setUIState(false, `❤ ${count}`); }, 500);
+          return;
+        }
+        this.setUIState(false, msg || '❤ 传递失败~');
+        setTimeout(() => { this.updateCount(); }, 1500);
+      } catch (error) {
+        console.error('Handle like error:', error);
+        this.setUIState(false, '❤ 网络错误');
+        setTimeout(() => { this.updateCount(); }, 1500);
+      } finally {
+        this.isLiking = false;
+      }
+    }
+  }
+
+  likeMe({
+    el: '#likeme',
+    serverURL: serverURL,
+    color: 'hsl(var(--primary))'
+  });
+</script>
+
+<style is:global>
+  #likeme .container {
+    max-width: none !important;
+    width: 100% !important;
+    display: block !important;
+    text-align: left !important;
+  }
+
+  #likeme .container .likeCard {
+    margin: 0 !important;
+  }
+
+  .likeCard {
+    width: 100%;
+    box-sizing: border-box;
+    user-select: none;
+    cursor: pointer;
+    border-radius: var(--radius);
+    margin: 0;
+    padding: 20px;
+    background: hsl(var(--primary));
+    transition: all 0.3s ease;
+    color: hsl(var(--primary-foreground));
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .likeCard:hover {
+    background: hsl(var(--primary) / 0.9);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .likeCard:active {
+    transform: translateY(0px) scale(0.98);
+  }
+
+  .likeCard > h3 {
+    font-size: 1.2em;
+    margin-top: 0.4em;
+    margin-bottom: 0;
+    font-weight: 600;
+    transition: all 0.2s ease;
+  }
+
+  .likeCard-text {
+    font-size: 1.1em;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    min-height: 1.5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .likeCard.loading {
+    pointer-events: none;
+    opacity: 0.8;
+    background: hsl(25 95% 53%);
+  }
+
+  .likeCard.loading .likeCard-text {
+    animation: pulse 1.2s infinite;
+  }
+
+  .likeCard.success {
+    background: hsl(142 71% 45%);
+    transform: scale(1.05);
+  }
+
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.6; }
+    100% { opacity: 1; }
+  }
+
+  .likeStarCard {
+    min-height: 80px;
+  }
+</style>

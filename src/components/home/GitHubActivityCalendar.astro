@@ -73,11 +73,14 @@ function getMonthLabels(weeks: Array<Array<GitHubActivityDay>>, isEnglish: boole
     ? ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     : ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月']
   
+  const minWeekGap = isEnglish ? 3 : 3
+
   return weeks.reduce<{ weekIndex: number; label: string }[]>((labels, week, weekIndex) => {
     const firstActivity = week.find((a) => a)
     if (!firstActivity) return labels
     const month = monthNames[getMonth(parseISO(firstActivity.date))]
-    if (weekIndex === 0 || labels.at(-1)?.label !== month) {
+    const lastLabel = labels.at(-1)
+    if (weekIndex === 0 || (lastLabel?.label !== month && weekIndex - lastLabel!.weekIndex >= minWeekGap)) {
       labels.push({ weekIndex, label: month })
     }
     return labels

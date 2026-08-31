@@ -7,6 +7,7 @@ import Section from '@/components/home/Section.astro'
 import avatar from '@/assets/avatar.png'
 import config from '@/site-config'
 import GitHubActivityCalendar from '@/components/home/GitHubActivityCalendar.astro'
+import LikeAndStar from '@/components/home/LikeAndStar.astro'
 ---
 
 <PageLayout meta={{ title: 'Home' }} highlightColor='#659EB966'>
@@ -72,6 +73,13 @@ import GitHubActivityCalendar from '@/components/home/GitHubActivityCalendar.ast
       </Section>
       <Section title='Statistics'>
         <BlogStats blogStartDate={config.personal?.blogStartDate ? new Date(config.personal.blogStartDate) : new Date('2026-08-02')} />
+      </Section>
+      <Section title='Like'>
+        <LikeAndStar
+          serverURL='https://like.rusin7.com'
+          repoURL='https://github.com/rusin-dev/astro-theme-cyanwind'
+          isEnglish={true}
+        />
       </Section>
       {config.personal?.githubUsername && (
         <GitHubActivityCalendar username={config.personal.githubUsername}/>

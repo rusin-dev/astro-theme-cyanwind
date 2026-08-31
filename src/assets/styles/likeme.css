@@ -1,0 +1,74 @@
+#likeme .likeCard {
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: pointer;
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  padding: 20px;
+  background: hsl(var(--primary));
+  transition: all 0.3s ease;
+  color: hsl(var(--primary-foreground));
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#likeme .likeCard:hover {
+  background: hsl(var(--primary) / 0.9);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.likeCard:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.likeCard > h3 {
+  font-size: 1.2em;
+  margin-top: 0.4em;
+  margin-bottom: 0;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.likeCard-text {
+  font-size: 1.1em;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.likeCard.loading {
+  pointer-events: none;
+  opacity: 0.8;
+  background: hsl(25 95% 53%);
+}
+
+.likeCard.loading .likeCard-text {
+  animation: pulse 1.2s infinite;
+}
+
+.likeCard.success {
+  background: hsl(142 71% 45%);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
