@@ -8,7 +8,7 @@ content:
     path: src/content/blogs
     subfolders: true
     format: yaml-frontmatter
-    filename: index.{md,mdx}  
+    filename: index.md  
     fields:
       - name: title
         label: 标题
@@ -72,7 +72,7 @@ content:
     path: src/content/blogs
     subfolders: true
     format: yaml-frontmatter
-    filename: index-en.{md,mdx} 
+    filename: index-en.md
     fields:
       - name: title
         label: Title
