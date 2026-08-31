@@ -1,6 +1,6 @@
 ---
 title: 第22届浙大宁波理工学院程序设计大赛题解
-publishDate: 2026-04-03 21:00:28
+publishDate: 2026-04-03
 tags: [题解,比赛]
 description: 本文讲述了第22届浙大宁波理工学院程序设计大赛的 C++ 代码。
 category: ccf

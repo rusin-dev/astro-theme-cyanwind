@@ -1,6 +1,6 @@
 ---
 title: '题解：P14702 [ICPC 2024 Tehran R] Boat'
-publishDate: 2026-04-03 20:38:22
+publishDate: 2026-04-03
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 题解：P14702 [ICPC 2024 Tehran R] Boat，思路清晰、排版精美
 category: solution

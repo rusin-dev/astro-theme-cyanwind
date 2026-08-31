@@ -1,6 +1,6 @@
 ---
 title: '题解：P14731 [ICPC 2022 Seoul R] Parentheses Tree'
-publishDate: 2026-04-03 20:36:32
+publishDate: 2026-04-03
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 P14731 [ICPC 2022 Seoul R] Parentheses Tree，思路清晰、排版精美
 category: solution

@@ -1,6 +1,6 @@
 ---
 title: 题解：P8534 「Wdoi-2」比赤色更红的梦
-publishDate: 2026-06-06 19:26:35
+publishDate: 2026-06-06
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 P8534 「Wdoi-2」比赤色更红的梦，思路清晰、排版精美
 category: solution

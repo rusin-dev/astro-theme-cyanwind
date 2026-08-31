@@ -1,6 +1,6 @@
 ---
 title: 题解：P13361 [GCJ 2011 Qualification] Bot Trust
-publishDate: 2026-06-06 19:31:53
+publishDate: 2026-06-06
 tags: [题解,C++]
 top_img: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp
 cover: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp

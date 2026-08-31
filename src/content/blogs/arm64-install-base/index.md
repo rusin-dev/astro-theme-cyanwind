@@ -1,6 +1,6 @@
 ---
 title: 在 arm64 中安装虚拟环境
-publishDate: 2026-04-03 21:00:28
+publishDate: 2026-04-03
 tags: [Git,Nodejs,教程]
 description: 本文讲述了然如何在 arm64 系统上安装虚拟环境、NodeJs 和 Git。
 category: tech

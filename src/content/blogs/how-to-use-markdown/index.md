@@ -1,7 +1,7 @@
 ---
-title: how-to-use-markdown
+title: Cyanwind 主题 markdown 语法
 description: 学习 Markdown 的基础语法，从入门到精通。
-publishDate: 2026-08-31
+publishDate: 2026-08-28
 updatedDate: 2026-08-31
 tags:
   - 教程

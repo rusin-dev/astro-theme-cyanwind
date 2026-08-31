@@ -1,7 +1,7 @@
 ---
 title: 对单一仓库配置小号以远程管理小号仓库
 description: 命令行操作给这个仓库单独设置小号仅本地生效把远程地址绑定到小
-publishDate: 2026-04-20 21:16:59
+publishDate: 2026-04-20
 tags: [VS code,Git]
 category: tech
 ---

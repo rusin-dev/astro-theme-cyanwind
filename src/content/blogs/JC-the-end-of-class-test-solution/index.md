@@ -1,7 +1,7 @@
 ---
 title: JC 提高班期末测试题解
 description: 题目描述雪花图是由两个整数x和y均大于1生成的，生成方式如下
-publishDate: 2026-06-06 18:52:35
+publishDate: 2026-06-06
 tags: [题解,比赛]
 category: ccf
 ---

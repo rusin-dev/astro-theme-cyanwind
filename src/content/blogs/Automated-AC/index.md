@@ -1,7 +1,7 @@
 ---
 title: AC 自动机笔记
 description: AC 自动机笔记
-publishDate: 2026-06-06 19:22:35
+publishDate: 2026-06-06
 tags: [笔记,C++]
 category: ccf
 ---

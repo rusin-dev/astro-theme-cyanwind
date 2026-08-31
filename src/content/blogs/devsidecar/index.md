@@ -2,7 +2,7 @@
 title: 拯救谷歌和 Github！你的新“自行车”
 description: 快速安装，找到最新版本，安装包选择方式：Windows：De
 tags: [Git]
-publishDate: 2026-05-14 19:02:20
+publishDate: 2026-05-14
 category: tech
 ---
 

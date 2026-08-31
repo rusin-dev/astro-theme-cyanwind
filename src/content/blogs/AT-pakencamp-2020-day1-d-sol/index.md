@@ -1,6 +1,6 @@
 ---
 title: 题解：AT_pakencamp_2020_day1_d 立方体を壊せ！
-publishDate: 2026-06-06 19:35:33
+publishDate: 2026-06-06
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 AT_pakencamp_2020_day1_d 立方体を壊せ！，思路清晰、排版精美
 category: solution

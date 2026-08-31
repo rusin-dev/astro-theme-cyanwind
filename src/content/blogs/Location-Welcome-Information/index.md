@@ -4,7 +4,7 @@ description: 前景介绍使用方法创建JS文件
 tags: [Hexo,安知鱼美化,建站]
 top_img:
 uppubDatetimed: '2026-06-03T17:27:37.361+08:00'
-publishDate: 2026-04-06 20:58:53
+publishDate: 2026-04-06
 category: tech
 heroImage:
   src: https://image.rusin7.com/file/hexo/cover/z7qOAkod.webp

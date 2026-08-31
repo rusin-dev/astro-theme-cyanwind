@@ -2,7 +2,7 @@
 title: 题解：AT_joi2024_yo1c_b 桁 (Digit)
 tags: [题解,C++]
 description: 本文讲述了如何使用 C++ 完成洛谷的 AT_joi2024_yo1c_b 桁 (Digit)，思路清晰、排版精美
-publishDate: 2026-03-30 19:21:06
+publishDate: 2026-03-30
 category: solution
 heroImage:
   src: https://image.rusin7.com/file/hexo/cover/kuKbfhkc.webp

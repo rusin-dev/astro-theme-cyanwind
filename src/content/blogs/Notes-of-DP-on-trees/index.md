@@ -2,7 +2,7 @@
 title: 笔记——树形动态规划
 description: 若如图所示，当前dfs至点u，则转移方程得
 tags: [笔记,C++]
-publishDate: 2026-06-07 17:45:33
+publishDate: 2026-06-07
 category: ccf
 ---
 

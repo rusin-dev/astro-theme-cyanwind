@@ -1,6 +1,6 @@
 ---
 title: 洛谷网校 CSP 初赛笔记
-publishDate: 2026-07-22 21:53:36
+publishDate: 2026-07-22
 tags: [c++]
 category: ccf
 description: 笔记
