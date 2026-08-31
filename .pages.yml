@@ -1,4 +1,4 @@
-media: public
+media: public/images
 
 content:
   # 博客文章（中文）
@@ -8,7 +8,7 @@ content:
     path: src/content/blogs
     subfolders: true
     format: yaml-frontmatter
-    filename: index.mdx
+    filename: index.{md,mdx}  
     fields:
       - name: title
         label: 标题
@@ -72,7 +72,7 @@ content:
     path: src/content/blogs
     subfolders: true
     format: yaml-frontmatter
-    filename: index-en.mdx
+    filename: index-en.{md,mdx} 
     fields:
       - name: title
         label: Title
@@ -155,17 +155,3 @@ content:
     view:
       primary: title
       search: [title, description]
-
-  # 站点配置
-  - name: site-config
-    label: 站点配置
-    type: file
-    path: src/site.config.ts
-    format: code
-    fields:
-      - name: title
-        label: 站点标题
-        type: string
-      - name: description
-        label: 站点描述
-        type: string
