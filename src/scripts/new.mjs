@@ -1,7 +1,7 @@
 /**
  * Create a new post in the content directory
  *
- * Usage: astro-rusin new [options] <post-title>
+ * Usage: pnpm new [options] <post-title>
  *
  * Options:
  *   -l, --lang <zh|en|all>  Set the language (default: zh; all means both zh and en)
@@ -10,9 +10,9 @@
  *   -h, --help [en]         Show this help message; add "en" to show English
  *
  * Example:
- *   astro-rusin new "你好，世界"
- *   astro-rusin new -l en "Hello World"
- *   astro-rusin new -l all "Hello World"
+ *   pnpm new "你好，世界"
+ *   pnpm new -l en "Hello World"
+ *   pnpm new -l all "Hello World"
  */
 
 import fs from 'node:fs'
@@ -26,11 +26,8 @@ function getDate() {
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, '0') // Month is 0-based
   const day = String(date.getDate()).padStart(2, '0')
-  const hours = String(date.getHours()).padStart(2, '0')
-  const minutes = String(date.getMinutes()).padStart(2, '0')
-  const seconds = String(date.getSeconds()).padStart(2, '0')
 
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`
+  return `${year}-${month}-${day}`
 }
 
 function getPostSlug(postTitle) {
@@ -44,16 +41,16 @@ function getPostSlug(postTitle) {
 function buildContent({ title, draft, language }) {
   return `---
 title: ${title}
-description: 'Write your description here.'
+description: Write your description here.
 publishDate: ${getDate()}
-${draft ? 'draft: true\n' : ''}${language ? `language: ${language}\n` : ''}tags: ['tag1', 'tag2']
+${draft ? 'draft: true\n' : ''}${language ? `language: ${language}\n` : ''}tags: [tag1, tag2]
 ---
 
 Write your content here.
 `
 }
 
-const HELP_INFO = `用法: astro-rusin new [选项] <文章标题>
+const HELP_INFO = `用法: pnpm new [选项] <文章标题>
 
 选项（均可选）:
 new
@@ -70,12 +67,12 @@ new
   all:    同时生成上述中文和英文两份
 
 示例:
-  astro-rusin new "你好，世界"           # 中文文章
-  astro-rusin new -l en "Hello World"   # 英文文章
-  astro-rusin new -l all "Hello World"  # 中英文都有
-  astro-rusin new -m "MDX Post"         # 使用 MDX 格式
+  pnpm new "你好，世界"           # 中文文章
+  pnpm new -l en "Hello World"   # 英文文章
+  pnpm new -l all "Hello World"  # 中英文都有
+  pnpm new -m "MDX Post"         # 使用 MDX 格式
 `
-const HELP_INFO_EN = `Usage: astro-rusin new [options] <post-title>
+const HELP_INFO_EN = `Usage: pnpm new [options] <post-title>
 
 Options (all optional):
 new
@@ -92,10 +89,10 @@ Generated files:
   all:      generate both the Chinese and English files above
 
 Examples:
-  astro-rusin new "你好，世界"           # Chinese post
-  astro-rusin new -l en "Hello World"   # English post
-  astro-rusin new -l all "Hello World"  # Both languages
-  astro-rusin new -m "MDX Post"         # Use MDX format
+  pnpm new "你好，世界"           # Chinese post
+  pnpm new -l en "Hello World"   # English post
+  pnpm new -l all "Hello World"  # Both languages
+  pnpm new -m "MDX Post"         # Use MDX format
 `
 const TARGET_DIR = 'src/content/blogs/'
 const LANGS = ['zh', 'en', 'all']
