@@ -4,19 +4,18 @@ import cloudflare from '@astrojs/cloudflare'
 import { rehypeHeadingIds, unified } from '@astrojs/markdown-remark'
 // Adapters
 import vercel from '@astrojs/vercel'
+import llmsMd from 'astro-llms-md'
 import { defineConfig } from 'astro/config'
+import rehypeExternalLinks from 'rehype-external-links'
 // Rehype & remark packages
 import rehypeKatex from 'rehype-katex'
 import remarkDirective from 'remark-directive'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
-import rehypeExternalLinks from 'rehype-external-links'
-import llmsMd from 'astro-llms-md'
 
 // Integrations
 import AstroAxiIntegration from './src/axi-integration.ts'
 import { rehypeLuoguBlocks, remarkLuoguBlocks } from './src/plugins/luogu-blocks.ts'
-import { remarkAddZoomable, remarkReadingTime } from './src/plugins/remark-plugins'
 // Others
 // import { visualizer } from 'rollup-plugin-visualizer'
 
@@ -24,6 +23,7 @@ import { remarkAddZoomable, remarkReadingTime } from './src/plugins/remark-plugi
 import { outputCopier } from './src/plugins/output-copier.ts'
 // Local rehype & remark plugins
 import rehypeAutolinkHeadings from './src/plugins/rehype-auto-link-headings.ts'
+import { remarkAddZoomable, remarkReadingTime } from './src/plugins/remark-plugins'
 // Shiki
 import {
   addCopyButton,
@@ -38,6 +38,8 @@ import config from './src/site.config.ts'
 const platform = process.env.DEPLOYMENT_PLATFORM || 'vercel'
 const isCloudflare = platform === 'cloudflare'
 const isGithubPages = platform === 'github'
+// 默认使用纯静态输出；仅当显式设置 ASTRO_SSR=true 且部署平台为 Vercel 时启用 SSR
+const useSSR = process.env.ASTRO_SSR === 'true' && !isCloudflare && !isGithubPages
 
 /** @param {typeof config} cfg */
 function buildRemarkPlugins(cfg) {
@@ -71,7 +73,7 @@ export default defineConfig({
   },
 
   adapter: isGithubPages ? undefined : isCloudflare ? cloudflare() : vercel(),
-  output: isGithubPages ? 'static' : isCloudflare ? 'static' : 'server',
+  output: useSSR ? 'server' : 'static',
 
   image: {
     service: {
@@ -93,9 +95,7 @@ export default defineConfig({
 
     // Temporary fix vercel adapter
     // static build method is not needed
-    outputCopier({
-      integ: ['sitemap', 'pagefind']
-    })
+    ...(useSSR ? [outputCopier({ integ: ['sitemap', 'pagefind'] })] : [])
   ],
   // root: './my-project-directory',
 
@@ -147,7 +147,7 @@ export default defineConfig({
         dark: 'github-dark'
       },
       langAlias: {
-        nginx: 'ini', // 或尝试 'ini', 'config'
+        nginx: 'ini' // 或尝试 'ini', 'config'
       },
       transformers: [
         transformerNotationDiff(),
