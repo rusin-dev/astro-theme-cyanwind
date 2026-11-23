@@ -81,3 +81,6 @@ bunfig.toml
 bun.lockb
 
 AGENTS.md
+
+# WorkBuddy local workspace data
+.workbuddy/

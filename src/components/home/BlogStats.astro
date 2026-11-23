@@ -1,5 +1,5 @@
 ---
-import { getBlogCollection, sortMDByDate } from '@/utils/server'
+import { getBlogCollection, getBlogCollectionEnOnly, sortMDByDate, type BlogPostEntry } from '@/utils/server'
 import { getReadingTime } from '@/utils/reading-time'
 import { Icon } from '@/components/user'
 
@@ -22,7 +22,10 @@ const labels = {
 }
 
 const allPosts = await getBlogCollection()
-const sortedPosts = sortMDByDate(allPosts)
+// 英文站「最后更新」与「总字数」只统计真正有英文版的文章；若把无英文版的中文
+// fallback 文章计入，/en 首页「最后更新」会被纯中文文章抬高，与英文文章页显示的日期不符。
+const statPosts: BlogPostEntry[] = isEnglish ? await getBlogCollectionEnOnly() : allPosts
+const sortedPosts = sortMDByDate(statPosts)
 
 const today = new Date()
 const daysDiff = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24))
@@ -32,7 +35,7 @@ const lastUpdated = sortedPosts.length > 0 ?
   new Date()
 
 let totalWords = 0
-for (const post of allPosts) {
+for (const post of statPosts) {
   try {
     const { body } = post
     if (body) {

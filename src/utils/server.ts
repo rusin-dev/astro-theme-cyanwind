@@ -27,20 +27,26 @@ export async function getBlogCollection() {
 }
 
 /** 
+ * Get English blog collection only (no Chinese fallback)
+ */
+export async function getBlogCollectionEnOnly() {
+  const englishPosts = await getCollection('blogEn', ({ data }) => {
+    return prod ? !data.draft : true
+  })
+  // Transform English post IDs from "anygrasp/index-en" to "anygrasp"
+  return englishPosts.map(post => ({
+    ...post,
+    id: post.id.replace(/\/index-en$/, '')
+  }))
+}
+
+/** 
  * Get English blog collection with fallback to Chinese version
  * If an English version (index-en.md) doesn't exist, use the Chinese version (index.md)
  */
 export async function getBlogCollectionEn() {
   // Get all English versions
-  const englishPosts = await getCollection('blogEn', ({ data }) => {
-    return prod ? !data.draft : true
-  })
-  
-  // Transform English post IDs from "anygrasp/index-en" to "anygrasp"
-  const transformedEnglishPosts = englishPosts.map(post => ({
-    ...post,
-    id: post.id.replace(/\/index-en$/, '')
-  }))
+  const transformedEnglishPosts = await getBlogCollectionEnOnly()
   
   // Get all Chinese versions
   const chinesePosts = await getBlogCollection()
